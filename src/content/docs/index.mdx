@@ -6,31 +6,24 @@ hero:
   tagline: Welcome to the MRover wiki! This is the primary source of documentation and tutorials for MRover Software.
   image:
     html: '<img width="600" alt="MRover" src="https://github.com/user-attachments/assets/8a36c067-9e8d-48b0-a65b-120583c2eefd" />'
-  actions:
-    - text: Get Started
-      link: /getting-started/install-ros/
-      icon: right-arrow
-      variant: primary
-    - text: Autonomy Quickstart
-      link: /autonomy/quickstart/
-    - text: GitHub
-      link: https://github.com/umrover/mrover-ros2
-      icon: external
 ---
 
-import { Card, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+## Get Started
 
 <CardGrid>
-  <Card title="Autonomy Starter Project" icon="rocket">
-    [Get started with autonomy](/autonomy/starter-project/)
-  </Card>
-  <Card title="ESW Starter Project" icon="setting">
-    [Get started with ESW](/esw/starter-project/)
-  </Card>
-  <Card title="Teleop Starter Project" icon="laptop">
-    [Get started with Teleop](/teleop/starter-project/)
-  </Card>
-  <Card title="Contact" icon="email">
-    Reach out to software leadership at [umroverperception@gmail.com](mailto:umroverperception@gmail.com)
-  </Card>
+  <LinkCard title="Install ROS" href="/getting-started/install-ros/" description="Set up your development environment" />
+  <LinkCard title="GitHub" href="https://github.com/umrover/mrover-ros2" description="View the source code on GitHub" />
+</CardGrid>
+
+## Subteams
+
+<CardGrid>
+  <LinkCard title="Autonomy" href="/autonomy/overview/" description="Navigation, perception, and localization" />
+  <LinkCard title="Navigation" href="/navigation/overview/" description="State machines, path planning, and arm control" />
+  <LinkCard title="Perception" href="/perception/overview/" description="Object detection, tag detection, and sensor processing" />
+  <LinkCard title="Localization" href="/localization/overview/" description="IMU calibration, EKF, and GPS integration" />
+  <LinkCard title="ESW" href="/esw/overview/" description="Embedded systems, motor control, and hardware interfaces" />
+  <LinkCard title="Teleop" href="/teleop/overview/" description="Operator interface, Vue components, and real-time control" />
 </CardGrid>

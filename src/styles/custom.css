@@ -135,7 +135,7 @@ nav.sidebar a[aria-current='page'] {
 
 /* Hero section on splash page */
 .hero {
-  padding-block: 4rem;
+  padding-block: 1.5rem;
 }
 
 :root[data-theme='dark'] .hero {
