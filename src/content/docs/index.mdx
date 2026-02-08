@@ -1,0 +1,36 @@
+---
+title: MRover Documentation
+description: Primary source of documentation and tutorials for MRover Software
+template: splash
+hero:
+  tagline: Welcome to the MRover wiki! This is the primary source of documentation and tutorials for MRover Software.
+  image:
+    html: '<img width="600" alt="MRover" src="https://github.com/user-attachments/assets/8a36c067-9e8d-48b0-a65b-120583c2eefd" />'
+  actions:
+    - text: Get Started
+      link: /getting-started/install-ros/
+      icon: right-arrow
+      variant: primary
+    - text: Autonomy Quickstart
+      link: /autonomy/quickstart/
+    - text: GitHub
+      link: https://github.com/umrover/mrover-ros2
+      icon: external
+---
+
+import { Card, CardGrid } from '@astrojs/starlight/components';
+
+<CardGrid>
+  <Card title="Autonomy Starter Project" icon="rocket">
+    [Get started with autonomy](/autonomy/starter-project/)
+  </Card>
+  <Card title="ESW Starter Project" icon="setting">
+    [Get started with ESW](/esw/starter-project/)
+  </Card>
+  <Card title="Teleop Starter Project" icon="laptop">
+    [Get started with Teleop](/teleop/starter-project/)
+  </Card>
+  <Card title="Contact" icon="email">
+    Reach out to software leadership at [umroverperception@gmail.com](mailto:umroverperception@gmail.com)
+  </Card>
+</CardGrid>
