@@ -12,6 +12,9 @@ export default defineConfig({
   },
   integrations: [
     starlight({
+      expressiveCode: {
+        frames: false,
+      },
       title: 'MRover Docs',
       favicon: '/favicon.ico',
       social: [
