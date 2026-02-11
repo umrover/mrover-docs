@@ -72,12 +72,25 @@ header.header {
 }
 
 /* Sidebar styling */
-nav.sidebar .top-level > li > details > summary,
+nav.sidebar .top-level > li > details > summary {
+  font-weight: 600;
+  text-transform: uppercase;
+  font-size: var(--sl-text-xs);
+  letter-spacing: 0.06em;
+  color: var(--mrover-accent);
+}
+
 nav.sidebar .top-level > li > a {
   font-weight: 600;
   text-transform: uppercase;
   font-size: var(--sl-text-xs);
   letter-spacing: 0.06em;
+}
+
+nav.sidebar .top-level > li {
+  border-bottom: 1px solid var(--sl-color-hairline-light);
+  padding-bottom: 0.5rem;
+  margin-bottom: 0.5rem;
 }
 
 nav.sidebar a[aria-current='page'] {
