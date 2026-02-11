@@ -32,8 +32,9 @@ const count = ref(0)
 </style>
 ```
 
-> [!NOTE]
-> `<style scoped>` limits the styling to the current component
+:::note
+`<style scoped>` limits the styling to the current component
+:::
 
 ## Reactive State: `ref` and `reactive`
 

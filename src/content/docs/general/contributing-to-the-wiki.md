@@ -74,4 +74,22 @@ Put images in `public/` and reference them:
 ![description](/my-image.png)
 ```
 
-Objects in public will be built to root, so reference them from root. 
+Objects in public will be built to root, so reference them from root.
+
+### Admonitions
+
+GitHub-flavored `> [!NOTE]` syntax does **not** work here. Use Starlight's `:::` syntax:
+
+```md
+:::note
+This is a note.
+:::
+
+:::caution
+This is a warning.
+:::
+
+:::tip
+This is a tip.
+:::
+```

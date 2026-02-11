@@ -1,6 +1,9 @@
 ---
 title: "MRover Software Introduction"
 ---
+
+![MRover](https://github.com/user-attachments/assets/8a36c067-9e8d-48b0-a65b-120583c2eefd)
+
 ### Why should I join MRover Software?
 * MRover gives you the opportunity to work on an interesting project that spans many fields of study. In fact, MRover is arguably the most interdisciplinary project team in the Wilson Center.
 * You will learn skills that are incredibly useful in industry and life. Many of these skills are unattainable through classwork.
