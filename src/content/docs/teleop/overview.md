@@ -9,20 +9,33 @@ The Teleoperations (Teleop) team ensures the rover's physical systems are easily
 
 The Base Station GUI is a Vue.js web app that serves as the main interface for operating the rover. It:
 
-- Captures controller inputs
+- Captures controller inputs (Xbox, Thrustmaster joystick)
 - Displays GPS, camera, and sensor data
 - Sends waypoints to auton
 - Controls devices used in science sample acquisition
 
 and more...
 
-## Django Backend
+## FastAPI Backend
 
-To support the frontend, we have a Django backend that connects to ROS via websockets. It:
+To support the frontend, we have a Python FastAPI backend that bridges the GUI to ROS2. It:
 
-- Handles all ROS callbacks
-- Stores persistent data like GPS waypoints
-- Computes robotic arm commands
+- Maintains WebSocket connections per subsystem (arm, drive, nav, science, etc.)
+- Forwards ROS2 topics to the frontend via msgpack-serialized WebSocket messages
+- Publishes controller inputs from the frontend to ROS2 topics
+- Stores persistent data like GPS waypoints in SQLite
+- Computes robotic arm commands (throttle, IK position, IK velocity)
+
+## Tech Stack
+
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Vue 3, TypeScript, Vite, Pinia, Tailwind CSS |
+| 3D / Maps | Three.js, Leaflet |
+| Backend | Python, FastAPI, uvicorn |
+| Communication | WebSocket + msgpack binary serialization |
+| Data | SQLite |
+| Runtime | Bun (JS), ROS2 rclpy (Python) |
 
 # Resources
 
@@ -32,11 +45,11 @@ To support the frontend, we have a Django backend that connects to ROS via webso
 
 [Vue Introduction](/teleop/vue-introduction)
 
-[Bootstrap Introduction](/teleop/bootstrap-introduction)
+[Tailwind Introduction](/teleop/tailwind-introduction)
 
 [GUI Styling Guidelines](/teleop/gui-style-checking)
 
-[Consumers Lookup](/teleop/consumers-lookup)
+[WebSocket Handlers Lookup](/teleop/consumers-lookup)
 
 [Teleop Starter Project](/teleop/starter-project)
 

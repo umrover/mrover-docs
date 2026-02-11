@@ -1,19 +1,19 @@
 ---
 title: "Teleop FAQ"
 ---
-Before you look any further, remember to checkout `teleop` and run ```./ansible.sh teleop.yml```, followed by ```./build.sh```. 
+Before you look any further, make sure you have run `./build.sh` from the mrover directory.
 
 ## Python venv
 
 ### Output
 
 ```
-ImportError: Couldn't import Django. Are you sure it's installed and available on your PYTHONPATH environment variable? ...
+ModuleNotFoundError: No module named 'rclpy'
 ```
 
 ### Solution
 
-Enter `mrover` before trying to run basestation
+Enter `mrover` before trying to run the basestation.
 
 You have not entered the Python virtual environment. To enter the python venv, enter `mrover` in the shell. This macro runs:
 
@@ -22,25 +22,6 @@ $ cd ~/ros2_ws/src/mrover && source ~/ros2_ws/src/mrover/venv/bin/activate
 ```
 
 which opens the python virtual environment and allows you to run the basestation.
-
----
-
-## Missing Table
-
-### Output
-
-```
-[gui_backend.sh-1] django.db.utils.OperationalError: no such table: backend_currentautonwaypoints
-```
-
-### Solution
-
-We need to migrate the Django backend to create the table. From your `mrover` directory, run:
-```
-cd teleoperations/basestation_gui
-python3 manage.py makemigrations
-python3 manage.py migrate
-```
 
 ---
 
@@ -58,6 +39,25 @@ science_hw_bridge missing
 ### Solution
 
 Some files that CMake expects are missing. You could try and remove the `#Perception` and `#Embedded` sections in `CMakeLists`, and reach out to your team lead for help.
+
+---
+
+## Frontend not loading
+
+### Output
+
+Browser shows a blank page or connection refused on `localhost:8080`.
+
+### Solution
+
+Make sure the backend is running (`ros2 launch mrover basestation.launch.py`). Check the terminal output for errors. If you see bun/npm errors, try:
+
+```bash
+cd teleoperation/basestation_gui/frontend
+bun install
+```
+
+Then relaunch the basestation.
 
 ---
 

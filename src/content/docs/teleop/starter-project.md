@@ -1,6 +1,9 @@
 ---
 title: "Teleop Starter Project"
 ---
+
+#**OUT OF DATE**
+
 # Introduction
 
 This project will involve building an ArmControls component on a testing view, connecting that to the backend, then using the simulator and the THREE.js component to verify the implementation. 

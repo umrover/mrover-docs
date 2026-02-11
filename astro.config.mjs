@@ -73,7 +73,7 @@ export default defineConfig({
             { label: 'Git', slug: 'general/git' },
             { label: 'Best Practices', slug: 'general/best-practices' },
             { label: 'Code Style', slug: 'general/code-style' },
-            { label: 'Contributing to the Wiki', slug: 'general/contributing-to-the-wiki' },
+            { label: 'Adding a Docs Page', slug: 'general/contributing-to-the-wiki' },
             { label: 'ROS Tools: rqt_bag', slug: 'general/ros-tools-rqt-bag' },
           ],
         },
@@ -125,11 +125,9 @@ export default defineConfig({
               items: [
                 { label: 'Vue Introduction', slug: 'teleop/vue-introduction' },
                 { label: 'Tailwind Introduction', slug: 'teleop/tailwind-introduction' },
-                { label: 'Bootstrap Introduction', slug: 'teleop/bootstrap-introduction' },
               ],
             },
-            { label: 'Convert to Django', slug: 'teleop/convert-to-django' },
-            { label: 'Teleop Consumers Lookup', slug: 'teleop/consumers-lookup' },
+            { label: 'WebSocket Handlers Lookup', slug: 'teleop/consumers-lookup' },
           ],
         },
         {

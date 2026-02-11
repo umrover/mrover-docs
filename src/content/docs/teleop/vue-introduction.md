@@ -3,215 +3,172 @@ title: "Vue Introduction"
 ---
 # Vue Introduction
 
-Vue is a versatile and beginner-friendly JavaScript framework. This introduction is only going to cover what is relevant to our codebase. 
+Vue is a versatile and beginner-friendly JavaScript framework. This introduction covers what is relevant to our codebase.
+
+We use the **Composition API** with `<script setup>`, which is the modern recommended style for Vue 3.
 
 ## File Structure
 
-A typical `.vue` file includes;
+A typical `.vue` file includes:
 - A `<template>` block for HTML markup
-- A `<script>` block for js logic
-- A `<style>` block for css styling
+- A `<script setup>` block for TypeScript logic
+- A `<style scoped>` block for CSS styling
 
-Like this:
 ```vue
 <template>
-  <div class="wrapper">
-      <!-- Child content here -->
+  <div class="flex flex-col gap-2">
+    <!-- Child content here -->
   </div>
 </template>
-<script>
-  // Logic
+
+<script lang="ts" setup>
+import { ref } from 'vue'
+
+const count = ref(0)
 </script>
+
 <style scoped>
-  /* Styles */
+/* Component-specific styles */
 </style>
 ```
 
-> [!NOTE]   
-> `<style scoped>` limits the styling to the current component 
+> [!NOTE]
+> `<style scoped>` limits the styling to the current component
+
+## Reactive State: `ref` and `reactive`
+
+Use `ref()` for primitive values and `reactive()` for objects:
+
+```ts
+import { ref, reactive } from 'vue'
+
+const count = ref(0)
+const user = reactive({ name: 'Alice', age: 20 })
+
+count.value++ // access .value in script
+user.name = 'Bob' // direct access for reactive
+```
+
+In `<template>`, refs are auto-unwrapped (no `.value` needed):
+
+```html
+<p>{{ count }}</p>
+```
 
 ## Looping Through Data: `v-for`
 
-frontend/src/components/AutonWaypointEditor.vue
 ```vue
-<WaypointStore
+<AutonWaypointItem
   v-for="(waypoint, index) in waypoints"
-  :key="waypoint"
+  :key="waypoint.id"
   :waypoint="waypoint"
   :index="index"
-  @add="addItem"
-  @delete="deleteMapWaypoint"
+  @delete="removeWaypoint(index)"
 />
-</div>
 ```
 
 ## Conditional Rendering: `v-if`
 
-**Only render the element if the condition is true.**
-
-frontend/src/components/AutonWaypointItem.vue
+Only render the element if the condition is true.
 
 ```vue
 <button
-  v-if="!enable_costmap"
-  class="btn btn-danger"
-  @click="toggleCostmap"
+  v-if="!enabled"
+  class="cmd-btn cmd-btn-danger"
+  @click="toggle"
 >
-  Costmap
+  Disabled
 </button>
 
 <button
-  v-if="enable_costmap"
-  class="btn btn-success"
-  @click="toggleCostmap"
+  v-else
+  class="cmd-btn cmd-btn-success"
+  @click="toggle"
 >
-  Costmap
+  Enabled
 </button>
 ```
 
-## Event Binding: `v-on` / `@`
+## Event Binding: `@`
 
-**Bind a function to an event like `click`.**
-
-frontend/src/components/CameraFeed.vue
+Bind a function to a DOM event:
 
 ```vue
-<canvas :id="'stream-' + id" v-on:click="handleClick"></canvas>
-```
-
-## Data Properties
-
-**Define component-local variables using the `data()` function.**
-
-```js
-data() {
-  return {
-    x: 1,
-    arr: [1, 2, 3]
-  }
-}
-```
-
-## Methods
-
-**Define functions you want to call from your template or internally.**
-
-```js
-methods: {
-  addOnetoX() {
-    this.x = this.x + 1
-  }
-}
+<button @click="handleClick">Click me</button>
+<input @keydown.enter="submitForm" />
 ```
 
 ## Computed Properties
 
-**Used for derived or reactive values based on existing data.**
+Derived values that automatically update when their dependencies change:
 
-```js
-computed: {
-  xPlusTwo() {
-    return this.x + 2
-  }
-}
+```ts
+import { ref, computed } from 'vue'
+
+const items = ref([1, 2, 3])
+const total = computed(() => items.value.reduce((a, b) => a + b, 0))
 ```
 
 ## Watchers
 
-**Run code in response to changes in a specific data property.**
+Run side effects when a reactive value changes:
 
-```js
-watch: {
-  x(val) {
-    console.log("x has changed")
-  }
-}
+```ts
+import { ref, watch } from 'vue'
+
+const query = ref('')
+
+watch(query, (newVal) => {
+  console.log('Query changed:', newVal)
+})
 ```
 
 ## Lifecycle Hooks
 
-### `beforeCreate()`
+```ts
+import { onMounted, onBeforeUnmount } from 'vue'
 
-Runs before the component is initialized.
+onMounted(() => {
+  document.addEventListener('keydown', handleKey)
+})
 
-```js
-beforeCreate() {
-  // setup logic here
-}
+onBeforeUnmount(() => {
+  document.removeEventListener('keydown', handleKey)
+})
 ```
 
-### `created()`
+Common hooks:
+- `onMounted()` - after component is added to the DOM
+- `onBeforeUnmount()` - before component is removed, for cleanup
+- `onUpdated()` - after any DOM update
 
-Runs after the component is initialized, but before DOM is mounted.
+## Importing Components
 
-```js
-created() {
-  // fetch data, set up reactive properties, etc.
-}
+With `<script setup>`, imported components are automatically available in the template without registration:
+
+```vue
+<script lang="ts" setup>
+import GamepadDisplay from './GamepadDisplay.vue'
+import IndicatorDot from './IndicatorDot.vue'
+</script>
+
+<template>
+  <GamepadDisplay :axes="axes" :buttons="buttons" />
+  <IndicatorDot :is-active="connected" />
+</template>
 ```
 
-### `mounted()`
+## State Management: Pinia
 
-Runs after the component is added to the DOM.
+We use **Pinia** (not Vuex) for shared state across components:
 
-```js
-mounted() {
-  // DOM-dependent logic
-}
+```ts
+import { useWebsocketStore } from '@/stores/websocket'
+
+const websocketStore = useWebsocketStore()
+websocketStore.sendMessage('arm', { type: 'ra_controller', axes, buttons })
 ```
 
-### `updated()`
+Pinia stores are defined in `src/stores/` and accessed via composable functions (`useXxxStore`).
 
-Runs after any DOM update caused by reactive changes.
-
-```js
-updated() {
-  // respond to reactive updates
-}
-```
-
-### `unmounted()`
-
-Runs when the component is removed from the DOM. Great for cleanup.
-
-```js
-unmounted() {
-  // cleanup logic, remove event listeners
-}
-```
-
----
-
-## Importing Other Components or Utilities
-
-**Import other files for reuse.**
-
-```js
-import Component from './Component.vue'
-```
-
-> [!WARNING]  
-> Ever since Vuex 4, instead of this, which gives a warning
-```
-import { mapGetters } from 'vuex'
-```
-You should do this instead
-```
-import Vuex from 'vuex'
-const { mapGetters } = 'vuex'
-```
-
----
-
-## Child Components
-
-Register child components that you want to use inside this component. If you don't register it, Vue won't recognize it. 
-
-```js
-components: {
-  Component
-}
-```
-
-
-## See [here](/teleop/sample-vue-component) for a complete example 
+## See [here](/teleop/sample-vue-component) for a complete example

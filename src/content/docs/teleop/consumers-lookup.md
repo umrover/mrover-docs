@@ -1,179 +1,138 @@
 ---
-title: "Teleop Consumers Lookup"
+title: "WebSocket Handlers Lookup"
 ---
-Consumers handle communication to ROS2 topics and services, as well as frontend websockets
+WebSocket handlers manage communication between the frontend and ROS2. Each handler maintains a persistent WebSocket connection for a specific subsystem, forwarding ROS2 topics to the GUI and publishing GUI inputs to ROS2.
 
-With the 25' school year, we have switched from one main consumers.py file to multiple consumers to increase the bandwidth and reduce latency to the frontend. 
-
-Each consumer corresponds to a core function of the rover, such as the robotic arm, autonomous navigation, etc. 
+Handlers are defined in `teleoperation/basestation_gui/backend/ws/`.
 
 ---
 
-# Websocket Usage per Mission
-Check which websockets a certain mission uses
+# WebSocket Usage per View
 
-### Auton
-- `auton`
-- `drive`
-- `nav`
-- `science`
-- `waypoints`
+Each view connects to the WebSocket handlers it needs via the `:topics` prop on `BaseGridView`:
 
-### DM/ES
-- `arm`
-- `drive`
-- `mast`
-- `nav`
-- `waypoints`
+### ESView (DM/ES missions)
+- `arm`, `drive`
 
-### ISH
-- `science`
+### DMView (Device Mission)
+- `arm`, `drive`, `chassis`, `nav`
 
-### SA
-- `arm`
-- `mast`
-- `nav`
-- `science`
-- `waypoints`
+### AutonView
+- `drive`, `nav`, `science`, `chassis`
 
+### ScienceView (SA mission)
+- `arm`, `chassis`, `drive`, `nav`, `science`
 
 ---
 
-# Topic and Service consumer lookup
-Check below to see which consumer handles a topic or service
+# Handler Reference
 
-## ArmConsumer
+## ArmHandler
 
-websocket: `arm`
+WebSocket: `arm`
 
 ### Publishing
-- `arm_throttle_cmd`
-- `ee_pos_cmd`
-- `ee_vel_cmd`
-- `controller_cmd_vel`
-- `sa_throttle_cmd`
+- `/arm_thr_cmd` (Throttle)
+- `/ik_pos_cmd` (IK)
+- `/ik_vel_cmd` (Twist)
 
 ### Forwarding
-- `arm_controller_state`
-- `arm_joint_data`
+- `/arm_controller_state` -> `arm_state`
+- `/arm_ik` -> `ik_target`
 
 ### Receiving
-- `ra_controller`
-- `ra_mode`
-- `sa_controller`
-- `sa_mode`
+- `ra_controller` - gamepad axes and buttons
 
 ---
 
+## DriveHandler
 
-## AutonConsumer
-
-websocket: `auton`
-
-### Services
-- `enable_teleop`
-- `enable_auton`
-
-### Receiving
-- `teleop_enable`
-- `auton_enable`
-
----
-
-
-## DriveConsumer
-
-websocket: `drive`
+WebSocket: `drive`
 
 ### Publishing
-- `joystick_cmd_vel`
+- `/joystick_vel_cmd` (Twist)
+- `/controller_vel_cmd` (Twist)
 
 ### Forwarding
-- `drive_left_controller_data`
-- `drive_right_controller_data`
-- `drive_controller_data`
+- `/left_controller_state` -> `drive_left_state`
+- `/right_controller_state` -> `drive_right_state`
 
 ### Receiving
-- `joystick`
+- `joystick` - drive joystick axes and buttons
+- `controller` - drive controller axes and buttons
 
 ---
 
+## ScienceHandler
 
-## MastConsumer
-
-websocket: `mast`
+WebSocket: `science`
 
 ### Publishing
-- `mast_gimbal_throttle_cmd`
-
-### Receiving
-- `mast_keyboard`
-
----
-
-
-## NavConsumer
-
-websocket: `nav`
+- `/sp_thr_cmd` (Throttle)
 
 ### Forwarding
-- `nav_state`
-- `gps/fix`
-- `basestation/position`
-- `drone_odometry`
+- `/sp_humidity_data` -> `sp_humidity`
+- `/sp_temp_data` -> `sp_temp`
+- `/sp_oxygen_data` -> `sp_oxygen`
+- `/sp_uv_data` -> `sp_uv`
+- `/sp_ozone_data` -> `sp_ozone`
+- `/sp_co2_data` -> `sp_co2`
+- `/sp_pressure_data` -> `sp_pressure`
+- `/sp_controller_state` -> `sp_controller_state`
+
+### Receiving
+- `sp_controller` - science arm gamepad axes and buttons
 
 ---
 
+## NavHandler
 
-## ScienceConsumer
-
-websocket: `science`
+WebSocket: `nav`
 
 ### Forwarding
-- `led`
-- `science_thermistors`
-- `science_heater_state`
-- `science_oxygen_data`
-- `science_methane_data`
-- `science_uv_data`
-- `science_temperature_data`
-- `science_humidity_data`
-- `sa_controller_state`
-- `sa_gear_diff_position`
+- `/gps/fix` -> `gps_fix`
+- `basestation/position` -> `basestation_position`
+- `/drone_odometry` -> `drone_waypoint`
+- `/led` -> `led_color`
 
-### Services
-- `science_change_heater_auto_shutoff_state`
-- `sa_enable_limit_switch_sensor_actuator`
-- `sa_gear_diff_set_position`
-- `science_enable_heater_<name>` (one per `name` in `heater_names`)
-- `science_enable_white_led_a`
-- `science_enable_white_led_b`
+### Subscribing
+- `/nav_state` - triggers LED manager state updates
 
-### Receiving
-- `heater_enable`
-- `set_gear_diff_pos`
-- `auto_shutoff`
-- `white_leds`
-- `ls_toggle`
-
+### Additional
+- Publishes TF-based localization data (orientation) at 10 Hz
 
 ---
 
+## ChassisHandler
 
-## WaypointsConsumer
+WebSocket: `chassis`
 
-websocket: `waypoints`
+### Forwarding
+- `/gimbal_controller_state` -> `gimbal_controller_state`
+
+---
+
+## AutonHandler
+
+WebSocket: `auton`
 
 ### Receiving
-- `save_auton_waypoint_list`
-- `save_basic_waypoint_list`
-- `save_current_auton_course`
-- `save_current_basic_course`
-- `delete_auton_waypoint_from_course`
-- `get_basic_waypoint_list`
-- `get_auton_waypoint_list`
-- `get_current_basic_course`
-- `get_current_auton_course`
+- `code` - typing code string or cancel command
 
+### Actions
+- `/es_typing_code` (TypingCode action)
+- Sends back: `typing_error`, `typing_accepted`, `typing_feedback`, `typing_cancelled`
+
+---
+
+## LatencyHandler
+
+WebSocket: `latency`
+
+### Receiving
+- `ping` - timestamp, sequence, payload
+
+### Responding
+- `pong` - server timestamp, mock motor data
 
 ---

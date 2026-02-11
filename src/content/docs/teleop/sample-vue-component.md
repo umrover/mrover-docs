@@ -2,136 +2,81 @@
 title: "Sample Vue Component"
 ---
 ## Sample Vue Component
-This code block contains a sample vue component that has examples and explanations of many different paradigms that you will use when developing GUI components with Vue.
+
+This code block contains a sample Vue component using the Composition API with `<script setup>`. It demonstrates the patterns you will use when developing GUI components.
 
 ```vue
-<!-- Define the html of your components here -->
-<!-- Note that there can only be one top level div in the template -->
 <template>
+  <div class="flex flex-col gap-2">
 
-    <!-- CSS Classes can be added to a div using class="class1 class2" -->
-    <div class="wrapper box">
-
-        <!-- You can use v-for to render items in a loop -->
-        <div v-for="i in x">
-            <!-- Event handlers can be declared with v-on:{eventName} -->
-            <button v-on:click="addOnetoX()">Add one to x #{{i}}</button>
-        </div>
-
-        <!-- v-for can also be used to index through data structures like arrays -->
-        <!-- similar to Python -->
-        <div v-for="elt in arr">
-            <!-- Use {{}} to display data on the DOM -->
-            {{elt}}
-        </div>
-
-        <!-- v-if can be used to conditionally render html -->
-        <div v-if="x > 2">
-            <p> x is greater than two</p>
-        </div>
-
+    <!-- v-for loops through reactive arrays -->
+    <div v-for="i in count" :key="i">
+      <button class="cmd-btn cmd-btn-primary" @click="increment">
+        Add one to count (#{{ i }})
+      </button>
     </div>
+
+    <!-- v-for with arrays -->
+    <div v-for="item in items" :key="item">
+      {{ item }}
+    </div>
+
+    <!-- v-if for conditional rendering -->
+    <p v-if="count > 2">Count is greater than two</p>
+
+    <!-- computed properties are used like regular values -->
+    <p>Count plus two: {{ countPlusTwo }}</p>
+
+  </div>
 </template>
-  
-<!-- Here you can define javascript functionality for your component -->
-<script>
 
-  // Define imports for other components and packages here
-  import { mapGetters } from 'vuex'
-  import Component from './Component.vue'
+<script lang="ts" setup>
+import { ref, computed, watch, onMounted, onBeforeUnmount } from 'vue'
 
+// reactive state
+const count = ref(1)
+const items = ref([1, 2, 3])
 
-  // Define const variables here
-  // These will only exist in the scope of the <script> tag
-  const two = 2
-  
-  // Must include "this." in front of any var or function 
-  // defined inside of export section 
-  export default {
-    // Can be used for recursively rendering a component
-    // Can also be helpful for debugging
-    name: 'AutonTask',
-    // Define component local variables
-    data () {
-      return {
-        x: 1,
-        arr: [1, 2, 3]
-      }
-    },
-  
-    // These are general functions that can be used 
-    methods: {
-        addOnetoX: function () {
-            this.x = this.x + 1
-        }
-    },
-  
-    // Values that can be treated like read-only variables
-    // Calculated based on component member variables
-    // Note the this in front of var x but not const two
-    computed: {
-        xPlusTwo: function () {
-            return this.x + two
-        }
-    },
-  
-    // Functions that have the same name as a variable and will run
-    // Whenever the value of that var changes
-    watch: {
-    // Runs whenever variable x changes
-    // val is the new value that x just changed to
-      x: function(val){
-        console.log("x has changed")
-      }
-    },
-  
-    // Run before the component is created, set up any logic essential for 
-    // variables in the component
-    beforeCreate: function () {
+// methods are just functions
+function increment() {
+  count.value++
+}
 
-    },
+// computed: derived values that auto-update
+const countPlusTwo = computed(() => count.value + 2)
 
-    // Function that will run at the creation of the Component but before it is rendered to the DOM 
-    created: function () {
+// watch: run code when a value changes
+watch(count, (newVal) => {
+  console.log('count changed to', newVal)
+})
 
-    },
+// lifecycle: runs after component mounts to DOM
+onMounted(() => {
+  console.log('component mounted')
+})
 
-    // Function that runs immediatly after rendering component to DOM
-    mounted: function () {
-
-    },
-
-    // Function that runs after any update to the DOM
-    updated: function (){
-
-    },
-
-    // Function that runs after DOM is unrendered
-    // Use this for any cleanup functions or to emit 
-    // an event about the destruction of the components
-    unmounted: function () {
-
-    },
-  
-    // Child Components that will be used to assemble the current component
-    components: {
-
-    }
-  }
+// lifecycle: cleanup before component is removed
+onBeforeUnmount(() => {
+  console.log('component unmounting')
+})
 </script>
 
-<!-- This is where you will define CSS Classes for your components -->
-<!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-/* Examples of CSS classes */
-.wrapper{
-    margin: 1px
-}
-
-.box{
-    border: 1px grey
-}
-
+/* component-specific styles go here */
 </style>
-  
 ```
+
+### Key differences from the Options API
+
+If you see older code using `export default { data(), methods, computed, watch }`, that is the **Options API**. We now use the **Composition API** with `<script setup>`:
+
+| Options API | Composition API |
+|------------|----------------|
+| `data() { return { x: 1 } }` | `const x = ref(1)` |
+| `methods: { fn() {} }` | `function fn() {}` |
+| `computed: { val() {} }` | `const val = computed(() => ...)` |
+| `watch: { x(val) {} }` | `watch(x, (val) => ...)` |
+| `mounted() {}` | `onMounted(() => {})` |
+| `this.x` | `x.value` |
+| `components: { Foo }` | Just `import Foo from ...` |
+| `this.$store.dispatch(...)` | `const store = useXxxStore()` |
