@@ -61,6 +61,22 @@ Then relaunch the basestation.
 
 ---
 
+## Missing `unique_identifier_msgs` header
+
+### Output
+
+From your `./build.sh` output:
+
+```
+fatal error: 'unique_identifier_msgs/msg/detail/uuid__struct.h' file not found
+```
+
+### Solution
+
+Run `./clean.sh` then `./build.sh` from the `mrover` directory.
+
+---
+
 ## manifpy
 
 The manifpy repository is not installed or activated correctly. Try the code below, running from your `mrover` directory. If that doesn't work, reach out to your team lead.
