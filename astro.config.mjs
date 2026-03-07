@@ -115,6 +115,7 @@ export default defineConfig({
             { label: 'Teleop Overview', slug: 'teleop/overview' },
             { label: 'Teleop Quickstart', slug: 'teleop/quickstart' },
             { label: 'Teleop FAQ', slug: 'teleop/faq' },
+            { label: 'Teleop Organization', slug: 'teleop/organization' },
             { label: 'GUI Style Checking', slug: 'teleop/gui-style-checking' },
             { label: 'Teleop Starter Project', slug: 'teleop/starter-project' },
             { label: 'Sample Vue Component', slug: 'teleop/sample-vue-component' },
