@@ -11,16 +11,16 @@ Handlers are defined in `teleoperation/basestation_gui/backend/ws/`.
 
 Each view connects to the WebSocket handlers it needs via the `:topics` prop on `BaseGridView`:
 
-### ESView (DM/ES missions)
+### ESView (Equipment Servicing)
 - `arm`, `drive`
 
-### DMView (Device Mission)
+### DMView (Delivery Mission)
 - `arm`, `drive`, `chassis`, `nav`
 
-### AutonView
+### AutonView (Autonomy Mission)
 - `drive`, `nav`, `science`, `chassis`
 
-### ScienceView (SA mission)
+### ScienceView (Science Mission)
 - `arm`, `chassis`, `drive`, `nav`, `science`
 
 ---
