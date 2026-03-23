@@ -3,6 +3,10 @@ title: "Downloading Offline Map"
 ---
 # Mobile Atlas Creator (MOBAC)
 
+:::caution
+MOBAC deprecated lmao, find/develop alternate tooling
+:::
+
 Mobile Atlas Creator is a tool used to download the tiles from a map tile API. In our case, we will attempt to download the tiles of the google maps satellite view map.
 
 ## Installing MOBAC
