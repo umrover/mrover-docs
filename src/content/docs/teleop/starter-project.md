@@ -41,8 +41,12 @@ Now you (hopefully) have the starter code ready to be worked on. But how do you 
 
 Go to ```http://localhost:8080/starter``` in your browser. You should see an error page. This is because it is trying to access a server on and IP address that doesn't have any - ```localhost``` a.k.a. ```127.0.0.1``` a.k.a. **your** computer. To create the server it needs, go to your terminal, and run
 ```bash
-ros2 launch mrover basestation.launch.py
+ros2 launch mrover basestation.launch.py mode:=dev
 ```
+:::note
+```mode:=dev``` launches in development mode. Without it, the basestation will launch in production mode and in a new window.
+:::
+
 This launches both the frontend and the backend. Now once you go back to your browser, you should see a webpage with a header and some text with "body" in it after reloading. If not, make sure you did everything in [Teleop Quickstart](/teleop/quickstart), or ask for help.
 
 :::note
@@ -54,8 +58,9 @@ This launches both the frontend and the backend. Now once you go back to your br
 
 # Vue Files and Editing
 
-Now, open up ```StarterProject.vue``` in a code editor. It's easiest to just run this in the terminal:
+Now, open up ```StarterProject.vue``` in a code editor. It's easiest to just run this in a new terminal:
 ```bash
+mrover
 code .
 ```
 Then press **ctrl-p** and type the file's name to search for it. It should look something like this:  
@@ -196,7 +201,7 @@ Next, undo changing ```timestamp```, and try this challenge: Get the following t
 [gui_backend.sh-1] [WARN] testing message 'Phil' received at <current time>
 ```
 
-*Hint: look in starter_ws.py. Where is a message's type used? What data does the WebSocket expect when it receives a particular message?*
+*Hint: look in ```starter_ws.py```. Where is a message's type used? What data does the WebSocket expect when it receives a particular message?*
 
 ---
 # Components Inside of Components
@@ -321,7 +326,7 @@ interval = window.setInterval(() => {
 ```
 
 It takes the keyboard input and "translates" it into a controller input.  
-Here is the code for direct controller input:
+Here is part of the code for direct controller input:
 
 ```typescript
 const { connected, axes, buttons, vibrationActuator } = useGamepadPolling({
@@ -337,7 +342,7 @@ However, pressing anything won't move the arm currently. This is for two reasons
 
 ## Setting up ```Arm Controls```
 
-Go to this div:
+Head inside ```ArmControls.vue```. In VSCode, you can control click its name from its html tag or import statement. Then, go to this div:
 
 ```html
 <div class="flex w-full" role="group" aria-label="Arm mode selection" data-testid="pw-arm-mode-buttons">
@@ -441,7 +446,7 @@ That... probably gave an error. Run what it tells you to, which is probably this
 
 ```bash
 # --set-upstream can be replaced with -u
-git push --set-upstream origin <your-initials>/teleop-starter
+git push --set-upstream origin <your-initials>/teleop-starter-2026
 ```
 
 This tells git to create a *remote branch* (shared) to match with your *local branch* (on your computer), and to put the changes there. Now that the remote branch exists, you can simply type ```git push``` whenever you make a new commit.  
@@ -474,6 +479,7 @@ There you have it! Your first teleop project done. It was a lot to take in, so d
 * **Skim the codebase.** Look at files at multiple parts of the codebase, and try to figure out what they do. Modify them, remove them, add them, and see what happens. You can reset a branch back to its remote version with ```git reset --hard origin/<branch-name>```. I recommend looking in the views, the components, the _ws.py files, the .msgs, the shell scripts (.sh files), and whatever seems to interest you.
 * **Customize your environment.** Change the colors on your terminal. Learn keyboard shortcuts for VSCode (did you know **ctrl-alt-"-"** will move the cursor to its previous position, even between files). Try out Vim. Install some extensions. Put up a fancy wallpaper. Making navigating your computer easy will pay off in the long run.
 * **Talk with other members.** MRover is a team, and we work best when there's good communication. Try to familiarize yourself with your teammates and some members of other teams too. Heck, try out another team if they look fun, I ain't stopping you. If you have any questions at all, don't be afraid to ask me or someone else.  
+* **Ctrl-f, ctrl-shift-f, ctrl-p, and ctrl-click are your best friends.** I think I learned the most about MRover by looking at files related to what I was working on. Learn what these do, and try them out.
 
 
 Now, go eat lunch or something. You've probably been staring at your screen a while.
