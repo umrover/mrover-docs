@@ -2,433 +2,456 @@
 title: "Teleop Starter Project"
 ---
 
-#**OUT OF DATE**
+#**IN PROGRESS**
 
 # Introduction
 
-This project will involve building an ArmControls component on a testing view, connecting that to the backend, then using the simulator and the THREE.js component to verify the implementation. 
+Here, you will complete a Vue component by:
+* Creating page elements
+* Formatting page elements
+* Importing other components (ArmControls and Rover3D)
+* Sending/receiving messages to/from the backend
 
-Any spot marked with a ```TODO``` indicates that code should be added there. 
-
-Please make sure you understand what you are adding when you add it and ask questions as you go. This project is solely for your learning so take as much time as you need to understand what is actually happening as you go through it.
+The tasks you complete in this project will be similar to tasks that you see in the future. Don't be afraid to ask questions if you can't understand something, or are just curious. At a quick glance, the teleop system may seem simple, but there are a lot of moving parts.
 
 # Getting Started
-First, checkout the branch that has the starter project code: 
+First, go to [Teleop Quickstart](/teleop/quickstart) and make sure your environment is set up. Critically, make sure you've run ```./build.sh``` and have all necessary dependencies.
+
+Open up a terminal, and type ```mrover``` to 
+
+Checkout the branch that has the starter project code: 
 ```bash
-git checkout teleop-starter-new
+git checkout teleop-starter-2026
 ```
-Then checkout a new branch to work on:
+Whenever you create a new feature, you should make a new branch and follow the naming convention of ```<your initials>/<feature name>```  
+Run the first line here (with necessary changes) to do so.
 ```bash
-git checkout -b <your initials>/starter-project
-example: git checkout -b tjn/starter-project
+git checkout -b <your initials>/starter-project-2026
+example: git checkout -b km/starter-project-2026
 ```
 
-Make sure that you have gone through the process detailed in [Teleop Quickstart](/teleop/quickstart) so that all dependencies are installed correctly
+Now you (hopefully) have the starter code ready to be worked on. But how do you run and debug it?  
 
-Since this starter project is just another blank page added to the codebase, you would launch the backend just like you normally would, with:
-
+Go to ```http://localhost:8080/starter``` in your browser. You should see an error page. This is because it is trying to access a server on and IP address that doesn't have any - ```localhost``` a.k.a. ```127.0.0.1``` a.k.a. **your** computer. To create the server it needs, go to your terminal, and run
 ```bash
 ros2 launch mrover basestation.launch.py
 ```
+This launches the frontend and the backend. Now once you go back to your browser, you should see a webpage with a header and some text with "body" in it after reloading. If not, make sure you did everything in [Teleop Quickstart](/teleop/quickstart), or ask for help.
 
-Then, open your browser, and go to ```http://localhost:8080/starter``` to verify that it has launched correctly. You should see the header, and the text "body" below. 
-
----
-
-# Understanding Websockets
-
-Websockets provide a persistent, two-way communication channel between the frontend and backend, Once the connection is established, messages are sent instantly with very low latency, which makes it suitable for live data applications like our frontend. 
+:::note
+* The ```/starter``` part of the url specifies that you are on the "Starter" page of the basestation. You can remove it to see the main page.  
+* The ```:8080``` part of the url is the port number. It functions as a sort of "id" for the server on the particular computer.
+:::
 
 ---
 
-# WebsocketStatus component
+# Vue Files and Editing
 
-Notice the navigation bar, particularly the ```wypt``` websocket status indicator at the top right. As explained by the diagram, a green blinking dot indicates a transmit, and a red blinking dot indicates a receive. 
-
-Now, in your terminal window where you previously launched the basestation, hit ```ctrl-c```. 
-
-You will notice that the ```wypt``` indicator's background has turned yellow. A yellow background indicates a disconnect, either because of a websocket error or that we have shut down the backend. 
-
-## Lets try out the functionality of this component!
-
-Open ```/teleoperation/basestation_gui/frontend/src/views/StarterProject.vue```
-
-Modify the ```<template>```: Replace the ```<h1>``` tag with a button. Connect the button to the method ```spamTestmessages()``` using ```@click```:
-
-```html
-<button class="btn btn-primary" @click="spamTestMessages">
-  send websocket messages
-</button>
-```
-
-Now, when you click the button, you should observe the websocket indicator for the ```wypt``` consumer flash green five times. 
-
-Go back to the terminal window where you ran the basestation. You should observe the following message from the backend, which acknowledges that the message has been received by the django server:
-
-
+Now, open up ```StarterProject.vue``` in a code editor. I recommend you run:
 ```bash
-[gui_backend.sh-1] [WARN] [1753735204.830010889] [gui_backend_node]: debug message received by consumer, 2025-07-28T20:40:04.827Z
+code .
 ```
-
-You have successfully used the websocket to send a message to the backend!
-
----
-
-# Importing and using components
-
-Now, we'll import and develop the ```ArmControls``` and ```Rover3D``` components. 
-
-Add import statements for ```ArmControls.vue``` and ```Rover3D.vue``` at the top of your ```<script>``` section:
-
-```js
-import ArmControls from '../components/ArmControls.vue'
-import Rover3D from '../components/Rover3D.vue'
-```
-
-And register them in the component section. Remember that you can only use a component after it has been registered:
-
-```js
-components: {
-    ArmControls,
-    Rover3D,
-},
-```
-
-Whenever you add new components to a top-level view, you should be aware of the websocket consumers that they utilize. 
-
-:::important
-To find which consumer handles a specific ROS2 topic or service, see [Consumers Lookup](/teleop/consumers-lookup)
-:::
-
-Looking in ```ArmControls``` And ```Rover3D```, you will see that they only use the ```arm``` websocket consumer. Therefore, we should initialize it in ```StarterProject.vue```:
-
-in ```mounted()```:
-```js
-this.$store.dispatch('websocket/setupWebSocket', 'arm')
-```
-
-and in ```unmounted()```
-```js
-this.$store.dispatch('websocket/closeWebSocket', 'arm')
-```
-:::note
-In Vuex, ```this.$store``` gives components access to the global store, which holds shared state and actions. In particular, we are using Vuex to store our websockets logic so that any component can access it by using ```this.$store.dispatch()```
-:::
-
-Now, you can incorporate these components into the ```<template>``` section, throwing them all under the ```view-wrapper``` div:
-
-```html
-<ArmControls class="island py-2" />
-<Rover3D class="island m-0 p-0" style="max-height: 700px;" />
-```
-
-:::note
-```island``` is a custom css class, defined to give a component rounded corners and a white background. Implementation could be found in ```App.vue```
-:::
-
-Looking at your browser window, you should realize that the current layout is not ideal, with the test button and ```ArmControls``` taking up full separate rows. Move the button and the control into the same row by using a div with classes ```d-flex flex-column```, and add spacing as appropriate. 
-
-Your ```<template>``` section should now look like this
+Then press **ctrl-p** and type the file's name to search for it. It should look something like this:  
 
 ```html
 <template>
   <div class="view-wrapper">
-    <div class="d-flex flex-col gap-2 mb-2">
-      <button class="btn btn-primary" @click="spamTestMessages">
-        send websocket messages
-      </button>
-      <ArmControls class="island py-2" />
+    <h1>Hello world!</h1>
+    <!-- TODO -->
+  </div>
+</template>
+
+<script lang="ts" setup>
+    import { onMounted, onUnmounted } from 'vue'
+    ...
+```
+
+Let's add a button to it.  
+Delete the ```<h1>``` and replace the ```// TODO add button``` with this code:
+```html
+<button class="btn btn-primary">
+  Hello button!
+</button>
+```
+Now, you have a button that does absolutely nothing! Note that if you go back to the browser, you don't have to reload to see your changes. This is due to *hot swapping*.  
+
+---
+
+# Typescript
+
+We would probably like our buttons to not do nothing, so let's fix that by adding some functionality.  
+  
+Scroll down in the file until you find the ```spamTestMessages``` function. It should look like this:
+```typescript
+const spamTestMessages = () => {
+
+  // Send a message every 1000 milliseconds
+  const interval = setInterval(() => {
+      sendMessage('starter', {
+          type: 'debug',
+          timestamp: new Date().toISOString(),
+      })
+  }, 1000)
+
+  // Stop sending messages after 5000 miliseconds
+  setTimeout(() => clearInterval(interval), 5000)
+}
+```
+What better for adding functionality than a function? We will make it so that this code runs whenever the button is pressed. Go back to the button, and add the event ```@onclick="spamTestMessages()"``` to the button as such. Don't forget to change the text to something descriptive:
+```html
+<button class="btn btn-primary" @click="spamTestMessages()">
+  Spam test messages
+</button>
+```
+
+Now click it and... still nothing? Look at the box that says "starter" in the top right. When you press the button, a green light will flicker. Look at your terminal, and you will see something like this multiple times:
+```bash
+[gui_backend.sh-1] [WARN] [1753735204.830010889] [gui_backend_node]: debug message received by consumer, 2025-07-28T20:40:04.827Z
+```
+
+Let's go through the code to see what exactly is going on.
+
+```typescript
+const interval = setInterval(() => {
+  ...
+}, 1000)
+```
+setInterval (as the comment suggests), runs the code block every 1000 milliseconds (every second). An id for it is stored in the ```interval``` variable.
+```typescript
+setTimeout(() => clearInterval(interval), 5000)
+```
+setTimeout runs the passed function after 5000 milliseconds (5 seconds). It stops the previous interval.
+
+```typescript
+sendMessage('starter', {
+  type: 'debug',
+  timestamp: new Date().toISOString(),
+})
+```
+This is the main attraction of this function. It sends a 'debug' message to the 'starter' websocket containing the current time. 
+
+---
+
+# WebSockets
+## Overview
+WebSocket is a networking protocol, like HTTP. It lets clients (in this case, your computer) communicate with servers (in this case, also your computer) using WebSocket**s**. It sends messages quickly - great for real-time updates. In our codebase, when a ROS topic is published, it gets sent to the backend, and then forwarded to the frontend via a WebSocket (if one has been set up). It also works in reverse; a frontend element can send messages to the backend and then to the rover.
+
+## How They're Used Here
+To use a WebSocket in a component, we first import necessary dependencies and define the necessary functions:
+```typescript
+import { useWebsocketStore } from '@/stores/websocket'
+...
+const { setupWebSocket, closeWebSocket, sendMessage } = useWebsocketStore()
+```
+
+Then, we set up needed WebSockets.
+
+```typescript
+onMounted(() => {
+  setupWebSocket('starter')
+  // TODO
+})
+```
+
+:::important
+  WebSocket setup and closing is typically handled in the highest level component, in a different way than above.  
+  Check [Websocket Handlers](/teleop/consumers-lookup) for more information.
+:::
+
+Messages can now be sent through this WebSocket. When the Vue component is unmounted, we also close the WebSocket.
+
+## Status Indicator
+
+The box in the upper left is a status indicator. A green light (on the left) indicates a transmit, while a red light indicates a receive. If the whole box is yellow, this indicates a disconnect. Go back into your terminal and press **ctrl-c**. That kills the backend, causing all sockets to disconnect. The frontend will stick around until the page unloads. Restart the basestation by running the launch command (the command will probably come back if you just press **up** in your terminal).
+
+:::note
+**ctrl-c** will cancel any process/command currently running in the terminal. Use it whenever a program gets stuck!  
+If you want to copy something in the terminal, use **ctrl-shift-c**, or just drag-select the text; it will depend on your environment.
+:::
+
+## Try it yourself
+
+```typescript
+sendMessage('starter', {
+  type: 'debug',
+  timestamp: new Date().toISOString(),
+})
+```
+
+Change the ```new Date().toISOString()``` to some other value. Press the button and see what happens in the terminal.
+
+Next, undo changing ```timestamp```, and try this challenge: Get the following to display in your terminal:
+```bash
+[gui_backend.sh-1] [WARN] testing message 'Phil' received at <current time>
+```
+
+*Hint: look in starter_ws.py. Where is a message's type used? What data does the WebSocket expect when it receives a particular message?*
+
+---
+# Components Inside of Components
+
+If you have skimmed some of the other views, you've seen they have many sections with complex parts, and that some of those sections are reused on different pages. These sections are called **components**, as well as the view that holds them. The Starter page is sparse, so let's try to add some to it.  
+
+It would be nice to test the rover's arm on the page, so we should add the necessary components for that. First, we have to import them inside of the ```<script>``` tag. Replace the ```// TODO import components```:
+```typescript
+import ArmControls from '../components/ArmControls.vue'
+import Rover3D from '../components/Rover3D.vue'
+```
+
+Add necessary WebSocket management:
+
+```typescript
+onMounted(() => {
+  setupWebSocket('starter')
+  setupWebSocket('arm') // <-- Add this
+})
+...
+onUnmounted(() => {
+  closeWebSocket('starter')
+  closeWebSocket('arm') // <-- this too
+})
+
+```
+
+Now that they have been imported, we can use them in the ```<template>```.
+
+Replace the ```// TODO add components``` with this code:
+
+```html
+<ArmControls/>
+<Rover3D/>
+```
+
+Now the page looks... kinda weird actually. We should format it.
+
+---
+
+# Formatting
+
+Tailwind is a CSS framework that we use for styling. It provides classes to modify styles of elements. Add some to the new components.
+
+```html
+<ArmControls class="island py-1" />
+<Rover3D class="island m-0 p-0" style="max-height: 700px;" />
+```
+
+* ```island``` adds a white, rounded background to a component.
+* ```p``` (and by extension, ```p-y```) changes padding.
+* ```m``` is for changing margins.
+* ```style``` is not part of Tailwind; it manually changes the elements CSS styling. ```max-height: 700px``` forces to ```Rover3D``` component to stay under 700 pixels of height  
+
+
+The page looks a little better now, but it still has an odd layout. Group the button and ```ArmControls``` together using a ```<div>```
+
+```html
+<div>
+  <button class="btn btn-primary" @click="spamTestMessages()">
+      Spam test messages
+  </button>
+  <ArmControls class="island py-1" />
+</div>
+```
+
+Even better, but there is a little awkwardness. Make the ```<div>``` into a *flexbox* (with additional styling) by adding ```class="flex flex-col gap-2 mb-2 p-1"``` to it. Your final ```<template>``` code should look like this:
+
+```html
+<template>
+  <div class="view-wrapper">
+    <div class="flex flex-col gap-2 mb-2 p-1">
+        <button class="btn btn-primary" @click="spamTestMessages()">
+            Spam test messages
+        </button>
+        <ArmControls class="island py-1" />
     </div>
     <Rover3D class="island m-0 p-0" style="max-height: 700px;" />
   </div>
 </template>
 ```
 
-and ```<script>``` section:
+Lookin' good! Graphic design is your passion as it is mine, I'm assuming.
 
-```js
-<script lang="ts">
-import ArmControls from '../components/ArmControls.vue'
-import Rover3D from '../components/Rover3D.vue'
-import { defineComponent } from 'vue'
-import Vuex from 'vuex'
-const { mapState } = Vuex
-import type { WebSocketState } from '../types/websocket'
+:::note
+A *flexbox* is a container that holds elements in a single row or column. It can shrink or grow elements as needed to fit inside of its empty space.  
 
-export default defineComponent({
-  components: {
-    ArmControls,
-    Rover3D,
-  },
+*Grid* is also a common choice for holding multiple elements. It displays them in... well... a grid. Prefer to use it over *flexbox* when a layout starts to get cluttered, as *grid* is more predictable.
+:::
 
-  mounted() {
-    this.$store.dispatch('websocket/setupWebSocket', 'arm')
-    this.$store.dispatch('websocket/setupWebSocket', 'waypoints')
-  },
-
-  unmounted() {
-    this.$store.dispatch('websocket/closeWebSocket', 'arm')
-    this.$store.dispatch('websocket/closeWebSocket', 'waypoints')
-  },
-
-  computed: {
-    ...mapState('websocket', {
-      waypointsMessage: (state: WebSocketState) => state.messages['waypoints'],
-    }),
-  },
-
-  watch: {
-    waypointsMessage(msg) {
-      console.log(msg)
-    },
-  },
-
-  methods: {
-    spamTestMessages() {
-      const interval = setInterval(() => {
-        this.$store.dispatch('websocket/sendMessage', {
-          id: 'waypoints',
-          message: {
-            type: 'debug',
-            timestamp: new Date().toISOString(),
-          },
-        })
-      }, 1000)
-      setTimeout(() => clearInterval(interval), 5000)
-    },
-  },
-})
-</script>
-```
-
-Check your browser window to see how it looks. Pretty neat, isnt it?
+::note
+The basestation is designed to display best on a **1080p** screen - the one used at competition. You might have to adjust your settings or fullscreen the page to match it.
+:::
 
 ---
 
-# Developing ```ArmControls```
+# ```Arm Controls``` and ```Rover3D```
 
-Now open up ```ArmControls.vue``` in your preferred text editor, located at ```/teleoperation/basestation_gui/frontend/src/components/ArmControls.vue```. The core functionality in this component has already been implemented. 
 
-## Mode Selector
+```Rover3D``` is a display of the rover in its current state. It also displays a *costmap*, a grid of how "expensive" it would be for the rover to navigate a certain section of terrain.  
 
-First, lets make a button group to modify the **mode** variable. Add a div with the bootstrap group ```btn-group``` below the ```<div>``` containing the ```<h3>```
+```Arm Controls``` allows the operator to move the robot arm with a controller, and displays the controller's state. Here, however, the code has been modified so that keyboard input also moves the arm.  
 
-```html
-<div
-class="btn-group d-flex"
-role="group"
-aria-label="Arm mode selection"
->
+Part of the code for keyboard input (not all of it):
 
-</div>
+```typescript
+interval = window.setInterval(() => {
+  const axes: number[] = [0, 0, 0, 0]
+  const buttons: boolean[] = []
+  axes[0] = (keysPressed.d ? 1 : 0) - (keysPressed.a ? 1 : 0)
+  axes[1] = (keysPressed.s ? 1 : 0) - (keysPressed.w ? 1 : 0)
+
+  sendMessage('arm', {
+    type: 'ra_controller',
+    axes: axes,
+    buttons: buttons
+  })
+}, 1000 / UPDATE_HZ)
 ```
 
-Inside this div, place two buttons, one selecting ```disabled```, and one for ```throttle```, the simplest controller mode that maps each joint of the arm to an axis:
+And for controller input:
+
+```typescript
+const { connected, axes, buttons, vibrationActuator } = useGamepadPolling({
+  controllerIdFilter: 'Microsoft',
+  topic: 'arm',
+  messageType: 'ra_controller',
+})
+```
+
+However, pressing buttons on the keyboard won't move the arm currently. This is for two reasons:
+* The arm mode has to be set.
+* The backend needs a rover with an arm to move.
+
+Go to this div:
+
+```html
+<div class="flex w-full" role="group" aria-label="Arm mode selection" data-testid="pw-arm-mode-buttons">
+  <!-- TODO add buttons-->
+```
+
+And add these buttons where the ```TODO``` is:
 
 ```html
 <button
-    type="button"
-    class="btn flex-fill"
-    :class="mode === 'disabled' ? 'btn-danger' : 'btn-outline-danger'"
-    @click="mode = 'disabled'"
+  type="button"
+  class="btn btn-sm flex-1"
+  :class="mode === 'disabled' ? 'btn-danger' : 'btn-outline-danger'"
+  data-testid="pw-arm-mode-disabled"
+  @click="newRAMode('disabled')"
 >
-    Disabled
+  Disabled
 </button>
 <button
-    type="button"
-    class="btn flex-fill"
-    :class="mode === 'throttle' ? 'btn-success' : 'btn-outline-success'"
-    @click="mode = 'throttle'"
+  type="button"
+  class="btn btn-sm flex-1"
+  :class="mode === 'throttle' ? 'btn-success' : 'btn-outline-success'"
+  data-testid="pw-arm-mode-throttle"
+  @click="newRAMode('throttle')"
 >
-    Throttle
+  Throttle
 </button>
 ```
 
-As you can now see from your browser, the ```btn-group``` creates a joined effect on the buttons, the ```@click``` modifies the ```mode``` variable when selected, and the ```:class``` styling makes the button fill solid when selected. 
-
-
-## Send Controls
-
-The original code requires a **controller** to be connected in order to send controls. Here, we have modified the code using the **WASD** keys to mimic the left joystick of the controller, like so
-
-```js
-axes[0] = (this.keysPressed.d ? 1 : 0) - (this.keysPressed.a ? 1 : 0)
-axes[1] = (this.keysPressed.s ? 1 : 0) - (this.keysPressed.w ? 1 : 0)
-```
-
-**axes** and **buttons** are used to simulate an xbox controller. We will now send both the mode and the controls to the ```arm``` consumer. 
-
-There is already an interval set up in ```created()```, which repeats 30 times a second. As mentioned earlier, to access and use websockets, we will use ```this.$store.dispatch()```:
-
-```js
-this.$store.dispatch('websocket/sendMessage', {
-    id: 'arm',
-    message: {
-        type: 'ra_controller',
-        axes: axes,
-        buttons: buttons,
-    },
-})
-this.$store.dispatch('websocket/sendMessage', {
-    id: 'arm',
-    message: {
-        type: 'ra_mode',
-        mode: this.mode,
-    },
-})
-```
+Click throttle. The hard part is now done. Next, we need to get the rover, or at least a virtual one.
 
 ---
 
-## Verify commands
+# Simulator
 
-Open another terminal window, enter ```mrover```, then enter 
+Open a new terminal, but leave the old one running the basestation. Run and then run these commands. If you get stuck in the simulator, press **esc**:
 
-```
-ros2 topic list
-```
-
-This should list all the topics which are live, which includes ```/arm_throttle_cmd``` which we are publishing to
-
-Now, enter ```ros2 topic echo /arm_throttle_cmd```. Place the window along side your browser window, focus on the browser, select ```throttle```, and press the WASD keys. You should see the published values react to your keystrokes. 
-
-This is the method used to debug ROS topic. 
-
----
-
-## Completed ```ArmControls.vue```
-
-Now, your ```<template>``` section should look like this:
-
-```html
-<template>
-  <div class="d-flex flex-column align-items-center w-100">
-    <div class="d-flex flex-column gap-2" style="width: 500px; max-width: 100%">
-      <div class="d-flex justify-content-between align-items-center">
-        <h3 class="m-0">Arm Controls</h3>
-      </div>
-      <div
-        class="btn-group d-flex"
-      >
-        <button
-          type="button"
-          class="btn flex-fill"
-          :class="mode === 'disabled' ? 'btn-danger' : 'btn-outline-danger'"
-          @click="mode = 'disabled'"
-        >
-          Disabled
-        </button>
-        <button
-          type="button"
-          class="btn flex-fill"
-          :class="mode === 'throttle' ? 'btn-success' : 'btn-outline-success'"
-          @click="mode = 'throttle'"
-        >
-          Throttle
-        </button>
-      </div>
-    </div>
-  </div>
-</template>
-```
-
-and ```<script>```:
-
-```js
-<script lang="ts">
-import { defineComponent } from 'vue'
-import Vuex from 'vuex'
-const { mapActions } = Vuex
-
-const UPDATE_HZ = 30
-
-export default defineComponent({
-  data() {
-    return {
-      mode: 'disabled',
-      keysPressed: {
-        w: false,
-        a: false,
-        s: false,
-        d: false,
-      },
-      interval: 0,
-    }
-  },
-  mounted() {
-    document.addEventListener('keydown', this.handleKeyDown)
-    document.addEventListener('keyup', this.handleKeyUp)
-  },
-  created() {
-    this.interval = window.setInterval(() => {
-      const axes = [0, 0, 0, 0]
-      const buttons: boolean[] = []
-      axes[0] = (this.keysPressed.d ? 1 : 0) - (this.keysPressed.a ? 1 : 0)
-      axes[1] = (this.keysPressed.s ? 1 : 0) - (this.keysPressed.w ? 1 : 0)
-
-      this.$store.dispatch('websocket/sendMessage', {
-        id: 'arm',
-        message: {
-          type: 'ra_controller',
-          axes: axes,
-          buttons: buttons,
-        },
-      })
-      this.$store.dispatch('websocket/sendMessage', {
-        id: 'arm',
-        message: {
-          type: 'ra_mode',
-          mode: this.mode,
-        },
-      })
-    }, 1000 / UPDATE_HZ)
-  },
-  beforeUnmount() {
-    window.clearInterval(this.interval)
-    document.removeEventListener('keydown', this.handleKeyDown)
-    document.removeEventListener('keyup', this.handleKeyUp)
-  },
-  methods: {
-    ...mapActions('websocket', ['sendMessage']),
-    handleKeyDown(event: KeyboardEvent) {
-      const key = event.key.toLowerCase()
-      if (key === ' ') {
-        this.mode = 'disabled'
-      }
-      if (key in this.keysPressed) {
-        this.keysPressed[key as keyof typeof this.keysPressed] = true
-      }
-    },
-    handleKeyUp(event: KeyboardEvent) {
-      const key = event.key.toLowerCase()
-      if (key in this.keysPressed) {
-        this.keysPressed[key as keyof typeof this.keysPressed] = false
-      }
-    },
-  },
-})
-</script>
-```
-
----
-
-# Testing
-
-In another terminal window, enter ```mrover```, then 
-
-```
+```bash
+mrover
 ros2 launch mrover simulator.launch.py
 ```
 
-This will launch the sim and allow us to test our ```ArmControls``` component. 
+The simulator and RViz will open in new windows. RViz is a useful tool that allows you to see what the rover sees, and what topics are being broadcast. The simulator provides a digital version of the rover that communicates with the basestation in a similar way to if it was real.
 
-In the newly launched simulator window (the one with the 3D world), press ```esc``` to unlock your cursor, and press ```p``` to enable physics. Then, uncheck the ```Publish IK``` checkbox on the left sidebar. 
+## Navigating the Simulator
 
-Back in your browser, click the ```Throttle``` button in ```ArmControls```. 
+The simulator is the one with the MRover logo as its symbol. You can move the camera with **WASD**, **space**, **ctrl**, and the mouse. **Esc** toggles the mouse from being locked to unlocked and back again. 
 
-Now, when you press the ```**WASD**``` keys, you should see the ```Rover3D``` move, responding to the rover's joints in the simulator. 
+## Controlling the Rover
 
+Everything is currently frozen. Press **p** to enable physics, and uncheck **publish ik**. You can move the rover with **i**, **j**, **l**, and "**,**" while the mouse is locked. Go back to the Starter view in your browser. Make sure throttle mode is selected, and use **WASD** to control the arm. It will move in both the browser and the simulator. 
 
 ---
 
-# Congratulations, you've finished the starter project!
+# ROS Topics
+
+One last thing - Open up yet another terminal, but leave the other two running. Run these commands:
+
+```bash
+mrover
+ros2 topic list
+```
+
+It will display every topic the currently exists. Let's try to see how our arm controls are being sent. Because we're using throttle mode, they will be sent through ```/arm_thr_cmd```. Echo that topic.
+
+```bash
+ros2 topic echo /arm_thr_cmd
+```
+
+Whenever you move the arm, a new message will appear. Press **ctrl-c** to stop the echoing.
+
+---
+
+# Git Commits
+
+The starter project is pretty much done now, you can stop the simulator and basestation. Let's add it to the codebase for safekeeping. *Commit* your changes by running this in a terminal:
+
+```bash
+# "mrover" doesn't need to be run if from one of the previous terminals
+mrover
+
+# Mark all files in "." (this folder) for commit
+git add .
+
+# Go through the output this prints. It should say that every file you personally changed is marked for commit, likely in green.
+git status
+
+# Commits locally with message "Starter project completed"
+# (-m is required to put a message, and you should put a message with every commit)
+git commit -m "Starter project completed"
+```
+
+This commits the changes *locally*. It only exists on your computer. To send your changes to the shared codebash, type this:
+
+```bash
+git push
+```
+
+That... probably gave an error. Run what it tells you to, which is probably this:
+
+```bash
+# --set-upstream can be replaced with -u
+git push --set-upstream origin <your-initials>/teleop-starter
+```
+
+This tells git to create a *remote branch* (shared) to match with your *local branch* (on your computer), and to put the changes there. Now that the remote branch exists, you can simply type ```git push``` whenever you make a new commit.  
+
+## When a feature is finished
+
+If this were a normal feature, this would be when you make a *pull request*, but this feature isn't going into the main branch. If it was pulled, you should delete the feature branch afterwards. If you want to delete your starter branch remotely, run this. 
+
+```bash
+git push -d origin <your-initials>/teleop-starter
+```
+
+To delete it locally (although I advise you keep the branch for your future reference), run this:
+
+```bash
+git branch -d <your-initials>/teleop-starter
+```
+
+Again, if this was a real feature, you **absolutely should** delete the remote *and* local branch **after** the pull request gets approved.
+
+# Conclusion and Next Steps
+
+There you have it! Your first teleop project done. It was a lot to take in, so don't sweat if you don't get it all right away. With practice, it will come to you. Here are some things you can do to learn more, and help you in the future:
+
+* **Read the docs.** You were probably already doing that, but, if you weren't, go ahead and do that. Try to read all about ROS2, all about teleop, the general resources, and some of each of the other teams.
+* **Skim the codebase.** Look at files at multiple parts of the codebase, and try to figure out what they do. Modify them, remove them, add them, and see what happens. You can reset a branch back to its remote version with ```git reset --hard origin/<branch-name>```. I recommend looking in the views, the components, the _ws.py files, the .msgs, the shell scripts (.sh files), and whatever seems to interest you.
+* **Customize your environment.** Change the colors on your terminal. Learn keyboard shortcuts for VSCode (did you know **ctrl-alt-"-"** will move the cursor to its previous position, even between files). Learn Vim? Install some extensions. Put up a fancy wallpaper. Making navigating your computer easy will pay off in the long run.
+* **Talk with other members.** MRover is a team, and we work best when there's good communication. Try to familiarize yourself with your teammates and some members of other teams too. Heck, try out another team if they look fun, I ain't stopping you. If you have any questions at all, don't be afraid to ask me or someone else.  
+
+
+Now, go eat lunch or something. You've probably been staring at your screen a while.
