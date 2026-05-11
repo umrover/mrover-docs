@@ -2,8 +2,6 @@
 title: "Teleop Starter Project"
 ---
 
-#**IN PROGRESS**
-
 # Introduction
 
 Here, you will complete a Vue component by:
