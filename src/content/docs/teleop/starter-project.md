@@ -12,29 +12,38 @@ Here, you will complete a Vue component by:
 
 The tasks you complete in this project will be similar to tasks that you see in the future. Don't be afraid to ask questions if you can't understand something, or are just curious. At a quick glance, the teleop system may seem simple, but there are a lot of moving parts.
 
+---
+
 # Getting Started
+
+## Opening the Code
 First, go to [Teleop Quickstart](/teleop/quickstart) and make sure your environment is set up. Critically, make sure you've run ```./build.sh``` and have all necessary dependencies.
 
-Open up a terminal, and type ```mrover``` to 
+Open up a terminal, and type ```mrover```. Then: 
 
 Checkout the branch that has the starter project code: 
 ```bash
 git checkout teleop-starter-2026
 ```
-Whenever you create a new feature, you should make a new branch and follow the naming convention of ```<your initials>/<feature name>```  
-Run the first line here (with necessary changes) to do so.
+Copy it into your own branch:
 ```bash
 git checkout -b <your initials>/starter-project-2026
 example: git checkout -b km/starter-project-2026
 ```
+:::note
+Whenever you create a new feature, you should make a new branch and follow the naming convention of ```<your initials>/<feature name>```. You'll often checkout from main, but not always.
+:::
+
 
 Now you (hopefully) have the starter code ready to be worked on. But how do you run and debug it?  
+
+## Running the Code
 
 Go to ```http://localhost:8080/starter``` in your browser. You should see an error page. This is because it is trying to access a server on and IP address that doesn't have any - ```localhost``` a.k.a. ```127.0.0.1``` a.k.a. **your** computer. To create the server it needs, go to your terminal, and run
 ```bash
 ros2 launch mrover basestation.launch.py
 ```
-This launches the frontend and the backend. Now once you go back to your browser, you should see a webpage with a header and some text with "body" in it after reloading. If not, make sure you did everything in [Teleop Quickstart](/teleop/quickstart), or ask for help.
+This launches both the frontend and the backend. Now once you go back to your browser, you should see a webpage with a header and some text with "body" in it after reloading. If not, make sure you did everything in [Teleop Quickstart](/teleop/quickstart), or ask for help.
 
 :::note
 * The ```/starter``` part of the url specifies that you are on the "Starter" page of the basestation. You can remove it to see the main page.  
@@ -45,7 +54,7 @@ This launches the frontend and the backend. Now once you go back to your browser
 
 # Vue Files and Editing
 
-Now, open up ```StarterProject.vue``` in a code editor. I recommend you run:
+Now, open up ```StarterProject.vue``` in a code editor. It's easiest to just run this in the terminal:
 ```bash
 code .
 ```
@@ -76,6 +85,8 @@ Now, you have a button that does absolutely nothing! Note that if you go back to
 ---
 
 # Typescript
+
+## Connecting Script to Page Elements
 
 We would probably like our buttons to not do nothing, so let's fix that by adding some functionality.  
   
@@ -109,16 +120,18 @@ Now click it and... still nothing? Look at the box that says "starter" in the to
 
 Let's go through the code to see what exactly is going on.
 
+## Function Analysis
+
 ```typescript
 const interval = setInterval(() => {
   ...
 }, 1000)
 ```
-setInterval (as the comment suggests), runs the code block every 1000 milliseconds (every second). An id for it is stored in the ```interval``` variable.
+setInterval (as the comment suggests), runs the function inside of it every 1000 milliseconds (every second). An id for it is stored in the ```interval``` variable.
 ```typescript
 setTimeout(() => clearInterval(interval), 5000)
 ```
-setTimeout runs the passed function after 5000 milliseconds (5 seconds). It stops the previous interval.
+setTimeout runs the function inside of it after 5000 milliseconds (5 seconds). That function (```clearInterval()```) stops the previous interval.
 
 ```typescript
 sendMessage('starter', {
@@ -132,7 +145,7 @@ This is the main attraction of this function. It sends a 'debug' message to the 
 
 # WebSockets
 ## Overview
-WebSocket is a networking protocol, like HTTP. It lets clients (in this case, your computer) communicate with servers (in this case, also your computer) using WebSocket**s**. It sends messages quickly - great for real-time updates. In our codebase, when a ROS topic is published, it gets sent to the backend, and then forwarded to the frontend via a WebSocket (if one has been set up). It also works in reverse; a frontend element can send messages to the backend and then to the rover.
+*WebSocket* is a networking protocol, like HTTP. It lets clients (in this case, your computer) communicate with servers (in this case, also your computer) using *WebSocket**s***. It sends messages quickly - great for real-time updates. In our codebase, when a ROS topic is published, it gets sent to the backend, and then forwarded to the frontend via a WebSocket (if one has been set up). It also works in reverse; a frontend element can send messages to the backend and then to the rover.
 
 ## How They're Used Here
 To use a WebSocket in a component, we first import necessary dependencies and define the necessary functions:
@@ -147,7 +160,7 @@ Then, we set up needed WebSockets.
 ```typescript
 onMounted(() => {
   setupWebSocket('starter')
-  // TODO
+  // TODO add necessary sockets
 })
 ```
 
@@ -156,7 +169,7 @@ onMounted(() => {
   Check [Websocket Handlers](/teleop/consumers-lookup) for more information.
 :::
 
-Messages can now be sent through this WebSocket. When the Vue component is unmounted, we also close the WebSocket.
+Messages can now be sent through this WebSocket (WebSocket with id "starter"). When the Vue component is unmounted, we also have to close the WebSocket.
 
 ## Status Indicator
 
@@ -188,7 +201,7 @@ Next, undo changing ```timestamp```, and try this challenge: Get the following t
 ---
 # Components Inside of Components
 
-If you have skimmed some of the other views, you've seen they have many sections with complex parts, and that some of those sections are reused on different pages. These sections are called **components**, as well as the view that holds them. The Starter page is sparse, so let's try to add some to it.  
+If you have pried into some of the other views/pages, you've seen they have many sections with complex parts, and that some of those sections are reused on different pages. These sections are called **components**. The view itself is also a component. The Starter page is sparse, so let's try to add some to it.  
 
 It would be nice to test the rover's arm on the page, so we should add the necessary components for that. First, we have to import them inside of the ```<script>``` tag. Replace the ```// TODO import components```:
 ```typescript
@@ -226,7 +239,7 @@ Now the page looks... kinda weird actually. We should format it.
 
 # Formatting
 
-Tailwind is a CSS framework that we use for styling. It provides classes to modify styles of elements. Add some to the new components.
+[Tailwind](https://tailwindcss.com/docs/styling-with-utility-classes) is a CSS framework that we use for styling. It provides classes to modify styles of elements. Add some to the new components.
 
 ```html
 <ArmControls class="island py-1" />
@@ -271,10 +284,12 @@ Lookin' good! Graphic design is your passion as it is mine, I'm assuming.
 :::note
 A *flexbox* is a container that holds elements in a single row or column. It can shrink or grow elements as needed to fit inside of its empty space.  
 
-*Grid* is also a common choice for holding multiple elements. It displays them in... well... a grid. Prefer to use it over *flexbox* when a layout starts to get cluttered, as *grid* is more predictable.
+*Grid* is also a common choice for holding multiple elements. It displays them in... well... a grid. Prefer to use it over *flexbox* when a layout starts to get cluttered, as *grid* is more predictable.  
+
+See more info at [this Geeks for Geeks article](https://www.geeksforgeeks.org/css/comparison-between-css-grid-css-flexbox/) (albeit, for base CSS).
 :::
 
-::note
+::important
 The basestation is designed to display best on a **1080p** screen - the one used at competition. You might have to adjust your settings or fullscreen the page to match it.
 :::
 
@@ -282,12 +297,13 @@ The basestation is designed to display best on a **1080p** screen - the one used
 
 # ```Arm Controls``` and ```Rover3D```
 
+## Overview
 
 ```Rover3D``` is a display of the rover in its current state. It also displays a *costmap*, a grid of how "expensive" it would be for the rover to navigate a certain section of terrain.  
 
 ```Arm Controls``` allows the operator to move the robot arm with a controller, and displays the controller's state. Here, however, the code has been modified so that keyboard input also moves the arm.  
 
-Part of the code for keyboard input (not all of it):
+Here is part of the code for keyboard input (not all of it):
 
 ```typescript
 interval = window.setInterval(() => {
@@ -304,7 +320,8 @@ interval = window.setInterval(() => {
 }, 1000 / UPDATE_HZ)
 ```
 
-And for controller input:
+It takes the keyboard input and "translates" it into a controller input.  
+Here is the code for direct controller input:
 
 ```typescript
 const { connected, axes, buttons, vibrationActuator } = useGamepadPolling({
@@ -314,9 +331,11 @@ const { connected, axes, buttons, vibrationActuator } = useGamepadPolling({
 })
 ```
 
-However, pressing buttons on the keyboard won't move the arm currently. This is for two reasons:
+However, pressing anything won't move the arm currently. This is for two reasons:
 * The arm mode has to be set.
 * The backend needs a rover with an arm to move.
+
+## Setting up ```Arm Controls```
 
 Go to this div:
 
@@ -354,14 +373,14 @@ Click throttle. The hard part is now done. Next, we need to get the rover, or at
 
 # Simulator
 
-Open a new terminal, but leave the old one running the basestation. Run and then run these commands. If you get stuck in the simulator, press **esc**:
+Open a new terminal, but keep the old one running the basestation. Run and then run these commands. If you get stuck in the simulator, press **esc**:
 
 ```bash
 mrover
 ros2 launch mrover simulator.launch.py
 ```
 
-The simulator and RViz will open in new windows. RViz is a useful tool that allows you to see what the rover sees, and what topics are being broadcast. The simulator provides a digital version of the rover that communicates with the basestation in a similar way to if it was real.
+The simulator and RViz will open in new windows. *RViz* is a useful tool that allows you to see what the rover sees, and what topics are being broadcast. The simulator provides a digital version of the rover that communicates with the basestation in a similar way to if it was real.
 
 ## Navigating the Simulator
 
@@ -382,7 +401,7 @@ mrover
 ros2 topic list
 ```
 
-It will display every topic the currently exists. Let's try to see how our arm controls are being sent. Because we're using throttle mode, they will be sent through ```/arm_thr_cmd```. Echo that topic.
+It will display every topic that currently exists. Let's try to see how our arm controls are being sent. Because we're using throttle mode, they will be sent through ```/arm_thr_cmd```. Echo that topic.
 
 ```bash
 ros2 topic echo /arm_thr_cmd
@@ -400,10 +419,11 @@ The starter project is pretty much done now, you can stop the simulator and base
 # "mrover" doesn't need to be run if from one of the previous terminals
 mrover
 
-# Mark all files in "." (this folder) for commit
+# Mark all files in "." (a.k.a. this folder) for commit
 git add .
 
 # Go through the output this prints. It should say that every file you personally changed is marked for commit, likely in green.
+# It's a good idea to check this before committing any changes
 git status
 
 # Commits locally with message "Starter project completed"
@@ -426,7 +446,7 @@ git push --set-upstream origin <your-initials>/teleop-starter
 
 This tells git to create a *remote branch* (shared) to match with your *local branch* (on your computer), and to put the changes there. Now that the remote branch exists, you can simply type ```git push``` whenever you make a new commit.  
 
-## When a feature is finished
+## When a Feature is Finished
 
 If this were a normal feature, this would be when you make a *pull request*, but this feature isn't going into the main branch. If it was pulled, you should delete the feature branch afterwards. If you want to delete your starter branch remotely, run this. 
 
@@ -442,13 +462,17 @@ git branch -d <your-initials>/teleop-starter
 
 Again, if this was a real feature, you **absolutely should** delete the remote *and* local branch **after** the pull request gets approved.
 
+:::note
+You shouldn't wait until a feature is completely, all-the-way done before making a commit. Commit whenever you get a new part of it working, or any noteworthy modification. Make a pull request when it is fully done.
+:::
+
 # Conclusion and Next Steps
 
 There you have it! Your first teleop project done. It was a lot to take in, so don't sweat if you don't get it all right away. With practice, it will come to you. Here are some things you can do to learn more, and help you in the future:
 
 * **Read the docs.** You were probably already doing that, but, if you weren't, go ahead and do that. Try to read all about ROS2, all about teleop, the general resources, and some of each of the other teams.
 * **Skim the codebase.** Look at files at multiple parts of the codebase, and try to figure out what they do. Modify them, remove them, add them, and see what happens. You can reset a branch back to its remote version with ```git reset --hard origin/<branch-name>```. I recommend looking in the views, the components, the _ws.py files, the .msgs, the shell scripts (.sh files), and whatever seems to interest you.
-* **Customize your environment.** Change the colors on your terminal. Learn keyboard shortcuts for VSCode (did you know **ctrl-alt-"-"** will move the cursor to its previous position, even between files). Learn Vim? Install some extensions. Put up a fancy wallpaper. Making navigating your computer easy will pay off in the long run.
+* **Customize your environment.** Change the colors on your terminal. Learn keyboard shortcuts for VSCode (did you know **ctrl-alt-"-"** will move the cursor to its previous position, even between files). Try out Vim. Install some extensions. Put up a fancy wallpaper. Making navigating your computer easy will pay off in the long run.
 * **Talk with other members.** MRover is a team, and we work best when there's good communication. Try to familiarize yourself with your teammates and some members of other teams too. Heck, try out another team if they look fun, I ain't stopping you. If you have any questions at all, don't be afraid to ask me or someone else.  
 
 
