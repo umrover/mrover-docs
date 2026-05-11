@@ -440,7 +440,7 @@ git status
 git commit -m "Starter project completed"
 ```
 
-This commits the changes *locally*. It only exists on your computer. To send your changes to the shared codebash, type this:
+This commits the changes *locally*. It only exists on your computer. To send your changes to the shared codebase, type this:
 
 ```bash
 git push
