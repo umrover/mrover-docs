@@ -5,10 +5,10 @@ title: "Teleop Starter Project"
 # Introduction
 
 Here, you will complete a Vue component by:
-* Creating page elements
-* Formatting page elements
-* Importing other components (ArmControls and Rover3D)
-* Sending/receiving messages to/from the backend
+* Creating page elements.
+* Formatting page elements.
+* Importing other components (```ArmControls``` and ```Rover3D```).
+* Sending/receiving messages to/from the backend.
 
 The tasks you complete in this project will be similar to tasks that you see in the future. Don't be afraid to ask questions if you can't understand something, or are just curious. At a quick glance, the teleop system may seem simple, but there are a lot of moving parts.
 
@@ -17,21 +17,24 @@ The tasks you complete in this project will be similar to tasks that you see in 
 # Getting Started
 
 ## Opening the Code
-First, go to [Teleop Quickstart](/teleop/quickstart) and make sure your environment is set up. Critically, make sure you've run ```./build.sh``` and have all necessary dependencies.
+First, go to [Teleop Quickstart](quickstart.md) and make sure your environment is set up. Critically, make sure you've run ```./build.sh``` and have all necessary dependencies.
 
 Open up a terminal, and type ```mrover```. Then: 
 
-Checkout the branch that has the starter project code: 
+Checkout/go to the branch that has the starter project code: 
+
 ```bash
 git checkout teleop-starter-2026
 ```
-Copy it into your own branch:
+
+Copy it into a new branch:
+
 ```bash
-git checkout -b <your initials>/starter-project-2026
+git checkout -b <your-initials>/starter-project-2026
 example: git checkout -b km/starter-project-2026
 ```
 :::note
-Whenever you create a new feature, you should make a new branch and follow the naming convention of ```<your initials>/<feature name>```. You'll often checkout from main, but not always.
+Whenever you create a new feature, you should make a new branch and follow the naming convention of ```<your-initials>/<feature name>```. You'll often checkout from main, but not always.
 :::
 
 
@@ -39,7 +42,7 @@ Now you (hopefully) have the starter code ready to be worked on. But how do you 
 
 ## Running the Code
 
-Go to ```http://localhost:8080/starter``` in your browser. You should see an error page. This is because it is trying to access a server on and IP address that doesn't have any - ```localhost``` a.k.a. ```127.0.0.1``` a.k.a. **your** computer. To create the server it needs, go to your terminal, and run
+Go to the url ```http://localhost:8080/starter``` in your browser. You should see an error page. This is because it is trying to access a server on and IP address that doesn't have any - ```localhost``` a.k.a. ```127.0.0.1``` a.k.a. **your** computer. To create the server it needs, go to your terminal, and run
 ```bash
 ros2 launch mrover basestation.launch.py mode:=dev
 ```
@@ -47,7 +50,7 @@ ros2 launch mrover basestation.launch.py mode:=dev
 ```mode:=dev``` launches in development mode. Without it, the basestation will launch in production mode and in a new window.
 :::
 
-This launches both the frontend and the backend. Now once you go back to your browser, you should see a webpage with a header and some text with "body" in it after reloading. If not, make sure you did everything in [Teleop Quickstart](/teleop/quickstart), or ask for help.
+This launches both the frontend and the backend. Now once you go back to your browser, you should see a webpage with a header and some text with "Hello World!" in it after reloading. If not, make sure you did everything in [Teleop Quickstart](quickstart.md), or ask for help.
 
 :::note
 * The ```/starter``` part of the url specifies that you are on the "Starter" page of the basestation. You can remove it to see the main page.  
@@ -111,7 +114,7 @@ const spamTestMessages = () => {
   setTimeout(() => clearInterval(interval), 5000)
 }
 ```
-What better for adding functionality than a function? We will make it so that this code runs whenever the button is pressed. Go back to the button, and add the event ```@onclick="spamTestMessages()"``` to the button as such. Don't forget to change the text to something descriptive:
+What better for adding functionality than a function? We will make it so that this code runs whenever the button is pressed. Go back to the button, and add the event ```@onclick="spamTestMessages()"``` to it as such. Don't forget to change the text to something descriptive:
 ```html
 <button class="btn btn-primary" @click="spamTestMessages()">
   Spam test messages
@@ -150,10 +153,11 @@ This is the main attraction of this function. It sends a 'debug' message to the 
 
 # WebSockets
 ## Overview
-*WebSocket* is a networking protocol, like HTTP. It lets clients (in this case, your computer) communicate with servers (in this case, also your computer) using *WebSocket**s***. It sends messages quickly - great for real-time updates. In our codebase, when a ROS topic is published, it gets sent to the backend, and then forwarded to the frontend via a WebSocket (if one has been set up). It also works in reverse; a frontend element can send messages to the backend and then to the rover.
+*WebSocket* is a networking protocol, like HTTP. It lets computers talk to each other via *WebSocket**s***. It sends messages quickly - great for real-time updates. In our codebase, when a ROS topic is published, it gets sent to the backend, and then forwarded to the frontend via a WebSocket (if one has been set up). It also works in reverse; a frontend element can send messages to the backend and then to the rover.
 
 ## How They're Used Here
 To use a WebSocket in a component, we first import necessary dependencies and define the necessary functions:
+
 ```typescript
 import { useWebsocketStore } from '@/stores/websocket'
 ...
@@ -171,7 +175,7 @@ onMounted(() => {
 
 :::important
   WebSocket setup and closing is typically handled in the highest level component, in a different way than above.  
-  Check [Websocket Handlers](/teleop/consumers-lookup) for more information.
+  Check [Websocket Handlers](consumers-lookup.md) for more information.
 :::
 
 Messages can now be sent through this WebSocket (WebSocket with id "starter"). When the Vue component is unmounted, we also have to close the WebSocket.
@@ -206,7 +210,7 @@ Next, undo changing ```timestamp```, and try this challenge: Get the following t
 ---
 # Components Inside of Components
 
-If you have pried into some of the other views/pages, you've seen they have many sections with complex parts, and that some of those sections are reused on different pages. These sections are called **components**. The view itself is also a component. The Starter page is sparse, so let's try to add some to it.  
+If you have pried into some of the other views/pages, you've seen they have many sections with complex parts, and that some of those sections are reused on different pages. These sections are called *components*. The view itself is also a component. The Starter page is sparse, so let's try to add some to it.  
 
 It would be nice to test the rover's arm on the page, so we should add the necessary components for that. First, we have to import them inside of the ```<script>``` tag. Replace the ```// TODO import components```:
 ```typescript
@@ -482,4 +486,4 @@ There you have it! Your first teleop project done. It was a lot to take in, so d
 * **Ctrl-f, ctrl-shift-f, ctrl-p, and ctrl-click are your best friends.** I think I learned the most about MRover by looking at files related to what I was working on. Learn what these do, and try them out.
 
 
-Now, go eat lunch or something. You've probably been staring at your screen a while.
+Now, go eat lunch or something. You've probably been here a while.
