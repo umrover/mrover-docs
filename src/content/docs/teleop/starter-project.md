@@ -226,7 +226,7 @@ onUnmounted(() => {
 
 Now that they have been imported, we can use them in the ```<template>```.
 
-Replace the ```// TODO add components``` with this code:
+Replace the ```<!--TODO add components-->``` with this code:
 
 ```html
 <ArmControls/>
