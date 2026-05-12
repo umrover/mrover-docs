@@ -481,13 +481,13 @@ This tells git to create a *remote branch* (shared) to match with your *local br
 If this were a normal feature, this would be when you make a *pull request*, but this feature isn't going into the main branch. If it was pulled, you should delete the feature branch afterwards. If you want to delete your starter branch remotely, run this. 
 
 ```bash
-git push -d origin <your-initials>/teleop-starter
+git push -d origin <your-initials>/teleop-starter-2026
 ```
 
 To delete it locally (although I advise you keep the branch for your future reference), run this:
 
 ```bash
-git branch -d <your-initials>/teleop-starter
+git branch -d <your-initials>/teleop-starter-2026
 ```
 
 Again, if this was a real feature, you **absolutely should** delete the remote *and* local branch **after** the pull request gets approved.
