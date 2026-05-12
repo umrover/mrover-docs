@@ -218,7 +218,7 @@ Finally, try receiving a message. The starter websocket publishes a String messa
 *Hint:*
 
 ``` javascript
-// TODO onMessage
+// TODO add onMessage
 onMessage<?>('starter', '?', msg => {
   console.log(?)
 })
