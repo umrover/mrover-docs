@@ -147,7 +147,7 @@ sendMessage('starter', {
   timestamp: new Date().toISOString(),
 })
 ```
-This is the main attraction of this function. It sends a 'debug' message to the 'starter' websocket containing the current time. 
+This is the main attraction of this function. It sends a *"debug"* message to the *"starter"* websocket containing the current time. 
 
 ---
 
@@ -198,7 +198,11 @@ sendMessage('starter', {
 })
 ```
 
+### 1
+
 Change the ```new Date().toISOString()``` to some other value. Press the button and see what happens in the terminal.
+
+### 2
 
 Next, undo changing ```timestamp```, and try this challenge: Get the following to display in your terminal:
 ```bash
@@ -206,6 +210,23 @@ Next, undo changing ```timestamp```, and try this challenge: Get the following t
 ```
 
 *Hint: look in ```starter_ws.py```. Where is a message's type used? What data does the WebSocket expect when it receives a particular message?*
+
+### 3
+
+Finally, try receiving a message. The starter websocket publishes a String message to *"foo"* every 2 seconds. Get it to display that message in the browser's console.
+
+*Hint:*
+
+``` javascript
+// TODO onMessage
+onMessage<?>('starter', '?', msg => {
+  console.log(?)
+})
+```
+
+:::note
+Use **ctrl+shift+i** to open the browser console.
+:::
 
 ---
 # Components Inside of Components
@@ -481,7 +502,7 @@ There you have it! Your first teleop project done. It was a lot to take in, so d
 
 * **Read the docs.** You were probably already doing that, but, if you weren't, go ahead and do that. Try to read all about ROS2, all about teleop, the general resources, and some of each of the other teams.
 * **Skim the codebase.** Look at files at multiple parts of the codebase, and try to figure out what they do. Modify them, remove them, add them, and see what happens. You can reset a branch back to its remote version with ```git reset --hard origin/<branch-name>```. I recommend looking in the views, the components, the _ws.py files, the .msgs, the shell scripts (.sh files), and whatever seems to interest you.
-* **Customize your environment.** Change the colors on your terminal. Learn keyboard shortcuts for VSCode (did you know **ctrl-alt-"-"** will move the cursor to its previous position, even between files). Try out Vim. Install some extensions. Put up a fancy wallpaper. Making navigating your computer easy will pay off in the long run.
+* **Customize your environment.** Change the colors on your terminal. Learn keyboard shortcuts for VSCode (did you know **ctrl-alt-"-"** will move the cursor to its previous position on Ubuntu, even between files). Try out Vim. Install some extensions. Put up a fancy wallpaper. Making navigating your computer easy will pay off in the long run.
 * **Talk with other members.** MRover is a team, and we work best when there's good communication. Try to familiarize yourself with your teammates and some members of other teams too. Heck, try out another team if they look fun, I ain't stopping you. If you have any questions at all, don't be afraid to ask me or someone else.  
 * **Ctrl-f, ctrl-shift-f, ctrl-p, and ctrl-click are your best friends.** I think I learned the most about MRover by looking at files related to what I was working on. Learn what these do, and try them out.
 
