@@ -2,7 +2,7 @@
 title: "Teleop Starter Project"
 ---
 
-# Introduction
+## Introduction
 
 Here, you will complete a Vue component by:
 * Creating page elements.
@@ -14,9 +14,9 @@ The tasks you complete in this project will be similar to tasks that you see in 
 
 ---
 
-# Getting Started
+## Getting Started
 
-## Opening the Code
+### Opening the Code
 First, go to [Teleop Quickstart](quickstart.md) and make sure your environment is set up. Critically, make sure you've run ```./build.sh``` and have all necessary dependencies.
 
 Open up a terminal, and type ```mrover```. Then: 
@@ -40,7 +40,7 @@ Whenever you create a new feature, you should make a new branch and follow the n
 
 Now you (hopefully) have the starter code ready to be worked on. But how do you run and debug it?  
 
-## Running the Code
+### Running the Code
 
 Go to the url ```http://localhost:8080/starter``` in your browser. You should see an error page. This is because it is trying to access a server on and IP address that doesn't have any - ```localhost``` a.k.a. ```127.0.0.1``` a.k.a. **your** computer. To create the server it needs, go to your terminal, and run
 ```bash
@@ -59,7 +59,7 @@ This launches both the frontend and the backend. Now once you go back to your br
 
 ---
 
-# Vue Files and Editing
+## Vue Files and Editing
 
 Now, open up ```StarterProject.vue``` in a code editor. It's easiest to just run this in a new terminal:
 ```bash
@@ -92,9 +92,9 @@ Now, you have a button that does absolutely nothing! Note that if you go back to
 
 ---
 
-# Typescript
+## Typescript
 
-## Connecting Script to Page Elements
+### Connecting Script to Page Elements
 
 We would probably like our buttons to not do nothing, so let's fix that by adding some functionality.  
   
@@ -128,7 +128,7 @@ Now click it and... still nothing? Look at the box that says "starter" in the to
 
 Let's go through the code to see what exactly is going on.
 
-## Function Analysis
+### Function Analysis
 
 ```typescript
 const interval = setInterval(() => {
@@ -151,11 +151,11 @@ This is the main attraction of this function. It sends a *"debug"* message to th
 
 ---
 
-# WebSockets
-## Overview
+## WebSockets
+### Overview
 *WebSocket* is a networking protocol, like HTTP. It lets computers talk to each other via *WebSocket**s***. It sends messages quickly - great for real-time updates. In our codebase, when a ROS topic is published, it gets sent to the backend, and then forwarded to the frontend via a WebSocket (if one has been set up). It also works in reverse; a frontend element can send messages to the backend and then to the rover.
 
-## How They're Used Here
+### How They're Used Here
 To use a WebSocket in a component, we first import necessary dependencies and define the necessary functions:
 
 ```typescript
@@ -180,7 +180,7 @@ onMounted(() => {
 
 Messages can now be sent through this WebSocket (WebSocket with id "starter"). When the Vue component is unmounted, we also have to close the WebSocket.
 
-## Status Indicator
+### Status Indicator
 
 The box in the upper left is a status indicator. A green light (on the left) indicates a transmit, while a red light indicates a receive. If the whole box is yellow, this indicates a disconnect. Go back into your terminal and press **ctrl-c**. That kills the backend, causing all sockets to disconnect. The frontend will stick around until the page unloads. Restart the basestation by running the launch command (the command will probably come back if you just press **up** in your terminal).
 
@@ -189,7 +189,7 @@ The box in the upper left is a status indicator. A green light (on the left) ind
 If you want to copy something in the terminal, use **ctrl-shift-c**, or just drag-select the text; it will depend on your environment.
 :::
 
-## Try it yourself
+### Try it yourself
 
 ```typescript
 sendMessage('starter', {
@@ -198,11 +198,11 @@ sendMessage('starter', {
 })
 ```
 
-### 1
+#### 1
 
 Change the ```new Date().toISOString()``` to some other value. Press the button and see what happens in the terminal.
 
-### 2
+#### 2
 
 Next, undo changing ```timestamp```, and try this challenge: Get the following to display in your terminal:
 ```bash
@@ -211,7 +211,7 @@ Next, undo changing ```timestamp```, and try this challenge: Get the following t
 
 *Hint: look in ```starter_ws.py```. Where is a message's type used? What data does the WebSocket expect when it receives a particular message?*
 
-### 3
+#### 3
 
 Finally, try receiving a message. The starter websocket publishes a String message to *"foo"* every 2 seconds. Get it to display that message in the browser's console.
 
@@ -229,7 +229,7 @@ Use **ctrl+shift+i** to open the browser console.
 :::
 
 ---
-# Components Inside of Components
+## Components Inside of Components
 
 If you have pried into some of the other views/pages, you've seen they have many sections with complex parts, and that some of those sections are reused on different pages. These sections are called *components*. The view itself is also a component. The Starter page is sparse, so let's try to add some to it.  
 
@@ -267,7 +267,7 @@ Now the page looks... kinda weird actually. We should format it.
 
 ---
 
-# Formatting
+## Formatting
 
 [Tailwind](https://tailwindcss.com/docs/styling-with-utility-classes) is a CSS framework that we use for styling. It provides classes to modify styles of elements. Add some to the new components.
 
@@ -325,9 +325,9 @@ The basestation is designed to display best on a **1080p** screen - the one used
 
 ---
 
-# ```Arm Controls``` and ```Rover3D```
+## ```Arm Controls``` and ```Rover3D```
 
-## Overview
+### Overview
 
 ```Rover3D``` is a display of the rover in its current state. It also displays a *costmap*, a grid of how "expensive" it would be for the rover to navigate a certain section of terrain.  
 
@@ -365,7 +365,7 @@ However, pressing anything won't move the arm currently. This is for two reasons
 * The arm mode has to be set.
 * The backend needs a rover with an arm to move.
 
-## Setting up ```Arm Controls```
+### Setting up ```Arm Controls```
 
 Head inside ```ArmControls.vue```. In VSCode, you can control click its name from its html tag or import statement. Then, go to this div:
 
@@ -401,7 +401,7 @@ Click throttle. The hard part is now done. Next, we need to get the rover, or at
 
 ---
 
-# Simulator
+## Simulator
 
 Open a new terminal, but keep the old one running the basestation. Run and then run these commands. If you get stuck in the simulator, press **esc**:
 
@@ -412,17 +412,17 @@ ros2 launch mrover simulator.launch.py
 
 The simulator and RViz will open in new windows. *RViz* is a useful tool that allows you to see what the rover sees, and what topics are being broadcast. The simulator provides a digital version of the rover that communicates with the basestation in a similar way to if it was real.
 
-## Navigating the Simulator
+### Navigating the Simulator
 
 The simulator is the one with the MRover logo as its symbol. You can move the camera with **WASD**, **space**, **ctrl**, and the mouse. **Esc** toggles the mouse from being locked to unlocked and back again. 
 
-## Controlling the Rover
+### Controlling the Rover
 
 Everything is currently frozen. Press **p** to enable physics, and uncheck **publish ik**. You can move the rover with **i**, **j**, **l**, and "**,**" while the mouse is locked. Go back to the Starter view in your browser. Make sure throttle mode is selected, and use **WASD** to control the arm. It will move in both the browser and the simulator. 
 
 ---
 
-# ROS Topics
+## ROS Topics
 
 One last thing - Open up yet another terminal, but leave the other two running. Run these commands:
 
@@ -441,7 +441,7 @@ Whenever you move the arm, a new message will appear. Press **ctrl-c** to stop t
 
 ---
 
-# Git Commits
+## Git Commits
 
 The starter project is pretty much done now, you can stop the simulator and basestation. Let's add it to the codebase for safekeeping. *Commit* your changes by running this in a terminal:
 
@@ -476,7 +476,7 @@ git push --set-upstream origin <your-initials>/teleop-starter-2026
 
 This tells git to create a *remote branch* (shared) to match with your *local branch* (on your computer), and to put the changes there. Now that the remote branch exists, you can simply type ```git push``` whenever you make a new commit.  
 
-## When a Feature is Finished
+### When a Feature is Finished
 
 If this were a normal feature, this would be when you make a *pull request*, but this feature isn't going into the main branch. If it was pulled, you should delete the feature branch afterwards. If you want to delete your starter branch remotely, run this. 
 
@@ -496,7 +496,7 @@ Again, if this was a real feature, you **absolutely should** delete the remote *
 You shouldn't wait until a feature is completely, all-the-way done before making a commit. Commit whenever you get a new part of it working, or any noteworthy modification. Make a pull request when it is fully done.
 :::
 
-# Conclusion and Next Steps
+## Conclusion and Next Steps
 
 There you have it! Your first teleop project done. It was a lot to take in, so don't sweat if you don't get it all right away. With practice, it will come to you. Here are some things you can do to learn more, and help you in the future:
 
