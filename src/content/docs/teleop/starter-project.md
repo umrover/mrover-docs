@@ -173,7 +173,7 @@ onMounted(() => {
 })
 ```
 
-:::important
+:::caution
   WebSocket setup and closing is typically handled in the highest level component, in a different way than above.  
   Check [Websocket Handlers](consumers-lookup.md) for more information.
 :::
@@ -319,7 +319,7 @@ A *flexbox* is a container that holds elements in a single row or column. It can
 See more info at [this Geeks for Geeks article](https://www.geeksforgeeks.org/css/comparison-between-css-grid-css-flexbox/) (albeit, for base CSS).
 :::
 
-::important
+:::caution
 The basestation is designed to display best on a **1080p** screen - the one used at competition. You might have to adjust your settings or fullscreen the page to match it.
 :::
 
