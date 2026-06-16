@@ -2,7 +2,7 @@
 title: "CMake + CubeMX/CubeCLT Toolchain"
 ---
 
-In [Getting Started/STM32Cube](../getting-started/stm32cube/index.md), we went over how to set up the
+In [Getting Started/STM32Cube](/esw/getting-started/stm32cube), we went over how to set up the
 STM32Cube toolchain utilizing our own scripts and CMakeLists.txt templates to setup and build the projects.
 
 This document covers the manual approach of invoking CubeMX and CubeCLT directly.
@@ -10,7 +10,7 @@ This document covers the manual approach of invoking CubeMX and CubeCLT directly
 ## Prerequisites
 
 Please install STM32CubeMX and STM32CubeCLT by following the instructions in the
-[Getting Started/STM32Cube](../getting-started/stm32cube/index.md) document.
+[Getting Started/STM32Cube](/esw/getting-started/stm32cube) document.
 
 ## 1. Creating a New CubeMX Project
 
@@ -142,4 +142,4 @@ target_link_libraries(${CMAKE_PROJECT_NAME}
 ## 3. Building and Flashing
 
 You can now build the CMake project as you would normally or by using our build script as
-described in [Getting Started/STM32Cube](../getting-started/stm32cube/index.md).
+described in [Getting Started/STM32Cube](/esw/getting-started/stm32cube).

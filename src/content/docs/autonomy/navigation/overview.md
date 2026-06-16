@@ -5,44 +5,44 @@ title: "Navigation"
 
 ## Contents
 
-1. [State Machine Diagram](#State-machine-diagram)
-2. [What is a State Machine and why do we use a custom implementation?](#What-is-a-State-Machine-and-why-do-we-use-a-custom-implementation?)
-3. [State Descriptions](#State-Descriptions)
+1. [State Machine Diagram](#state-machine-diagram)
+2. [What is a State Machine and why do we use a custom implementation?](#what-is-a-state-machine-and-why-do-we-use-a-custom-implementation)
+3. [State Descriptions](#state-descriptions)
 
-    3.1 [Off State](#Off-State)
+    3.1 [Off State](#off-state)
 
-    3.2 [Done State](#Done-State)
+    3.2 [Done State](#done-state)
 
-    3.3 [Waypoint State](#Waypoint-State)
+    3.3 [Waypoint State](#waypoint-state)
 
-    3.4 [Approach Target State](#Approach-Target-State)
+    3.4 [Approach Target State](#approach-target-state)
 
-    3.5 [Long Range State](#Long-Range-State)
+    3.5 [Long Range State](#long-range-state)
 
-    3.6 [Costmap Search State](#Costmap-Search-State)
+    3.6 [Costmap Search State](#costmap-search-state)
 
-    3.7 [Backup State](#Backup-State)
+    3.7 [Backup State](#backup-state)
 
-    3.8 [Stuck Recovery State](#Stuck-Recovery-State)
+    3.8 [Stuck Recovery State](#stuck-recovery-state)
 
-4. [Path Planning](#Path-Planning)
+4. [Path Planning](#path-planning)
     4.1 [A* Algorithm](#a-algorithm)
-    4.2 [Costmap Integration](#costmap-integration)
+    4.2 Costmap Integration
 
-5. [Context, Rover, Environment, Course](#Context,-Rover,-Environment,-Course)
+5. [Context, Rover, Environment, Course](#context-rover-environment-course)
 
-    5.1 [Context](#Context-Functions/Attributes)
+    5.1 [Context](#context-functionsattributes)
 
-    5.2 [Rover](#Rover)
+    5.2 [Rover](#rover)
 
-    5.3 [Environment](#Environment)
+    5.3 [Environment](#environment)
 
-    5.4 [Course](#Course)
+    5.4 [Course](#course)
 
-6. [DriveController Class](#DriveController-Class)
-7. [Trajectory](#Trajectory)
-8. [SearchTrajectory](#SearchTrajectory)
-9. [ArmController](#armcontroller)
+6. [DriveController Class](#drivecontroller-class)
+7. [Trajectory](#trajectory)
+8. [SearchTrajectory](#searchtrajectory)
+9. [ArmController](#arm-controller)
 
 
 ## State machine diagram

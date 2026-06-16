@@ -8,7 +8,7 @@ with libraries in C, C++, and Python to abstract the functions needed by the oth
 To do this we use different communication protocols such as CAN and I2C to transmit and receive data
 from sensors, motors, and various other components.
 
-New to ESW? Check out the [getting started page](getting-started/intro.md) for developer setup and starter projects.
+New to ESW? Check out the [getting started page](/esw/getting-started/intro) for developer setup and starter projects.
 
 ## Overview
 

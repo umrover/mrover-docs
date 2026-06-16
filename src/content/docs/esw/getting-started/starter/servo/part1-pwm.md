@@ -13,7 +13,7 @@ so please reach out if you ever get stuck!
 
 ## Prerequisites
 
-- STM32Cube [installed](../../stm32cube/index.md)
+- STM32Cube [installed](/esw/getting-started/stm32cube)
 - LED Project [completed](https://github.com/umrover/embedded-testbench/wiki/Nucleo-LED-Starter-Project) and shown to an ESW lead
 - Git installed and [basic knowledge of how to use it](https://github.com/umrover/mrover-ros2/wiki/Git)
 - STM32G431RB Nucleo
@@ -72,7 +72,7 @@ Once the .ioc is open, configure the pins for PWM.
 
 We will now have to configure two values&mdash;Prescaler and Counter Period&mdash;in order to
 correctly set up this PWM timer. These values are located in the "Parameter Settings" and must be
-calculated. Refer to the timer [reference guide](../../../info/timers.md) for information on
+calculated. Refer to the timer [reference guide](/esw/info/timers) for information on
 calculating these values.
 
 Read the [datasheet](http://www.ee.ic.ac.uk/pcheung/teaching/DE1_EE/stores/sg90_datasheet.pdf) for

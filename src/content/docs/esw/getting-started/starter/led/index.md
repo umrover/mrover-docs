@@ -27,14 +27,14 @@ As you walk through the guide, keep the following questions in mind:
 
 ## Prerequisites
 
-* STM32CubeMX [installed](../../stm32cube/index.md)
+* STM32CubeMX [installed](/esw/getting-started/stm32cube)
 * STM32G431RB Nucleo (pictured below)
 
 ![stm32g431rb nucleo](./nucleo-g431.webp)
 
 ## Guide
 
-Open up CubeMX and create a new project called tutorial by following the steps in the [CubeMX New Project Guide](../../stm32cube/index.md#creating-a-new-project).
+Open up CubeMX and create a new project called tutorial by following the steps in the [CubeMX New Project Guide](/esw/getting-started/stm32cube#creating-a-new-project).
 
 When creating a new project, the pins are not configured by default. This matters because on the Nucleo, the button and the LED are already connected to a particular pin so we need to change the pin's functionality if we want to use it. In order to determine which pins are connected to the button and the LED, one can visit [this](https://os.mbed.com/platforms/ST-Nucleo-G474RE/) page.
 

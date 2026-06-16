@@ -243,7 +243,7 @@ will be developing on.
 
 ### Prerequisites
 
-- STM32CubeMX and STM32CubeCLT [installed](../stm32cube/index.md)
+- STM32CubeMX and STM32CubeCLT [installed](/esw/getting-started/stm32cube)
 
 ### Guide
 
@@ -269,4 +269,4 @@ Open the `<project>.ioc` file in STM32CubeMX to modify the project configuration
 
 **Congratulations! You have successfully created a new project with CubeMX!**
 
-For information on how to do this process manually, refer to the [CMake + CubeMX/CubeCLT Toolchain](../../extra/cmake-cubemx.md) document.
+For information on how to do this process manually, refer to the [CMake + CubeMX/CubeCLT Toolchain](/esw/extra/cmake-cubemx) document.

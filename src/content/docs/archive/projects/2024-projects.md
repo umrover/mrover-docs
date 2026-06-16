@@ -3,37 +3,37 @@ title: "2024 Projects"
 ---
 ## Perception
 
-* [Long range ArUco tag detection](/perception/long-range-tag-detection)
-* [Object detection](/perception/object-detection)
-* [Surface normals costmap](/navigation/surface-normals-costmap)
-* [Spatial mapping for teleop](Spatial-Mapping)
-* [Lander auto-align](/navigation/lander-auto-align)
+* [Long range ArUco tag detection](/autonomy/perception/long-range-tag-detection)
+* [Object detection](/autonomy/perception/object-detection)
+* [Surface normals costmap](/autonomy/navigation/surface-normals-costmap)
+* Spatial mapping for teleop
+* [Lander auto-align](/autonomy/navigation/lander-auto-align)
 
 ## Navigation
 
-* [Approach Target Base State](/navigation/approach-target-base-state)
-  * [Second Camera Navigation Integration (LongRangeState)](/navigation/second-camera-integration)
-  * [ApproachObjectState](/navigation/approach-object-state)
-* [Obstacle Avoidance](/navigation/obstacle-avoidance)
-* [Adaptive pure pursuit](/navigation/adaptive-pure-pursuit)
-* [URC vs. CIRC switch](/devops/urc-vs-circ-switch)
+* [Approach Target Base State](/autonomy/navigation/approach-target-base-state)
+  * [Second Camera Navigation Integration (LongRangeState)](/autonomy/navigation/second-camera-integration)
+  * [ApproachObjectState](/autonomy/navigation/approach-object-state)
+* [Obstacle Avoidance](/autonomy/navigation/obstacle-avoidance)
+* [Adaptive pure pursuit](/autonomy/navigation/adaptive-pure-pursuit)
+* [URC vs. CIRC switch](/general-resources/devops/urc-vs-circ-switch)
 
 ## Localization
 
-* [Real-time kinematic positioning](RTK)
-* [Dual GNSS Heading](Dual-GNSS-Heading)
-* [IMU Setup](IMU-setup)
-* [Tip Detection](Tip-Detection)
+* Real-time kinematic positioning
+* Dual GNSS Heading
+* IMU Setup
+* Tip Detection
 
 ## ESW
 
-* [Hardware accelerated and robust camera streaming](/esw/camera-streaming)
-* [Brushed motor controller STM](/esw/brushed-controller-stm)
-* [Brushed motor controller ROS](/esw/brushed-controller-ros)
-* [Brushless ROS](/esw/brushless-ros)
-* [Science controller STM](Science-Controller-STM)
-* [PDB STM](/esw/pdb-stm)
+* Hardware accelerated and robust camera streaming
+* Brushed motor controller STM
+* Brushed motor controller ROS
+* Brushless ROS
+* Science controller STM
+* PDB STM
 
 ## Teleop
-* [Convert to Django](/teleop/convert-to-django)
-* [5dof IK](/navigation/5dof-ik)
+* Convert to Django
+* [5dof IK](/autonomy/navigation/5dof-ik)

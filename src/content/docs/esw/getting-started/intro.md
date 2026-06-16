@@ -11,16 +11,16 @@ There is also useful information linked below to supplement the starter projects
 
 All new members are asked to complete the following:
 
-1. [Install STM32Cube\* Tools](stm32cube/index.md)
-2. [Starter Project: LED](starter/led/index.md)
-3. [Starter Project: Servo Part 1](starter/servo/part1-pwm.md)
-4. [Starter Project: Servo Part 2](starter/servo/part2-can.md)
-5. [Starter Project: Temperature and Humidity Sensor](starter/temp-humidity/index.md)
+1. [Install STM32Cube\* Tools](/esw/getting-started/stm32cube)
+2. [Starter Project: LED](/esw/getting-started/starter/led)
+3. [Starter Project: Servo Part 1](/esw/getting-started/starter/servo/part1-pwm)
+4. [Starter Project: Servo Part 2](/esw/getting-started/starter/servo/part2-can)
+5. [Starter Project: Temperature and Humidity Sensor](/esw/getting-started/starter/temp-humidity)
 
 As everyone comes from varying levels of experience, extra information is provided in these docs to
 assist the learning process. Please do not hesitate to ask for help!
 
 Some helpful references include:
 
-1. [Intro to Nucleos](../info/nucleos.md)
-2. [Communication Protocols](../info/communication-protocols/index.md)
+1. [Intro to Nucleos](/esw/info/nucleos)
+2. [Communication Protocols](/esw/info/communication-protocols)

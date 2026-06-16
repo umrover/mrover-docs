@@ -57,7 +57,7 @@ Key properties:
 ### IEKF: using RTK heading as a measurement
 The IEKF fuses dual‑antenna RTK heading as a yaw measurement. It gates out invalid data, converts the heading into a body‑frame reference vector, builds a measurement model, and runs the EKF correction step weighted by `rtk_heading_noise`.
 
-```302:330:localization/iekf_se3/iekf_se3.cpp
+```cpp
 void IEKF_SE3::rtk_heading_callback(const mrover::msg::Heading::ConstSharedPtr &rtk_heading, const mrover::msg::FixStatus::ConstSharedPtr &rtk_heading_status) {
 
     if (rtk_heading_status->fix_type.fix == mrover::msg::FixType::NO_SOL) {
@@ -104,7 +104,7 @@ Tip: Tune `iekf_se3.rtk_heading_noise` in `config/localization.yaml` to balance 
 ### Heading filter: correcting IMU yaw when RTK heading is FIXED
 This node applies a 1D Kalman filter to correct yaw using dual‑antenna heading only when the heading solution is `FIXED` (highest quality). It computes the uncorrected yaw from the IMU quaternion, forms an angle error to the measured RTK heading, then predict–corrects the scalar filter.
 
-```71:99:localization/heading_filter/heading_filter.cpp
+```cpp
 void HeadingFilter::sync_rtk_heading_callback(const mrover::msg::Heading::ConstSharedPtr &heading, const mrover::msg::FixStatus::ConstSharedPtr &heading_status) {
 
 

@@ -12,14 +12,14 @@ the specified angle. By the end of this part, you should have an understanding o
 
 Just as a reminder, if you have any questions, feel free to reach out to any ESW lead or member.
 
-***Before starting this project***, please give the [CAN info page](../../../info/communication-protocols/index.md#can)
+***Before starting this project***, please give the [CAN info page](/esw/info/communication-protocols#can)
 a read. It will get you start on the basics of CAN communication. ***Do not read "Using the Kvaser Bit Timing Calculator."***
 
 ## Prerequisites
 
-* STM32Cube [installed](../../stm32cube/index.md)
-* LED Starter Project [completed](../led/index.md) and shown to an ESW lead
-* Servo Part 1 Starter Project [completed](part1-pwm.md) and shown to an ESW lead
+* STM32Cube [installed](/esw/getting-started/stm32cube)
+* LED Starter Project [completed](/esw/getting-started/starter/led) and shown to an ESW lead
+* Servo Part 1 Starter Project [completed](/esw/getting-started/starter/servo/part1-pwm) and shown to an ESW lead
 * STM32G431RB Nucleo
 * MCP2551 CAN tranceiver
 
@@ -59,11 +59,11 @@ only need to properly set the following values:
 3. Nominal Time Seg 1
 4. Nominal Time Seg 2
 
-Again, please refer to the [CAN info page](../../../info/communication-protocols/index.md#can) for
+Again, please refer to the [CAN info page](/esw/info/communication-protocols#can) for
 more information on these values.
 
 There is a very in depth guide to configuring these values for STM32 MCUs in the
-[CAN FD Bit Timing](../../../info/communication-protocols/index.md#can-bit-timing) section of the
+[CAN FD Bit Timing](/esw/info/communication-protocols#can-bit-timing) section of the
 docs. However, for the purposes of this starter project, you can use [this online calculator](https://phryniszak.github.io/stm32g-fdcan/)
 designed for STM32G4 boards. Our FDCAN peripheral is clocked at 72 MHz, and the CAN bus we are
 trying to communicate on is running at 500 kbps. The calculator will give you the values you need
