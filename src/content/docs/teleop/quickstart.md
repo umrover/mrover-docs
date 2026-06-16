@@ -3,7 +3,7 @@ title: "Teleop Quickstart"
 ---
 ## Additional resources: [Vue](/teleop/vue-introduction), [Tailwind](/teleop/tailwind-introduction)
 
-Once you have completed the installation from the [Install ROS](/getting-started/install-ros) page, make sure you are on the `main` branch:
+Once you have completed the installation from the [Install ROS](/general-resources/ros/install-ros/install-ros) page, make sure you are on the `main` branch:
 
 ```bash
 git checkout main
