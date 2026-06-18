@@ -4,12 +4,12 @@ import starlight from '@astrojs/starlight';
 import starlightLinksValidator from 'starlight-links-validator';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { unified } from '@astrojs/markdown-remark';
 
 export default defineConfig({
   site: 'https://docs.mrover.org',
   markdown: {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    processor: unified({ remarkPlugins: [remarkMath], rehypePlugins: [rehypeKatex] }),
   },
   integrations: [
     starlight({
