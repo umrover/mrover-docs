@@ -1,17 +1,19 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
 import starlight from '@astrojs/starlight';
+import starlightLinksValidator from 'starlight-links-validator';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { unified } from '@astrojs/markdown-remark';
 
 export default defineConfig({
   site: 'https://docs.mrover.org',
   markdown: {
-    remarkPlugins: [remarkMath],
-    rehypePlugins: [rehypeKatex],
+    processor: unified({ remarkPlugins: [remarkMath], rehypePlugins: [rehypeKatex] }),
   },
   integrations: [
     starlight({
+      plugins: [starlightLinksValidator()],
       expressiveCode: {
         frames: false,
       },
@@ -26,6 +28,9 @@ export default defineConfig({
       customCss: [
         './src/styles/custom.css',
       ],
+      components: {
+        SocialIcons: './src/components/SocialIcons.astro',
+      },
       head: [
         {
           tag: 'link',
@@ -37,131 +42,153 @@ export default defineConfig({
         },
       ],
       sidebar: [
-        { label: 'Introduction', slug: 'introduction' },
+        // SIDEBAR_ITEMS_START
+        { label: 'MRover Software Introduction', slug: 'introduction' },
         {
-          label: 'ROS and the Development Environment',
+          label: 'General Resources',
           collapsed: true,
           items: [
-            { label: '1. Introduction to ROS', slug: 'getting-started/intro-to-ros' },
-            { label: '2. Install ROS', slug: 'getting-started/install-ros' },
-            { label: '3. IDE Configuration', slug: 'getting-started/ide-configuration' },
-            { label: '4. Fundamentals of ROS', slug: 'getting-started/fundamentals-of-ros' },
+            { label: 'Best Practices', slug: 'general-resources/best-practices' },
+            { label: 'Git', slug: 'general-resources/git' },
+            { label: 'I Hate Webdev, How Do I Add a Page', slug: 'general-resources/contributing-to-the-wiki' },
+            { label: 'IDE Configuration', slug: 'general-resources/ide-configuration' },
             {
-              label: 'Platform-Specific Setup',
+              label: 'ROS & Environment',
               collapsed: true,
               items: [
-                { label: 'Install ROS on macOS', slug: 'getting-started/install-ros-macos' },
-                { label: 'macOS VM Setup', slug: 'getting-started/macos-vm-setup' },
-                { label: 'Setting up the Jetson', slug: 'getting-started/setting-up-the-jetson' },
-                { label: 'USB Passthrough for UTM', slug: 'getting-started/usb-passthrough-utm' },
-              ],
+                { label: '1. Introduction to ROS', slug: 'general-resources/ros/intro-to-ros' },
+                { label: '2. Install ROS', slug: 'general-resources/ros/install-ros/install-ros' },
+                { label: '3. Fundamentals of ROS', slug: 'general-resources/ros/fundamentals-of-ros' },
+                { label: 'Install ROS on macOS', slug: 'general-resources/ros/install-ros/install-ros-macos' },
+                { label: 'ROS Tools: rqt_bag', slug: 'general-resources/ros/ros-tools-rqt-bag' },
+                { label: 'Setting up the Jetson', slug: 'general-resources/setting-up-the-jetson' },
+              ]
             },
-          ],
-        },
-        {
-          label: 'Projects',
-          collapsed: true,
-          items: [
-            { label: '2025-2026 Projects', slug: 'projects/2025-2026-projects' },
-            { label: '2024 Projects', slug: 'projects/2024-projects' },
-          ],
-        },
-        {
-          label: 'General Tutorials and Resources',
-          collapsed: true,
-          items: [
-            { label: 'Git', slug: 'general/git' },
-            { label: 'Best Practices', slug: 'general/best-practices' },
-            { label: 'Code Style', slug: 'general/code-style' },
-            { label: 'Adding a Docs Page', slug: 'general/contributing-to-the-wiki' },
-            { label: 'ROS Tools: rqt_bag', slug: 'general/ros-tools-rqt-bag' },
-          ],
-        },
-        {
-          label: 'Dev-Ops',
-          collapsed: true,
-          items: [
-            { label: 'Updating CI', slug: 'devops/updating-ci' },
-            { label: 'URC vs. CIRC Switch', slug: 'devops/urc-vs-circ-switch' },
-          ],
+            {
+              label: 'VM Setup',
+              collapsed: true,
+              items: [
+                { label: 'macOS VM Setup', slug: 'general-resources/vm/macos-vm-setup' },
+                { label: 'USB Passthrough for UTM', slug: 'general-resources/vm/usb-passthrough-utm' },
+              ]
+            },
+            {
+              label: 'Dev-Ops',
+              collapsed: true,
+              items: [
+                { label: 'Updating CI', slug: 'general-resources/devops/updating-ci' },
+                { label: 'URC vs. CIRC Switch', slug: 'general-resources/devops/urc-vs-circ-switch' },
+              ]
+            }
+          ]
         },
         {
           label: 'ESW',
           collapsed: true,
           items: [
-            { label: 'ESW Overview', slug: 'esw/overview' },
-            { label: 'Embedded Dev Introduction', slug: 'esw/dev-intro' },
             {
               label: 'Getting Started',
               collapsed: true,
               items: [
                 { label: 'Introduction', slug: 'esw/getting-started/intro' },
-                { label: 'STM32Cube Tools', slug: 'esw/getting-started/stm32cube' },
-                { label: 'Starter Project: LED', slug: 'esw/getting-started/starter-led' },
-                { label: 'Starter Project: Servo - PWM', slug: 'esw/getting-started/starter-servo-pwm' },
-                { label: 'Starter Project: Servo - CAN', slug: 'esw/getting-started/starter-servo-can' },
-                { label: 'Starter Project: Temperature & Humidity', slug: 'esw/getting-started/starter-temp-humidity' },
-              ],
+                {
+                  label: 'Starter Projects',
+                  collapsed: true,
+                  items: [
+                    {
+                      label: 'LED',
+                      collapsed: true,
+                      items: [
+                        { label: 'LED Starter Project', slug: 'esw/getting-started/starter/led' }
+                      ]
+                    },
+                    {
+                      label: 'Servo',
+                      collapsed: true,
+                      items: [
+                        { label: 'Servo Starter Project - Part 1 - PWM', slug: 'esw/getting-started/starter/servo/part1-pwm' },
+                        { label: 'Servo Starter Project - Part 2 - CAN', slug: 'esw/getting-started/starter/servo/part2-can' }
+                      ]
+                    },
+                    {
+                      label: 'Temp & Humidity',
+                      collapsed: true,
+                      items: [
+                        { label: 'Temperature and Humidity Starter Project', slug: 'esw/getting-started/starter/temp-humidity' }
+                      ]
+                    }
+                  ]
+                },
+                {
+                  label: 'STM32CubeMX Setup',
+                  collapsed: true,
+                  items: [
+                    { label: 'STM32Cube\\*', slug: 'esw/getting-started/stm32cube' }
+                  ]
+                }
+              ]
             },
-            { label: 'ESW Starter Project (ROS2)', slug: 'esw/starter-project' },
-            { label: 'Electrical System Overview', slug: 'esw/electrical-system-overview' },
             {
-              label: 'Motors',
+              label: 'ESW Projects',
               collapsed: true,
               items: [
-                { label: 'Brushless Motors', slug: 'esw/brushless-motors' },
-                { label: 'Brushed Motors', slug: 'esw/brushed-motors' },
-                { label: 'Brushless ROS', slug: 'esw/brushless-ros' },
-                { label: 'Brushed Motors Planning', slug: 'esw/brushed-motors-planning' },
-                { label: 'Brushed Controller ROS', slug: 'esw/brushed-controller-ros' },
-                { label: 'Brushed Controller STM', slug: 'esw/brushed-controller-stm' },
-              ],
+                { label: 'ESW 2025-2026 Projects', slug: 'esw/projects/overview26' }
+              ]
             },
             {
-              label: 'Reference',
+              label: 'Extra Guides',
               collapsed: true,
               items: [
-                { label: 'Communication Protocols', slug: 'esw/communication-protocols' },
-                { label: 'Nucleos Introduction', slug: 'esw/nucleos' },
-                { label: 'STM32 Timers', slug: 'esw/timers' },
-                { label: 'Build Tools', slug: 'esw/build' },
-                { label: 'STM32 Startup Boot Options', slug: 'esw/stm32-startup-boot-options' },
-                { label: 'CMake + CubeMX Toolchain', slug: 'esw/cmake-cubemx' },
-              ],
+                {
+                  label: 'Archive',
+                  collapsed: true,
+                  items: [
+                    { label: 'Archive', slug: 'esw/extra/archive' }
+                  ]
+                },
+                { label: 'Building These Docs', slug: 'esw/extra/build-docs' },
+                { label: 'CMake + CubeMX/CubeCLT Toolchain', slug: 'esw/extra/cmake-cubemx' }
+              ]
             },
-            { label: 'Science', slug: 'esw/science' },
-            { label: 'Raman', slug: 'esw/raman' },
-            { label: 'PDB STM', slug: 'esw/pdb-stm' },
-            { label: 'Science Board STM', slug: 'esw/science-board-stm' },
-            { label: 'CANalyzer', slug: 'esw/canalyzer' },
-            { label: 'Camera Streaming', slug: 'esw/camera-streaming' },
-            { label: 'Directional Antenna', slug: 'esw/directional-antenna' },
-            { label: '2025-2026 Projects', slug: 'esw/embedded-projects' },
-            { label: 'Archive', slug: 'esw/archive' },
-          ],
+            {
+              label: 'Information',
+              collapsed: true,
+              items: [
+                { label: 'Brushed DC Motors', slug: 'esw/info/brushed' },
+                { label: 'Brushless DC Motors', slug: 'esw/info/brushless' },
+                { label: 'Build Tools', slug: 'esw/info/build' },
+                {
+                  label: 'Communication Protocols',
+                  collapsed: true,
+                  items: [
+                    { label: 'Communication Protocols', slug: 'esw/info/communication-protocols' }
+                  ]
+                },
+                { label: 'Nucleos Introduction', slug: 'esw/info/nucleos' },
+                { label: 'Science', slug: 'esw/info/science' },
+                { label: 'STM32 Boot Information', slug: 'esw/info/stm32-boot' },
+                { label: 'Timers', slug: 'esw/info/timers' }
+              ]
+            },
+            { label: 'MRover Embedded Software', slug: 'esw' }
+          ]
         },
         {
           label: 'Teleop',
           collapsed: true,
           items: [
             { label: 'Teleop Overview', slug: 'teleop/overview' },
-            { label: 'Teleop Quickstart', slug: 'teleop/quickstart' },
-            { label: 'Teleop FAQ', slug: 'teleop/faq' },
-            { label: 'Teleop Organization', slug: 'teleop/organization' },
-            { label: 'GUI Style Checking', slug: 'teleop/gui-style-checking' },
-            { label: 'Teleop Starter Project', slug: 'teleop/starter-project' },
-            { label: 'Sample Vue Component', slug: 'teleop/sample-vue-component' },
             { label: 'Downloading Offline Map', slug: 'teleop/downloading-offline-map' },
-            {
-              label: 'Framework Introductions',
-              collapsed: true,
-              items: [
-                { label: 'Vue Introduction', slug: 'teleop/vue-introduction' },
-                { label: 'Tailwind Introduction', slug: 'teleop/tailwind-introduction' },
-              ],
-            },
-            { label: 'WebSocket Handlers Lookup', slug: 'teleop/consumers-lookup' },
-          ],
+            { label: 'GUI Style Checking', slug: 'teleop/gui-style-checking' },
+            { label: 'Sample Vue Component', slug: 'teleop/sample-vue-component' },
+            { label: 'Tailwind Introduction', slug: 'teleop/tailwind-introduction' },
+            { label: 'Teleop Codebase Organization', slug: 'teleop/organization' },
+            { label: 'Teleop FAQ', slug: 'teleop/faq' },
+            { label: 'Teleop Quickstart', slug: 'teleop/quickstart' },
+            { label: 'Teleop Starter Project', slug: 'teleop/starter-project' },
+            { label: 'Vue Introduction', slug: 'teleop/vue-introduction' },
+            { label: 'WebSocket Handlers Lookup', slug: 'teleop/consumers-lookup' }
+          ]
         },
         {
           label: 'Autonomy',
@@ -169,101 +196,105 @@ export default defineConfig({
           items: [
             { label: 'Autonomy Overview', slug: 'autonomy/overview' },
             { label: 'Autonomy Quickstart', slug: 'autonomy/quickstart' },
-            { label: '3D Poses, Transforms, and Rotations', slug: 'autonomy/3d-poses-transforms-rotations' },
-            { label: 'Vectorization', slug: 'autonomy/vectorization' },
-            { label: 'Autonomy Starter Project', slug: 'autonomy/starter-project' },
-            { label: 'Autonomy Starter Project - Perception', slug: 'autonomy/starter-project-perception' },
-            { label: 'Drone', slug: 'autonomy/drone' },
-          ],
-        },
-        {
-          label: 'Navigation',
-          collapsed: true,
-          items: [
-            { label: 'Navigation', slug: 'navigation/overview' },
-            { label: 'State Machine Library', slug: 'navigation/state-machine-library' },
             {
-              label: 'Path Planning',
+              label: 'Autonomy Starter Project',
               collapsed: true,
               items: [
-                { label: 'Path Execution', slug: 'navigation/path-execution' },
-                { label: 'Path Smoothing', slug: 'navigation/path-smoothing' },
-                { label: 'Pure Pursuit', slug: 'navigation/pure-pursuit' },
-                { label: 'Adaptive Pure Pursuit', slug: 'navigation/adaptive-pure-pursuit' },
-                { label: 'Cost Map', slug: 'navigation/cost-map' },
-                { label: 'Surface Normals Costmap', slug: 'navigation/surface-normals-costmap' },
-                { label: 'Costmap Path Planning', slug: 'navigation/costmap-path-planning' },
-              ],
+                { label: 'Overview', slug: 'autonomy/starter-project/overview' },
+                { label: 'Localization', slug: 'autonomy/starter-project/localization' },
+                { label: 'Perception', slug: 'autonomy/starter-project/perception' },
+                { label: 'Navigation', slug: 'autonomy/starter-project/navigation' },
+                { label: 'Testing & Completion', slug: 'autonomy/starter-project/testing' }
+              ]
             },
             {
-              label: 'States',
+              label: 'Localization',
               collapsed: true,
               items: [
-                { label: 'Approach Target Base State', slug: 'navigation/approach-target-base-state' },
-                { label: 'Approach Object State', slug: 'navigation/approach-object-state' },
-                { label: 'Lander Auto Align', slug: 'navigation/lander-auto-align' },
-                { label: 'Inward Spiraling', slug: 'navigation/inward-spiraling' },
-                { label: 'Obstacle Avoidance', slug: 'navigation/obstacle-avoidance' },
-                { label: 'Second Camera Integration', slug: 'navigation/second-camera-integration' },
-                { label: 'Stuck Detector', slug: 'navigation/stuck-detector' },
-              ],
+                { label: 'Localization', slug: 'autonomy/localization/overview' },
+                { label: 'Dual Antenna RTK', slug: 'autonomy/localization/dual-antenna-rtk' },
+                { label: 'How to Calibrate the IMU', slug: 'autonomy/localization/imu-calibration' },
+                { label: 'In Search of Globally Accurate Orientation', slug: 'autonomy/localization/globally-accurate-orientation' },
+                { label: 'Invariant EKF', slug: 'autonomy/localization/invariant-ekf' },
+                { label: 'Localization Data Caching State Machine', slug: 'autonomy/localization/data-caching-state-machine' }
+              ]
             },
             {
-              label: 'Arm Control',
+              label: 'Navigation',
               collapsed: true,
               items: [
-                { label: 'Arm Velocity Control', slug: 'navigation/arm-velocity-control' },
-                { label: 'Arm IK', slug: 'navigation/arm-ik' },
-                { label: 'Arm IK Testing', slug: 'navigation/arm-ik-testing' },
-                { label: '5-DOF IK', slug: 'navigation/5dof-ik' },
-                { label: 'Click IK', slug: 'navigation/click-ik' },
-              ],
+                { label: 'Navigation', slug: 'autonomy/navigation/overview' },
+                { label: '5-DOF IK', slug: 'autonomy/navigation/5dof-ik' },
+                { label: 'Adaptive Pure Pursuit', slug: 'autonomy/navigation/adaptive-pure-pursuit' },
+                { label: 'Approach Object State', slug: 'autonomy/navigation/approach-object-state' },
+                { label: 'Approach Target Base State', slug: 'autonomy/navigation/approach-target-base-state' },
+                { label: 'Arm IK', slug: 'autonomy/navigation/arm-ik' },
+                { label: 'Arm IK Testing Visualization', slug: 'autonomy/navigation/arm-ik-testing' },
+                { label: 'Arm Velocity Control', slug: 'autonomy/navigation/arm-velocity-control' },
+                { label: 'Click IK', slug: 'autonomy/navigation/click-ik' },
+                { label: 'Cost Map', slug: 'autonomy/navigation/cost-map' },
+                { label: 'Costmap Path Planning', slug: 'autonomy/navigation/costmap-path-planning' },
+                { label: 'Inward Spiraling', slug: 'autonomy/navigation/inward-spiraling' },
+                { label: 'Lander Auto Align', slug: 'autonomy/navigation/lander-auto-align' },
+                { label: 'Navigation State Machine Library', slug: 'autonomy/navigation/state-machine-library' },
+                { label: 'Obstacle Avoidance', slug: 'autonomy/navigation/obstacle-avoidance' },
+                { label: 'Path Execution', slug: 'autonomy/navigation/path-execution' },
+                { label: 'Path Smoothing', slug: 'autonomy/navigation/path-smoothing' },
+                { label: 'Pure Pursuit', slug: 'autonomy/navigation/pure-pursuit' },
+                { label: 'Second Camera Navigation Integration (LongRangeState)', slug: 'autonomy/navigation/second-camera-integration' },
+                { label: 'Stuck Detector', slug: 'autonomy/navigation/stuck-detector' },
+                { label: 'Surface Normals Costmap', slug: 'autonomy/navigation/surface-normals-costmap' }
+              ]
             },
-          ],
+            {
+              label: 'Perception',
+              collapsed: true,
+              items: [
+                { label: 'Perception', slug: 'autonomy/perception/overview' },
+                { label: 'Key Detection', slug: 'autonomy/perception/key-detection' },
+                { label: 'Light Detector', slug: 'autonomy/perception/light-detector' },
+                { label: 'Long Range Tag Detection', slug: 'autonomy/perception/long-range-tag-detection' },
+                { label: 'Object Detection', slug: 'autonomy/perception/object-detection' },
+                { label: 'Object Detector Model', slug: 'autonomy/perception/object-detector-model' }
+              ]
+            },
+            {
+              label: 'Resources',
+              collapsed: true,
+              items: [
+                { label: '3D Poses, Transforms, and Rotations', slug: 'autonomy/resources/3d-poses-transforms-rotations' },
+                { label: 'Vectorization', slug: 'autonomy/resources/vectorization' }
+              ]
+            }
+          ]
         },
-        {
-          label: 'Perception',
-          collapsed: true,
-          items: [
-            { label: 'Perception', slug: 'perception/overview' },
-            { label: 'Object Detection', slug: 'perception/object-detection' },
-            { label: 'Object Detector Model', slug: 'perception/object-detector-model' },
-            { label: 'Key Detection', slug: 'perception/key-detection' },
-            { label: 'Long Range Tag Detection', slug: 'perception/long-range-tag-detection' },
-            { label: 'Light Detector', slug: 'perception/light-detector' },
-          ],
-        },
-        {
-          label: 'Localization',
-          collapsed: true,
-          items: [
-            { label: 'Localization', slug: 'localization/overview' },
-            { label: 'How to Calibrate the IMU', slug: 'localization/imu-calibration' },
-            { label: 'Invariant EKF', slug: 'localization/invariant-ekf' },
-            { label: 'Data Caching State Machine', slug: 'localization/data-caching-state-machine' },
-            { label: 'Globally Accurate Orientation', slug: 'localization/globally-accurate-orientation' },
-            { label: 'Dual Antenna RTK', slug: 'localization/dual-antenna-rtk' },
-          ],
-        },
-
         {
           label: 'Drone',
           collapsed: true,
           items: [
-            { label: 'Overview', slug: 'drone/overview' },
-            { label: 'Resources', slug: 'drone/resources' },
-            { label: 'System Architecture', slug: 'drone/system-architecture' },
-            { label: 'Software Install', slug: 'drone/software-install' },
-            { label: 'Full Development Bringup', slug: 'drone/development-bringup' },
-            { label: 'Software Starter Project 2025-26', slug: 'drone/starter-project' },
-            { label: 'Flying the Drone', slug: 'drone/flying' },
-            { label: 'Multi-Machine ROS2 Networking', slug: 'drone/networking' },
+            { label: 'Drone Overview', slug: 'drone/overview' },
             { label: '900x Radio', slug: 'drone/900x-radio' },
-            { label: 'NIX Video Capture Card', slug: 'drone/nix-capture-card' },
-            { label: 'macOS Ubuntu VM', slug: 'drone/macos-vm' },
             { label: 'Docker Setup (Experimental)', slug: 'drone/docker' },
-          ],
+            { label: 'Flying the Drone', slug: 'drone/flying' },
+            { label: 'Full Development Bringup', slug: 'drone/development-bringup' },
+            { label: 'macOS Ubuntu VM', slug: 'drone/macos-vm' },
+            { label: 'Multi-Machine ROS2 Networking', slug: 'drone/networking' },
+            { label: 'NIX Video Capture Card', slug: 'drone/nix-capture-card' },
+            { label: 'Resources', slug: 'drone/resources' },
+            { label: 'Software Install', slug: 'drone/software-install' },
+            { label: 'Software Starter Project 2025-26', slug: 'drone/starter-project' },
+            { label: 'System Architecture', slug: 'drone/system-architecture' }
+          ]
         },
+        {
+          label: 'Archive',
+          collapsed: true,
+          items: [
+            { label: '2024 Projects', slug: 'archive/projects/2024-projects' },
+            { label: '2025-2026 Projects', slug: 'archive/projects/2025-2026-projects' }
+          ]
+        },
+        // SIDEBAR_ITEMS_END
       ],
     }),
   ],

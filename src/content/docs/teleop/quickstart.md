@@ -3,7 +3,7 @@ title: "Teleop Quickstart"
 ---
 ## Additional resources: [Vue](/teleop/vue-introduction), [Tailwind](/teleop/tailwind-introduction)
 
-Once you have completed the installation from the [Install ROS](/getting-started/install-ros) page, make sure you are on the `main` branch:
+Once you have completed the installation from the [Install ROS](/general-resources/ros/install-ros/install-ros) page, make sure you are on the `main` branch:
 
 ```bash
 git checkout main
@@ -34,7 +34,7 @@ Now, you should head to and complete the [teleop starter project](/teleop/starte
 ros2 launch mrover basestation.launch.py
 ```
 
-This command starts both our **frontend and backend** services. You should be able to see the application running on [localhost:8080](http://localhost:8080). Hit `ctrl-c` on your terminal to kill the application.
+This command starts both our **frontend and backend** services. You should be able to see the application running on `localhost:8080`. Hit `ctrl-c` on your terminal to kill the application.
 
 ---
 

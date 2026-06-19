@@ -3,7 +3,7 @@ title: "Software Install"
 ---
 
 ## Install ROS2
-Follow [these instructions](/getting-started/install-ros) to get the MRover ROS2 install done.
+Follow [these instructions](/general-resources/ros/install-ros/install-ros) to get the MRover ROS2 install done.
 
 We still need more packages:
 ```
