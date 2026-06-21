@@ -1,0 +1,769 @@
+{
+  "sidebarItems": [
+    {
+      "label": "MRover Software Introduction",
+      "slug": "introduction",
+      "collapsed": false,
+      "items": []
+    },
+    {
+      "label": "Autonomy",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Autonomy Overview",
+          "slug": "autonomy/overview",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Autonomy Quickstart",
+          "slug": "autonomy/quickstart",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Autonomy Starter Project",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "Overview",
+              "slug": "autonomy/starter-project/overview",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Localization",
+              "slug": "autonomy/starter-project/localization",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Perception",
+              "slug": "autonomy/starter-project/perception",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Navigation",
+              "slug": "autonomy/starter-project/navigation",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Testing & Completion",
+              "slug": "autonomy/starter-project/testing",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Auton Subfolder",
+          "collapsed": false,
+          "items": [
+            {
+              "label": "Subfolder Page 1",
+              "slug": "auton-subfolder-page-1",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Localization",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "Localization",
+              "slug": "autonomy/localization/overview",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Dual Antenna RTK",
+              "slug": "autonomy/localization/dual-antenna-rtk",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "How to Calibrate the IMU",
+              "slug": "autonomy/localization/imu-calibration",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "In Search of Globally Accurate Orientation",
+              "slug": "autonomy/localization/globally-accurate-orientation",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Invariant EKF",
+              "slug": "autonomy/localization/invariant-ekf",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Localization Data Caching State Machine",
+              "slug": "autonomy/localization/data-caching-state-machine",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Navigation",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "Navigation",
+              "slug": "autonomy/navigation/overview",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "5-DOF IK",
+              "slug": "autonomy/navigation/5dof-ik",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Adaptive Pure Pursuit",
+              "slug": "autonomy/navigation/adaptive-pure-pursuit",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Approach Object State",
+              "slug": "autonomy/navigation/approach-object-state",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Approach Target Base State",
+              "slug": "autonomy/navigation/approach-target-base-state",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Arm IK",
+              "slug": "autonomy/navigation/arm-ik",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Arm IK Testing Visualization",
+              "slug": "autonomy/navigation/arm-ik-testing",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Arm Velocity Control",
+              "slug": "autonomy/navigation/arm-velocity-control",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Click IK",
+              "slug": "autonomy/navigation/click-ik",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Cost Map",
+              "slug": "autonomy/navigation/cost-map",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Costmap Path Planning",
+              "slug": "autonomy/navigation/costmap-path-planning",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Inward Spiraling",
+              "slug": "autonomy/navigation/inward-spiraling",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Lander Auto Align",
+              "slug": "autonomy/navigation/lander-auto-align",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Navigation State Machine Library",
+              "slug": "autonomy/navigation/state-machine-library",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Obstacle Avoidance",
+              "slug": "autonomy/navigation/obstacle-avoidance",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Path Execution",
+              "slug": "autonomy/navigation/path-execution",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Path Smoothing",
+              "slug": "autonomy/navigation/path-smoothing",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Pure Pursuit",
+              "slug": "autonomy/navigation/pure-pursuit",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Second Camera Navigation Integration (LongRangeState)",
+              "slug": "autonomy/navigation/second-camera-integration",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Stuck Detector",
+              "slug": "autonomy/navigation/stuck-detector",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Surface Normals Costmap",
+              "slug": "autonomy/navigation/surface-normals-costmap",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Perception",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "Perception",
+              "slug": "autonomy/perception/overview",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Key Detection",
+              "slug": "autonomy/perception/key-detection",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Light Detector",
+              "slug": "autonomy/perception/light-detector",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Long Range Tag Detection",
+              "slug": "autonomy/perception/long-range-tag-detection",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Object Detection",
+              "slug": "autonomy/perception/object-detection",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Object Detector Model",
+              "slug": "autonomy/perception/object-detector-model",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Resources",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "3D Poses, Transforms, and Rotations",
+              "slug": "autonomy/resources/3d-poses-transforms-rotations",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Vectorization",
+              "slug": "autonomy/resources/vectorization",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Auton Subfolder 2",
+          "collapsed": false,
+          "items": []
+        }
+      ]
+    },
+    {
+      "label": "Drone",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Drone Overview",
+          "slug": "drone/overview",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "900x Radio",
+          "slug": "drone/900x-radio",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Docker Setup (Experimental)",
+          "slug": "drone/docker",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Flying the Drone",
+          "slug": "drone/flying",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Full Development Bringup",
+          "slug": "drone/development-bringup",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "macOS Ubuntu VM",
+          "slug": "drone/macos-vm",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Multi-Machine ROS2 Networking",
+          "slug": "drone/networking",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "NIX Video Capture Card",
+          "slug": "drone/nix-capture-card",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Resources",
+          "slug": "drone/resources",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Software Install",
+          "slug": "drone/software-install",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Software Starter Project 2025-26",
+          "slug": "drone/starter-project",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "System Architecture",
+          "slug": "drone/system-architecture",
+          "collapsed": false,
+          "items": []
+        }
+      ]
+    },
+    {
+      "label": "ESW",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Getting Started",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "Introduction",
+              "slug": "esw/getting-started/intro",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Starter Projects",
+              "collapsed": true,
+              "items": [
+                {
+                  "label": "LED",
+                  "collapsed": true,
+                  "items": [
+                    {
+                      "label": "LED Starter Project",
+                      "slug": "esw/getting-started/starter/led"
+                    }
+                  ]
+                },
+                {
+                  "label": "Servo",
+                  "collapsed": true,
+                  "items": [
+                    {
+                      "label": "Servo Starter Project - Part 1 - PWM",
+                      "slug": "esw/getting-started/starter/servo/part1-pwm"
+                    },
+                    {
+                      "label": "Servo Starter Project - Part 2 - CAN",
+                      "slug": "esw/getting-started/starter/servo/part2-can"
+                    }
+                  ]
+                },
+                {
+                  "label": "Temp & Humidity",
+                  "collapsed": true,
+                  "items": [
+                    {
+                      "label": "Temperature and Humidity Starter Project",
+                      "slug": "esw/getting-started/starter/temp-humidity"
+                    }
+                  ]
+                }
+              ]
+            },
+            {
+              "label": "STM32CubeMX Setup",
+              "collapsed": true,
+              "items": [
+                {
+                  "label": "STM32Cube\\*",
+                  "slug": "esw/getting-started/stm32cube",
+                  "collapsed": false,
+                  "items": []
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "label": "ESW Projects",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "ESW 2025-2026 Projects",
+              "slug": "esw/projects/overview26",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Extra Guides",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "Archive",
+              "collapsed": true,
+              "items": [
+                {
+                  "label": "Archive",
+                  "slug": "esw/extra/archive",
+                  "collapsed": false,
+                  "items": []
+                }
+              ]
+            },
+            {
+              "label": "Building These Docs",
+              "slug": "esw/extra/build-docs",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "CMake + CubeMX/CubeCLT Toolchain",
+              "slug": "esw/extra/cmake-cubemx",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Information",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "Brushed DC Motors",
+              "slug": "esw/info/brushed",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Brushless DC Motors",
+              "slug": "esw/info/brushless",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Build Tools",
+              "slug": "esw/info/build",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Communication Protocols",
+              "collapsed": true,
+              "items": [
+                {
+                  "label": "Communication Protocols",
+                  "slug": "esw/info/communication-protocols",
+                  "collapsed": false,
+                  "items": []
+                }
+              ]
+            },
+            {
+              "label": "Nucleos Introduction",
+              "slug": "esw/info/nucleos",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Science",
+              "slug": "esw/info/science",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "STM32 Boot Information",
+              "slug": "esw/info/stm32-boot",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Timers",
+              "slug": "esw/info/timers",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "MRover Embedded Software",
+          "slug": "esw",
+          "collapsed": false,
+          "items": []
+        }
+      ]
+    },
+    {
+      "label": "Teleop",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Teleop Overview",
+          "slug": "teleop/overview",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Downloading Offline Map",
+          "slug": "teleop/downloading-offline-map",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "GUI Style Checking",
+          "slug": "teleop/gui-style-checking",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Sample Vue Component",
+          "slug": "teleop/sample-vue-component",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Tailwind Introduction",
+          "slug": "teleop/tailwind-introduction",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Teleop Codebase Organization",
+          "slug": "teleop/organization",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Teleop FAQ",
+          "slug": "teleop/faq",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Teleop Quickstart",
+          "slug": "teleop/quickstart",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Teleop Starter Project",
+          "slug": "teleop/starter-project",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Vue Introduction",
+          "slug": "teleop/vue-introduction",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "WebSocket Handlers Lookup",
+          "slug": "teleop/consumers-lookup",
+          "collapsed": false,
+          "items": []
+        }
+      ]
+    },
+    {
+      "label": "General Resources",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "Best Practices",
+          "slug": "general-resources/best-practices",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "Git",
+          "slug": "general-resources/git",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "I Hate Webdev, How Do I Add a Page",
+          "slug": "general-resources/contributing-to-the-wiki",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "IDE Configuration",
+          "slug": "general-resources/ide-configuration",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "ROS & Environment",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "1. Introduction to ROS",
+              "slug": "general-resources/ros/intro-to-ros",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "2. Install ROS",
+              "slug": "general-resources/ros/install-ros/install-ros",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "3. Fundamentals of ROS",
+              "slug": "general-resources/ros/fundamentals-of-ros",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Install ROS on macOS",
+              "slug": "general-resources/ros/install-ros/install-ros-macos",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "ROS Tools: rqt_bag",
+              "slug": "general-resources/ros/ros-tools-rqt-bag",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "Setting up the Jetson",
+              "slug": "general-resources/setting-up-the-jetson",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "VM Setup",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "macOS VM Setup",
+              "slug": "general-resources/vm/macos-vm-setup",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "USB Passthrough for UTM",
+              "slug": "general-resources/vm/usb-passthrough-utm",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        },
+        {
+          "label": "Dev-Ops",
+          "collapsed": true,
+          "items": [
+            {
+              "label": "Updating CI",
+              "slug": "general-resources/devops/updating-ci",
+              "collapsed": false,
+              "items": []
+            },
+            {
+              "label": "URC vs. CIRC Switch",
+              "slug": "general-resources/devops/urc-vs-circ-switch",
+              "collapsed": false,
+              "items": []
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "label": "Archive",
+      "collapsed": true,
+      "items": [
+        {
+          "label": "2024 Projects",
+          "slug": "archive/projects/2024-projects",
+          "collapsed": false,
+          "items": []
+        },
+        {
+          "label": "2025-2026 Projects",
+          "slug": "archive/projects/2025-2026-projects",
+          "collapsed": false,
+          "items": []
+        }
+      ]
+    }
+  ]
+}
