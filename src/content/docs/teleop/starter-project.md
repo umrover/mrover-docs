@@ -21,20 +21,20 @@ First, go to [Teleop Quickstart](quickstart.md) and make sure your environment i
 
 Open up a terminal, and type ```mrover```. Then: 
 
-Checkout/go to the branch that has the starter project code: 
+Switch/go to the branch that has the starter project code: 
 
 ```bash
-git checkout teleop-starter-2026
+git switch teleop-starter-2026
 ```
 
 Copy it into a new branch:
 
 ```bash
-git checkout -b <your-initials>/starter-project-2026
-example: git checkout -b km/starter-project-2026
+git switch -c <your-initials>/starter-project-2026
+example: git switch -c km/starter-project-2026
 ```
 :::note
-Whenever you create a new feature, you should make a new branch and follow the naming convention of ```<your-initials>/<feature name>```. You'll often checkout from main, but not always.
+Whenever you create a new feature, you should make a new branch and follow the naming convention of ```<your-initials>/<feature name>```. You'll often switch from main, but not always.
 :::
 
 
@@ -44,6 +44,7 @@ Now you (hopefully) have the starter code ready to be worked on. But how do you 
 
 Go to the url ```http://localhost:8080/starter``` in your browser. You should see an error page. This is because it is trying to access a server on and IP address that doesn't have any - ```localhost``` a.k.a. ```127.0.0.1``` a.k.a. **your** computer. To create the server it needs, go to your terminal, and run
 ```bash
+mrover
 ros2 launch mrover basestation.launch.py mode:=dev
 ```
 :::note
@@ -104,10 +105,7 @@ const spamTestMessages = () => {
 
   // Send a message every 1000 milliseconds
   const interval = setInterval(() => {
-      sendMessage('starter', {
-          type: 'debug',
-          timestamp: new Date().toISOString(),
-      })
+      console.log("Sent a message at " + new Date().toISOString())
   }, 1000)
 
   // Stop sending messages after 5000 miliseconds
@@ -121,12 +119,13 @@ What better for adding functionality than a function? We will make it so that th
 </button>
 ```
 
-Now click it and... still nothing? Look at the box that says "starter" in the top right. When you press the button, a green light will flicker. Look at your terminal, and you will see something like this multiple times:
-```bash
-[gui_backend.sh-1] [WARN] [1753735204.830010889] [gui_backend_node]: debug message received by consumer, 2025-07-28T20:40:04.827Z
+Now click it and... still nothing? Open up your web browser's *inspector* (You can use the shortcut **ctrl-shift-i**, or right-click and select *"inspect"*) Go to the *console* tab, and, alongside a couple warnings, you should see a message like this appear:
+
+```
+Sent a message at 2026-06-22T21:30:56.817Z
 ```
 
-Let's go through the code to see what exactly is going on.
+Let's go through the code to see how it works.
 
 ### Function Analysis
 
@@ -142,20 +141,22 @@ setTimeout(() => clearInterval(interval), 5000)
 setTimeout runs the function inside of it after 5000 milliseconds (5 seconds). That function (```clearInterval()```) stops the previous interval.
 
 ```typescript
-sendMessage('starter', {
-  type: 'debug',
-  timestamp: new Date().toISOString(),
-})
+const interval = setInterval(() => {
+  console.log("Sent a message at " + new Date().toISOString())
+}, 1000)
 ```
-This is the main attraction of this function. It sends a *"debug"* message to the *"starter"* websocket containing the current time. 
+This part of the function causes the output. It prints a message to the console containing the current time.
 
 ---
 
 ## WebSockets
 ### Overview
-*WebSocket* is a networking protocol, like HTTP. It lets computers talk to each other via *WebSocket**s***. It sends messages quickly - great for real-time updates. In our codebase, when a ROS topic is published, it gets sent to the backend, and then forwarded to the frontend via a WebSocket (if one has been set up). It also works in reverse; a frontend element can send messages to the backend and then to the rover.
 
-### How They're Used Here
+Sending a message to the console is great and all, but it's only really useful for debugging. It would be nice to send messages to different parts of our code, including to the rover. *WebSockets* are part of how we do this.
+
+***WebSocket*** is a networking protocol, like HTTP. It lets computers talk to each other via *WebSocket**s***. It sends messages quickly - great for real-time updates. In our codebase, when a ROS topic is published, it gets sent to the backend, and then forwarded to the frontend via a WebSocket (if one has been set up). It also works in reverse; a frontend element can send messages to the backend and then to the rover.
+
+### Vue Component Setup
 To use a WebSocket in a component, we first import necessary dependencies and define the necessary functions:
 
 ```typescript
@@ -182,14 +183,11 @@ Messages can now be sent through this WebSocket (WebSocket with id "starter"). W
 
 ### Status Indicator
 
-The box in the upper left is a status indicator. A green light (on the left) indicates a transmit, while a red light indicates a receive. If the whole box is yellow, this indicates a disconnect. Go back into your terminal and press **ctrl-c**. That kills the backend, causing all sockets to disconnect. The frontend will stick around until the page unloads. Restart the basestation by running the launch command (the command will probably come back if you just press **up** in your terminal).
-
-:::note
-**ctrl-c** will cancel any process/command currently running in the terminal. Use it whenever a program gets stuck!  
-If you want to copy something in the terminal, use **ctrl-shift-c**, or just drag-select the text; it will depend on your environment.
-:::
+The box in the upper left is a status indicator. A green light (on the left) indicates a transmit, while a red light indicates a receive. If the whole box is yellow, this indicates a disconnect - likely what you see right now.
 
 ### Try it yourself
+
+Replace the ```console.log("Sent a message at " + new Date().toISOString())``` with the following code.
 
 ```typescript
 sendMessage('starter', {
@@ -198,13 +196,47 @@ sendMessage('starter', {
 })
 ```
 
+Click the button and... now even less happens. If you've been reading carefully, and saw the warnings in the console, you probably have a guess at what's happening. The starter WebSocket itself hasn't been properly set up on the server end.  
+
+Go to ```server.py```. As the name suggests, it boots up most of the backend code. Add the following at the ```# TODO set up starter websocket```
+
+```python
+# TODO set up starter websocket
+@app.websocket("/ws/starter")
+async def ws_starter(websocket: WebSocket):
+  await handle_websocket(websocket, StarterHandler)
+```
+Don't forget the corresponding import above.
+
+```python
+# TODO import StarterHandler
+from teleoperation.basestation_gui.backend.ws.starter_ws import StarterHandler
+```
+
+Because you changed server-side code, you have to reset the basestation to see changes. Go back into the terminal running the basestation and press **ctrl-c**. This kills the backend. The frontend will stick around until the page unloads. Restart the basestation by running the launch command again (the command will probably come back if you just press **up** in your terminal).
+
+:::note
+**ctrl-c** will cancel any process/command currently running in the terminal. Use it whenever a program gets stuck!  
+If you want to copy something in the terminal, use **ctrl-shift-c**, or just drag-select the text; it will depend on your environment.
+:::
+
+Now when you press the button... it's not nothing, I swear. You should see a green indicator in the corner, and if you go into the terminal, you should see something like this:
+
+```bash
+[gui_backend.sh-1] [WARN] [1753735204.830010889] [gui_backend_node]: debug message received by consumer, 2025-07-28T20:40:04.827Z
+```
+
+You have successfully set up a WebSocket!
+
+### Extra Challenges
+
 #### 1
 
 Change the ```new Date().toISOString()``` to some other value. Press the button and see what happens in the terminal.
 
 #### 2
 
-Next, undo changing ```timestamp```, and try this challenge: Get the following to display in your terminal:
+Next, undo changing ```new Date().toISOString()```, and try this challenge: Get the following to display in your terminal:
 ```bash
 [gui_backend.sh-1] [WARN] testing message 'Phil' received at <current time>
 ```
@@ -223,11 +255,6 @@ onMessage<?>('starter', '?', msg => {
   console.log(?)
 })
 ```
-
-:::note
-Use **ctrl+shift+i** to open the browser console.
-:::
-
 ---
 ## Components Inside of Components
 
@@ -498,7 +525,7 @@ You shouldn't wait until a feature is completely, all-the-way done before making
 
 ## Conclusion and Next Steps
 
-There you have it! Your first teleop project done. It was a lot to take in, so don't sweat if you don't get it all right away. With practice, it will come to you. Here are some things you can do to learn more, and help you in the future:
+There you have it! Your first teleop project done. It was a lot to take in, so don't sweat if you don't get it all right away. With practice, it will come to you. There are a couple things I haven't gone over, like our SQL databases, but what was covered above were the most essential things to know. Here are some things you can do to learn more, and help you in the future:
 
 * **Read the docs.** You were probably already doing that, but, if you weren't, go ahead and do that. Try to read all about ROS2, all about teleop, the general resources, and some of each of the other teams.
 * **Skim the codebase.** Look at files at multiple parts of the codebase, and try to figure out what they do. Modify them, remove them, add them, and see what happens. You can reset a branch back to its remote version with ```git reset --hard origin/<branch-name>```. I recommend looking in the views, the components, the _ws.py files, the .msgs, the shell scripts (.sh files), and whatever seems to interest you.
