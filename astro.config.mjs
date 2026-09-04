@@ -157,6 +157,7 @@ export default defineConfig({
                 { label: 'Brushed DC Motors', slug: 'esw/info/brushed' },
                 { label: 'Brushless DC Motors', slug: 'esw/info/brushless' },
                 { label: 'Build Tools', slug: 'esw/info/build' },
+                { label: 'Cameras', slug: 'esw/info/cameras' },
                 {
                   label: 'Communication Protocols',
                   collapsed: true,
