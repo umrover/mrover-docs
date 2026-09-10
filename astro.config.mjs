@@ -219,7 +219,7 @@ export default defineConfig({
             { label: 'Autonomy Overview', slug: 'autonomy/overview' },
             { label: 'Autonomy Quickstart', slug: 'autonomy/quickstart' },
             {
-              label: 'Autonomy Starter Project',
+              label: 'Starter Project',
               collapsed: true,
               items: [
                 { label: 'Overview', slug: 'autonomy/starter-project/overview' },
@@ -227,6 +227,15 @@ export default defineConfig({
                 { label: 'Perception', slug: 'autonomy/starter-project/perception' },
                 { label: 'Navigation', slug: 'autonomy/starter-project/navigation' },
                 { label: 'Testing & Completion', slug: 'autonomy/starter-project/testing' }
+              ]
+            },
+            {
+              label: 'Projects 2026-27',
+              collapsed: true,
+              items: [
+                { label: 'Localization', slug: 'autonomy/projects-2026-27/localization' },
+                { label: 'Perception', slug: 'autonomy/projects-2026-27/perception' },
+                { label: 'Navigation', slug: 'autonomy/projects-2026-27/navigation' },
               ]
             },
             {
