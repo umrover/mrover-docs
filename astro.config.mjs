@@ -83,6 +83,112 @@ export default defineConfig({
           ]
         },
         // ESW_SIDEBAR_START
+        {
+          label: 'ESW',
+          collapsed: true,
+          items: [
+            { label: 'Home', slug: 'esw' },
+            {
+              label: 'Getting Started',
+              collapsed: true,
+              items: [
+                { label: 'Introduction', slug: 'esw/getting-started/intro' },
+                { label: 'STM32Cube', slug: 'esw/getting-started/stm32cube' },
+                {
+                  label: 'Starter Projects',
+                  collapsed: true,
+                  items: [
+                    { label: 'LED', slug: 'esw/getting-started/starter/led' },
+                    {
+                      label: 'Servo',
+                      collapsed: true,
+                      items: [
+                        { label: 'Part 1: PWM', slug: 'esw/getting-started/starter/servo/part1-pwm' },
+                        { label: 'Part 2: CAN', slug: 'esw/getting-started/starter/servo/part2-can' }
+                      ]
+                    },
+                    { label: 'Temp-Humidity', slug: 'esw/getting-started/starter/temp-humidity' }
+                  ]
+                }
+              ]
+            },
+            {
+              label: 'Projects',
+              collapsed: true,
+              items: [
+                { label: 'Overview', slug: 'esw/projects/overview26' },
+                {
+                  label: 'Boards',
+                  collapsed: true,
+                  items: [
+                    { label: 'Overview', slug: 'esw/projects/boards' },
+                    { label: 'ABS', slug: 'esw/projects/boards/abs' },
+                    { label: 'BMC', slug: 'esw/projects/boards/bmc' },
+                    { label: 'LIM', slug: 'esw/projects/boards/lim' },
+                    { label: 'PDB', slug: 'esw/projects/boards/pdlb' },
+                    { label: 'Science', slug: 'esw/projects/boards/science' }
+                  ]
+                }
+              ]
+            },
+            {
+              label: 'Reference',
+              collapsed: true,
+              items: [
+                {
+                  label: 'Build System',
+                  collapsed: true,
+                  items: [
+                    { label: 'Overview', slug: 'esw/reference/build' },
+                    { label: 'Project Anatomy', slug: 'esw/reference/build/project-layout' },
+                    { label: 'Toolchain and Presets', slug: 'esw/reference/build/toolchain' },
+                    { label: 'Generated Libraries', slug: 'esw/reference/build/codegen' },
+                    { label: 'Build Script Internals', slug: 'esw/reference/build/build-script' },
+                    { label: 'Continuous Integration', slug: 'esw/reference/build/ci' }
+                  ]
+                },
+                {
+                  label: 'Configuration',
+                  collapsed: true,
+                  items: [
+                    { label: 'Overview', slug: 'esw/reference/config' },
+                    { label: 'Register Definitions', slug: 'esw/reference/config/schema' },
+                    { label: 'Device Values', slug: 'esw/reference/config/devices' },
+                    { label: 'CAN Configuration Interface', slug: 'esw/reference/config/can-interface' }
+                  ]
+                },
+                {
+                  label: 'Python Tools',
+                  collapsed: true,
+                  items: [
+                    { label: 'Overview', slug: 'esw/reference/python' },
+                    { label: 'esw.can', slug: 'esw/reference/python/can' },
+                    { label: 'esw.config', slug: 'esw/reference/python/config' },
+                    { label: 'esw.cubemx', slug: 'esw/reference/python/cubemx' },
+                    { label: 'esw.stlink', slug: 'esw/reference/python/stlink' },
+                    { label: 'esw.visualization', slug: 'esw/reference/python/visualization' },
+                    { label: 'Script Reference', slug: 'esw/reference/python/scripts' }
+                  ]
+                },
+                { label: 'Maintaining Documentation', slug: 'esw/reference/maintaining-docs' }
+              ]
+            },
+            {
+              label: 'Useful Information',
+              collapsed: true,
+              items: [
+                { label: 'Build Tools', slug: 'esw/info/build' },
+                { label: 'Timers', slug: 'esw/info/timers' },
+                { label: 'Communication Protocols', slug: 'esw/info/communication-protocols' },
+                { label: 'Brushed Motors', slug: 'esw/info/brushed' },
+                { label: 'Brushless Motors', slug: 'esw/info/brushless' },
+                { label: 'Cameras', slug: 'esw/info/cameras' },
+                { label: 'Nucleo Information', slug: 'esw/info/nucleos' },
+                { label: 'STM32 Boot', slug: 'esw/info/stm32-boot' }
+              ]
+            }
+          ]
+        },
         // ESW_SIDEBAR_END
         {
           label: 'Teleop',
