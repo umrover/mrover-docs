@@ -102,16 +102,6 @@ export default defineConfig({
                 },
               ],
             },
-            {
-              label: "Dev-Ops",
-              collapsed: true,
-              items: [
-                {
-                  label: "URC vs. CIRC Switch",
-                  slug: "general-resources/devops/urc-vs-circ-switch",
-                },
-              ],
-            },
           ],
         },
         // ESW_SIDEBAR_START

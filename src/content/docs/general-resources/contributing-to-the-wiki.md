@@ -47,9 +47,6 @@ code blocks
 ```
 ````
 
-````
-
-
 ## 3. Add it to the sidebar
 
 Open `astro.config.mjs` and find the `sidebar` array. Locate the section your page belongs to and add an entry:
