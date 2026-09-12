@@ -45,21 +45,12 @@ export default defineConfig({
         // SIDEBAR_ITEMS_START
         { label: 'MRover Software Introduction', slug: 'introduction' },
         {
-          label: 'Setup',
-          items: [
-            { label: 'Getting Started', slug: 'setup/getting-started' },
-            { label: 'Installing Ubuntu', slug: 'setup/installing-ubuntu' },
-            { label: 'Native Installation', slug: 'setup/installing-the-codebase' },
-            { label: 'Portable Installation', slug: 'setup/portable-install' },
-          ]
-        },
-        {
           label: 'General Resources',
           collapsed: true,
           items: [
             { label: 'Best Practices', slug: 'general-resources/best-practices' },
             { label: 'Git', slug: 'general-resources/git' },
-            { label: 'Contributing to the wiki', slug: 'general-resources/contributing-to-the-wiki' },
+            { label: 'Contributing', slug: 'general-resources/contributing-to-the-wiki' },
             { label: 'IDE Configuration', slug: 'general-resources/ide-configuration' },
             {
               label: 'ROS & Environment',
@@ -75,7 +66,7 @@ export default defineConfig({
               label: 'VM Setup',
               collapsed: true,
               items: [
-                { label: 'macOS VM Setup', slug: 'general-resources/vm/macos-vm-setup' },
+                { label: 'macOS VM Setup (Deprecated)', slug: 'general-resources/vm/macos-vm-setup' },
                 { label: 'USB Passthrough for UTM', slug: 'general-resources/vm/usb-passthrough-utm' },
               ]
             },
@@ -83,10 +74,18 @@ export default defineConfig({
               label: 'Dev-Ops',
               collapsed: true,
               items: [
-                { label: 'Updating CI', slug: 'general-resources/devops/updating-ci' },
                 { label: 'URC vs. CIRC Switch', slug: 'general-resources/devops/urc-vs-circ-switch' },
               ]
             }
+          ]
+        },
+        {
+          label: 'Setup',
+          items: [
+            { label: 'Getting Started', slug: 'setup/getting-started' },
+            { label: 'Installing Ubuntu', slug: 'setup/installing-ubuntu' },
+            { label: 'Native ROS Installation', slug: 'setup/native-install' },
+            { label: 'Portable ROS Installation', slug: 'setup/portable-install' },
           ]
         },
         {

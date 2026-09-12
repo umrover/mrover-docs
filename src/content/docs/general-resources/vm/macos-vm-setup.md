@@ -1,5 +1,5 @@
 ---
-title: "macOS VM Setup"
+title: "macOS VM Setup (Deprecated)"
 ---
 :::note
 If you're on macOS, try the [portable (pixi) install](/setup/portable-install) first, it runs natively on Apple Silicon without a VM. Use this VM path only as a fallback if that doesn't work for your machine.
@@ -37,4 +37,4 @@ sudo apt install ubuntu-desktop
 
 15. Run `sudo reboot` and sign into your VM.
 
-16. Now follow the codebase installation steps [here](/setup/installing-the-codebase)
+16. Now follow the codebase installation steps [here](/setup/native-install)

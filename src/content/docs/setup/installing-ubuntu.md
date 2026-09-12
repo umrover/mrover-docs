@@ -5,9 +5,7 @@ sidebar:
 ---
 We officially support **Ubuntu 24.04 LTS (noble) running natively**, and only that. If you're dual-booting, you'll need about 50 GB of space (100 GB if you're on Perception, due to the NVIDIA packages). There are many dual-boot tutorials online if you're not comfortable daily-driving Linux yet.
 
-If you already have Ubuntu 24.04 installed, or you're setting up a Jetson (which ships with its own NVIDIA-provided Ubuntu image), skip straight to [Native Installation](/setup/installing-the-codebase).
-
-Other options exist (macOS, Arch, non-Ubuntu Linux via a pixi-based portable environment) but they are **unofficial and best-effort only**. See [Portable Installation](/setup/portable-install) if native Ubuntu genuinely isn't an option for you.
+If you already have Ubuntu 24.04 installed, or you're setting up a Jetson (which ships with its own NVIDIA-provided Ubuntu image), skip straight to [Native ROS Installation](/setup/native-install).
 
 ## Dual-Booting Ubuntu 24.04 LTS from Windows
 
@@ -30,4 +28,4 @@ If you can't get audio to work, open the terminal and enter `sudo alsa force-rel
 
 Windows and Ubuntu use your hardware clock differently by default. Please set the time correctly by hitting the windows key, searching for time, clicking on the first settings link, and configure it manually. If you do not do this the APT package manager will fail to work. If you are annoyed by constantly switching this see: https://askubuntu.com/a/169384
 
-Next: [Native Installation](/setup/installing-the-codebase).
+Next: [Native ROS Installation](/setup/native-install).

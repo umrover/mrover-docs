@@ -10,10 +10,15 @@ Add a `.md` file under `src/content/docs/` wherever appropriate:
 
 ```
 src/content/docs/
-  general/        # general tutorials
-  teleop/         # teleop docs
-  navigation/     # nav docs
-  perception/     # perception docs
+  setup/                    # install & getting started
+  general-resources/        # general tutorials
+  teleop/                   # teleop docs
+  autonomy/
+    navigation/             # nav docs
+    perception/             # perception docs
+    localization/           # localization docs
+  esw/                      # embedded software docs
+  drone/                    # drone docs
   ...
 ```
 
@@ -48,8 +53,8 @@ Open `astro.config.mjs` and find the `sidebar` array. Locate the section your pa
   label: 'Navigation',
   collapsed: true,
   items: [
-    { label: 'Navigation', slug: 'navigation/overview' },
-    { label: 'My New Page', slug: 'navigation/my-new-page' },  // add this
+    { label: 'Navigation', slug: 'autonomy/navigation/overview' },
+    { label: 'My New Page', slug: 'autonomy/navigation/my-new-page' },  // add this
   ],
 },
 ````

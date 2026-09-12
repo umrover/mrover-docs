@@ -2,19 +2,16 @@
 title: "Setting up the Jetson"
 ---
 :::caution
-This page is out of date. Flashing now happens through `ansible/roles/jetson_flash` (see `ansible/jetson_flash.yml` in `mrover-ros2`), not NVIDIA SDKManager. Someone on ESW with access to a Jetson needs to rewrite this against the actual ansible role's steps and verify the recovery-mode boot sequence still matches. Until then, treat this page as unreliable.
+The recovery-mode boot sequence below is unverified. Someone on ESW with access to a Jetson needs to confirm it still matches; treat that part as unreliable until then.
 
 For everyday dev setup (not initial flashing), just run `./setup.sh` from the repo on the Jetson itself; it detects the Jetson automatically.
 :::
-## Download NVIDIA SDKManager on the Host Computer
 
-Download the proper version for your host system here: https://developer.nvidia.com/nvidia-sdk-manager
+## Flashing
 
-You may have to make a NVIDIA developer account prior to this
+NVIDIA SDKManager is no longer used. Flashing is fully automated through Ansible: run `./ansible.sh jetson_flash.yml` from the repo on the host computer connected to the Jetson (not on the Jetson itself). See `ansible/jetson_flash.yml` and `ansible/roles/jetson_flash` in `mrover-ros2` for the exact steps; as of now it targets a Jetson AGX Orin devkit on L4T r39.2.1 (Ubuntu 24.04 "noble"), downloading the driver package, root filesystem, and cross-compiler directly from NVIDIA, then building a custom kernel and the PCAN drivers before flashing.
 
-I used Ubuntu 20.04.5 LTS so I installed the `.deb` version, for that run `sudo apt install -f ./sdkmanager_*.deb`
-
-Make sure `tlp` is not installed on your system!!! For some reason it breaks the flashing.
+Make sure `tlp` is not installed on your host system!!! For some reason it breaks the flashing.
 
 ## Boot the Jetson in recovery mode
 

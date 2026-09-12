@@ -1,13 +1,13 @@
 ---
-title: "Native Installation"
+title: "Native ROS Installation"
 sidebar:
-  label: "Native Installation"
+  label: "Native ROS Installation"
 ---
 This page installs the MRover codebase and its dependencies. If you don't have Ubuntu 24.04 running natively yet, do that first: [Installing Ubuntu](/setup/installing-ubuntu).
 
 If you're on a Jetson, use the exact same instructions below. `setup.sh` detects it automatically (via `/etc/nv_tegra_release`) and installs the Jetson-specific packages instead of the desktop ones.
 
-Not on native Ubuntu (macOS, Arch, Fedora, ...)? See the unofficial [Portable Installation](/setup/portable-install) instead, don't use it just because it sounds more convenient, though; if something breaks there, you're on your own more than usual.
+Not on native Ubuntu (macOS, Arch, Fedora, ...)? See the unofficial [Portable ROS Installation](/setup/portable-install) instead, don't use it just because it sounds more convenient, though; if something breaks there, you're on your own more than usual.
 
 ## Set Up Your SSH Key
 
