@@ -17,8 +17,12 @@ Additionally, every year we change the robotic arm, and because of issues with J
 
 General Overview of Proposed Algorithm:
 
+<img width="523" height="510" alt="Screenshot from 2026-09-12 18-15-42" src="https://github.com/user-attachments/assets/50323b71-a051-49a2-9700-fe038df7edfd" />
+
 **Rough Steps for Velocity IK**:
 
 Continue with the previous design found [here](/archive/projects/arm-velocity-control). Investigate considering position IK for when teleop stops sending commands.
 
 General Overview of Algorithm:
+
+<img width="523" height="510" alt="Screenshot from 2026-09-12 18-15-55" src="https://github.com/user-attachments/assets/99c97426-50db-49c4-b075-708234860690" />
