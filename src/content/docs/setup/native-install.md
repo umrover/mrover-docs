@@ -7,7 +7,7 @@ This page installs the MRover codebase and its dependencies. If you don't have U
 
 If you're on a Jetson, use the exact same instructions below. `setup.sh` detects it automatically (via `/etc/nv_tegra_release`) and installs the Jetson-specific packages instead of the desktop ones.
 
-Not on native Ubuntu (macOS, Arch, Fedora, ...)? See the unofficial [Portable ROS Installation](/setup/portable-install) instead, don't use it just because it sounds more convenient, though; if something breaks there, you're on your own more than usual.
+Not able to run Ubuntu natively? On macOS, see [macOS VM Setup](/general-resources/vm/macos-vm-setup) to run Ubuntu 24.04 in a VM instead.
 
 ## Set Up Your SSH Key
 

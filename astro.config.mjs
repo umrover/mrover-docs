@@ -93,7 +93,7 @@ export default defineConfig({
               collapsed: true,
               items: [
                 {
-                  label: "macOS VM Setup (Deprecated)",
+                  label: "macOS VM Setup",
                   slug: "general-resources/vm/macos-vm-setup",
                 },
                 {
@@ -111,10 +111,6 @@ export default defineConfig({
             { label: "Getting Started", slug: "setup/getting-started" },
             { label: "Installing Ubuntu", slug: "setup/installing-ubuntu" },
             { label: "Native ROS Installation", slug: "setup/native-install" },
-            {
-              label: "Portable ROS Installation",
-              slug: "setup/portable-install",
-            },
           ],
         },
         {

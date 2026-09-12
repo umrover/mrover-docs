@@ -1,9 +1,6 @@
 ---
-title: "macOS VM Setup (Deprecated)"
+title: "macOS VM Setup"
 ---
-:::note
-If you're on macOS, try the [portable (pixi) install](/setup/portable-install) first, it runs natively on Apple Silicon without a VM. Use this VM path only as a fallback if that doesn't work for your machine.
-:::
 :::note
 This installation requires at least 40GB of free space but allocating more is highly recommended.
 :::
