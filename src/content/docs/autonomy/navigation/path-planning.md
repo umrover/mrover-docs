@@ -1,13 +1,13 @@
 ---
 title: "Path Planning"
 ---
-# **Context**: 
+# Context: 
 Last year, we had a lot of development in our path planning and path execution. In particular, we added path smoothing after A* generation and pure pursuit as a new drive controller. There was also development towards inward spiraling on the rover. 
 
-# **Problem**
+# Problem:
 During the auton mission, we are limited on time. As such, we need to drive in a way that will save us the most time possible. This includes doing research into different ways to improve the rovers speed and ability to detect objects.
 
-# **Solutions**
+# Solutions:
 ## [Hybrid A*](/autonomy/navigation/hybrid-astar)
 A*'s path is often quite jagged, and creates a path in any direction regardless of the rovers heading. To solve this, last year we implemented path smoothing; however, we never solved the issue of the path being created in any direction. Our rover can skid steer, which means this is not too much of a problem, but there are considerations on if prioritizing directions that the rover drives in will increase overall speed.
 
