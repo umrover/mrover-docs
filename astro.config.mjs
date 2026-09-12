@@ -269,7 +269,12 @@ export default defineConfig({
               label: 'Navigation',
               collapsed: true,
               items: [
-                { label: 'Navigation', slug: 'autonomy/navigation/overview' }
+                { label: 'Navigation', slug: 'autonomy/navigation/overview' },
+                { label: 'Arm IK', slug: 'autonomy/navigation/arm-ik-overview' },
+                { label: 'Path Planning', slug: 'autonomy/navigation/path-planning' },
+                { label: 'Hybrid A*', slug: 'autonomy/navigation/hybrid-astar' },
+                { label: 'Search Trajectory', slug: 'autonomy/navigation/search-trajectory' },
+                { label: 'Modulation', slug: 'autonomy/navigation/modulation' }
               ]
             },
             {
