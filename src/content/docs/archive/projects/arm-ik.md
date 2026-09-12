@@ -11,4 +11,4 @@ The current IK implementation has not been fully tested on the rover, so it is n
 
 # Solution
 
-The end effector has a limited range of motion, particularly in terms of pitch. This means that it is not always possible to make the end effector parallel to the ground (as we would like to, especially for typing) for all arm positions. Thus it is necessary to determine the bubble of positions that are reachable with the end effector level, so that we can optimally position the rover for typing. More details on finding this "bubble" can be found [here](/autonomy/navigation/arm-ik-testing).
+The end effector has a limited range of motion, particularly in terms of pitch. This means that it is not always possible to make the end effector parallel to the ground (as we would like to, especially for typing) for all arm positions. Thus it is necessary to determine the bubble of positions that are reachable with the end effector level, so that we can optimally position the rover for typing. More details on finding this "bubble" can be found [here](/archive/projects/arm-ik-testing).

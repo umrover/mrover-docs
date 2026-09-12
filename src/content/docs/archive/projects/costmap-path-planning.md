@@ -7,4 +7,4 @@ title: "Costmap Path Planning"
 Here's a (simplified) overview of the navigation state machine as it is now:
 ![Nav State Machine (Simplified)](https://github.com/user-attachments/assets/61738dfe-3728-46dc-a952-79b7d9e571ce)
 
-For more details on the specifics of how the current costmap implementation works, be sure to check out [this](/autonomy/navigation/obstacle-avoidance) page.
+For more details on the specifics of how the current costmap implementation works, be sure to check out [this](/archive/projects/obstacle-avoidance) page.

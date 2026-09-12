@@ -77,7 +77,6 @@ export default defineConfig({
               collapsed: true,
               items: [
                 { label: 'Updating CI', slug: 'general-resources/devops/updating-ci' },
-                { label: 'URC vs. CIRC Switch', slug: 'general-resources/devops/urc-vs-circ-switch' },
               ]
             }
           ]
@@ -270,27 +269,7 @@ export default defineConfig({
               label: 'Navigation',
               collapsed: true,
               items: [
-                { label: 'Navigation', slug: 'autonomy/navigation/overview' },
-                { label: '5-DOF IK', slug: 'autonomy/navigation/5dof-ik' },
-                { label: 'Adaptive Pure Pursuit', slug: 'autonomy/navigation/adaptive-pure-pursuit' },
-                { label: 'Approach Object State', slug: 'autonomy/navigation/approach-object-state' },
-                { label: 'Approach Target Base State', slug: 'autonomy/navigation/approach-target-base-state' },
-                { label: 'Arm IK', slug: 'autonomy/navigation/arm-ik' },
-                { label: 'Arm IK Testing Visualization', slug: 'autonomy/navigation/arm-ik-testing' },
-                { label: 'Arm Velocity Control', slug: 'autonomy/navigation/arm-velocity-control' },
-                { label: 'Click IK', slug: 'autonomy/navigation/click-ik' },
-                { label: 'Cost Map', slug: 'autonomy/navigation/cost-map' },
-                { label: 'Costmap Path Planning', slug: 'autonomy/navigation/costmap-path-planning' },
-                { label: 'Inward Spiraling', slug: 'autonomy/navigation/inward-spiraling' },
-                { label: 'Lander Auto Align', slug: 'autonomy/navigation/lander-auto-align' },
-                { label: 'Navigation State Machine Library', slug: 'autonomy/navigation/state-machine-library' },
-                { label: 'Obstacle Avoidance', slug: 'autonomy/navigation/obstacle-avoidance' },
-                { label: 'Path Execution', slug: 'autonomy/navigation/path-execution' },
-                { label: 'Path Smoothing', slug: 'autonomy/navigation/path-smoothing' },
-                { label: 'Pure Pursuit', slug: 'autonomy/navigation/pure-pursuit' },
-                { label: 'Second Camera Navigation Integration (LongRangeState)', slug: 'autonomy/navigation/second-camera-integration' },
-                { label: 'Stuck Detector', slug: 'autonomy/navigation/stuck-detector' },
-                { label: 'Surface Normals Costmap', slug: 'autonomy/navigation/surface-normals-costmap' }
+                { label: 'Navigation', slug: 'autonomy/navigation/overview' }
               ]
             },
             {
@@ -337,8 +316,35 @@ export default defineConfig({
           label: 'Archive',
           collapsed: true,
           items: [
-            { label: '2024 Projects', slug: 'archive/projects/2024-projects' },
-            { label: '2025-2026 Projects', slug: 'archive/projects/2025-2026-projects' }
+            { label: '2024 Projects', slug: 'archive/2024-projects' },
+            { label: '2025-2026 Projects', slug: 'archive/2025-2026-projects' },
+            {
+              label: 'Projects',
+              collapsed: true,
+              items: [
+                { label: '5-DOF IK', slug: 'archive/projects/5dof-ik' },
+                { label: 'Adaptive Pure Pursuit', slug: 'archive/projects/adaptive-pure-pursuit' },
+                { label: 'Approach Object State', slug: 'archive/projects/approach-object-state' },
+                { label: 'Approach Target Base State', slug: 'archive/projects/approach-target-base-state' },
+                { label: 'Arm IK', slug: 'archive/projects/arm-ik' },
+                { label: 'Arm IK Testing Visualization', slug: 'archive/projects/arm-ik-testing' },
+                { label: 'Arm Velocity Control', slug: 'archive/projects/arm-velocity-control' },
+                { label: 'Click IK', slug: 'archive/projects/click-ik' },
+                { label: 'Cost Map', slug: 'archive/projects/cost-map' },
+                { label: 'Costmap Path Planning', slug: 'archive/projects/costmap-path-planning' },
+                { label: 'Inward Spiraling', slug: 'archive/projects/inward-spiraling' },
+                { label: 'Lander Auto Align', slug: 'archive/projects/lander-auto-align' },
+                { label: 'Navigation State Machine Library', slug: 'archive/projects/state-machine-library' },
+                { label: 'Obstacle Avoidance', slug: 'archive/projects/obstacle-avoidance' },
+                { label: 'Path Execution', slug: 'archive/projects/path-execution' },
+                { label: 'Path Smoothing', slug: 'archive/projects/path-smoothing' },
+                { label: 'Pure Pursuit', slug: 'archive/projects/pure-pursuit' },
+                { label: 'Second Camera Navigation Integration (LongRangeState)', slug: 'archive/projects/second-camera-integration' },
+                { label: 'Stuck Detector', slug: 'archive/projects/stuck-detector' },
+                { label: 'Surface Normals Costmap', slug: 'archive/projects/surface-normals-costmap' },
+                { label: 'URC vs. CIRC Switch', slug: 'archive/projects/urc-vs-circ-switch' },
+              ]
+            }
           ]
         },
         // SIDEBAR_ITEMS_END
