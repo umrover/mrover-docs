@@ -5,7 +5,7 @@ title: "Navigation"
 ## State Machine
 
 ### State Machine Diagram
-<img width="943" height="400" alt="image" src="https://github.com/user-attachments/assets/a5995b95-7650-4484-af3b-199e4f868227" />
+<img width="943" height="400" alt="Screenshot from 2026-09-12 19-40-50" src="https://github.com/user-attachments/assets/2e17ced2-8f9e-4d35-817a-0a757769a72c" />
  
 Note: State machine diagrams can be generated using the state machine visualizer tool. When using the tool, we sometimes have two separate transitions that are representing the same state change, meaning you may see "duplicate" arrows. 
 
