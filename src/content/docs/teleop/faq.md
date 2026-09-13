@@ -14,8 +14,6 @@ ModuleNotFoundError: No module named 'rclpy'
 
 ### Solution
 
-Enter `mrover` before trying to run the basestation.
-
 You have not entered the Python virtual environment. To enter the python venv, enter `mrover` in the shell. This function jumps into the repo and activates the build overlay, which opens the python virtual environment and allows you to run the basestation.
 
 ---
