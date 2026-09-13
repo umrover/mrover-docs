@@ -16,4 +16,4 @@ Ubuntu 24.04 LTS or Kubuntu 24.04 LTS running natively is the ***only officially
 
 ---
 
-Not able to run Ubuntu natively? On macOS, see [macOS VM Setup](/general-resources/vm/macos-vm-setup) to run Ubuntu 24.04 in a VM instead. Windows is ***NOT*** supported; our expectation for anyone with a Windows laptop is to dual-boot or install Linux.
+Not able to run Ubuntu natively? On macOS, see [macOS VM Setup](/general-resources/vm/macos-vm-setup) to run Ubuntu 24.04 in a VM, or [Install ROS on macOS](/general-resources/ros/install-ros/install-ros-macos) to try running it natively instead. Windows is ***NOT*** supported; our expectation for anyone with a Windows laptop is to dual-boot or install Linux.

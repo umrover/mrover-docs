@@ -1,6 +1,7 @@
 ---
 title: "Teleop FAQ"
 ---
+
 Before you look any further, make sure you have run `./build.sh` from the mrover directory.
 
 ## Python venv
@@ -12,8 +13,6 @@ ModuleNotFoundError: No module named 'rclpy'
 ```
 
 ### Solution
-
-Enter `mrover` before trying to run the basestation.
 
 You have not entered the Python virtual environment. To enter the python venv, enter `mrover` in the shell. This function jumps into the repo and activates the build overlay, which opens the python virtual environment and allows you to run the basestation.
 
@@ -42,14 +41,15 @@ Some files that CMake expects are missing. You could try and remove the `#Percep
 
 Try updating or deinitializing and then reinitializing git submodules.
 
-``` bash
-git submodule update <submodule> 
+```bash
+git submodule update <submodule>
 # or
 git submodule deinit <submodule>
 git submodule init <submodule>
 ```
 
 Submodules include;
+
 - deps/dawn
 - deps/manif
 - esw/fw
