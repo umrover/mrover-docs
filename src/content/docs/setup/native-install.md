@@ -19,7 +19,7 @@ Github explains the SSH process [here](https://docs.github.com/en/authentication
 
 Run:
 ```
-wget -O bootstrap.sh https://raw.githubusercontent.com/umrover/mrover-ros2/main/bootstrap.sh && chmod +x ./bootstrap.sh && ./bootstrap.sh
+curl -fsSL https://setup.mrover.org/bootstrap.sh | bash
 ```
 
 This clones the repo to `~/mrover-ros2` and runs Ansible to install ROS, our toolchain, and your dev environment (zsh, oh-my-zsh, VSCode, etc). If you already have the repo cloned, skip `bootstrap.sh` and just run `./setup.sh` from inside it directly.
