@@ -88,6 +88,19 @@ export default defineConfig({
               label: "Setting up the Jetson",
               slug: "general-resources/setting-up-the-jetson",
             },
+          ],
+        },
+        // ESW_SIDEBAR_START
+        {
+          label: "Setup",
+          items: [
+            { label: "Getting Started", slug: "setup/getting-started" },
+            { label: "Installing Ubuntu", slug: "setup/installing-ubuntu" },
+            { label: "Native ROS Installation", slug: "setup/native-install" },
+            {
+              label: "Portable ROS Installation",
+              slug: "setup/portable-install",
+            },
             {
               label: "VM Setup",
               collapsed: true,
@@ -101,19 +114,6 @@ export default defineConfig({
                   slug: "general-resources/vm/usb-passthrough-utm",
                 },
               ],
-            },
-          ],
-        },
-        // ESW_SIDEBAR_START
-        {
-          label: "Setup",
-          items: [
-            { label: "Getting Started", slug: "setup/getting-started" },
-            { label: "Installing Ubuntu", slug: "setup/installing-ubuntu" },
-            { label: "Native ROS Installation", slug: "setup/native-install" },
-            {
-              label: "Portable ROS Installation",
-              slug: "setup/portable-install",
             },
           ],
         },
