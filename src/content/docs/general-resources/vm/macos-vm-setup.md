@@ -34,4 +34,4 @@ sudo apt install ubuntu-desktop
 
 15. Run `sudo reboot` and sign into your VM.
 
-16. Now follow the Ubuntu ROS installation steps [here](/general-resources/ros/install-ros/install-ros)
+16. Now follow the codebase installation steps [here](/setup/native-install)

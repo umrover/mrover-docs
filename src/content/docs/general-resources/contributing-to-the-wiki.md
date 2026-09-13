@@ -1,5 +1,5 @@
 ---
-title: "I Hate Webdev, How Do I Add a Page"
+title: "Contributing to the wiki"
 ---
 
 This docs site is built with [Astro Starlight](https://starlight.astro.build/). Pages are just Markdown files. You don't need to know any web stuff.
@@ -16,10 +16,15 @@ Add a `.md` file under `src/content/docs/` wherever appropriate:
 
 ```
 src/content/docs/
-  general/        # general tutorials
-  teleop/         # teleop docs
-  navigation/     # nav docs
-  perception/     # perception docs
+  setup/                    # install & getting started
+  general-resources/        # general tutorials
+  teleop/                   # teleop docs
+  autonomy/
+    navigation/             # nav docs
+    perception/             # perception docs
+    localization/           # localization docs
+  esw/                      # embedded software docs
+  drone/                    # drone docs
   ...
 ```
 
@@ -27,7 +32,7 @@ src/content/docs/
 
 Every page needs a `title` in the frontmatter at the top:
 
-```md
+````md
 ---
 title: "My New Page"
 ---
@@ -35,13 +40,12 @@ title: "My New Page"
 ## A section
 
 - bullets
-[links](https://mrover.org)
+  [links](https://mrover.org)
 
 ```bash
 code blocks
 ```
-```
-
+````
 
 ## 3. Add it to the sidebar
 
@@ -52,11 +56,11 @@ Open `astro.config.mjs` and find the `sidebar` array. Locate the section your pa
   label: 'Navigation',
   collapsed: true,
   items: [
-    { label: 'Navigation', slug: 'navigation/overview' },
-    { label: 'My New Page', slug: 'navigation/my-new-page' },  // add this
+    { label: 'Navigation', slug: 'autonomy/navigation/overview' },
+    { label: 'My New Page', slug: 'autonomy/navigation/my-new-page' },  // add this
   ],
 },
-```
+````
 
 The `slug` matches the file path under `src/content/docs/` without the `.md` extension.
 
