@@ -6,20 +6,44 @@ hero:
   tagline: Welcome to the MRover wiki! This is the primary source of documentation and tutorials for MRover Software.
 ---
 
-import { LinkCard, CardGrid } from '@astrojs/starlight/components';
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
 
 ## Get Started
 
 <CardGrid>
-  <LinkCard title="Introduction to the Team" href="/introduction" description="Learn what it means to be a part of MRover's Software branch" />
-  <LinkCard title="GitHub" href="https://github.com/umrover/mrover-ros2" description="View the source code on GitHub" />
+  <LinkCard
+    title="Introduction to the Team"
+    href="/introduction"
+    description="Why MRover Software?"
+  />
+  <LinkCard
+    title="Setup"
+    href="/setup/getting-started"
+    description="Install the codebase and ROS"
+  />
 </CardGrid>
 
 ## Subteams
 
 <CardGrid>
-  <LinkCard title="Autonomy" href="/autonomy/overview/" description="Navigation, perception, and localization" />
-  <LinkCard title="ESW" href="/esw/getting-started/intro" description="Embedded systems, motor control, and hardware interfaces" />
-  <LinkCard title="Teleop" href="/teleop/overview/" description="Operator interface, Vue components, and real-time control" />
-  <LinkCard title="Drone" href="/drone/overview/" description="Autonomous drone systems, PX4, and ROS2 integration" />
+  <LinkCard
+    title="Autonomy"
+    href="/autonomy/overview/"
+    description="Navigation, perception, and localization"
+  />
+  <LinkCard
+    title="ESW"
+    href="/esw/getting-started/intro"
+    description="Embedded systems, motor control, and hardware interfaces"
+  />
+  <LinkCard
+    title="Teleop"
+    href="/teleop/overview/"
+    description="Operator interface, Vue components, and real-time control"
+  />
+  <LinkCard
+    title="Drone"
+    href="/drone/overview/"
+    description="Autonomous drone systems, PX4, and ROS2 integration"
+  />
 </CardGrid>
