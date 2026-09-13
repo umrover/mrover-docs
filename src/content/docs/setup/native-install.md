@@ -7,7 +7,7 @@ This page installs the MRover codebase and its dependencies. If you don't have U
 
 If you're on a Jetson, use the exact same instructions below. `setup.sh` detects it automatically (via `/etc/nv_tegra_release`) and installs the Jetson-specific packages instead of the desktop ones.
 
-Not able to run Ubuntu natively? On macOS, see [macOS VM Setup](/general-resources/vm/macos-vm-setup) to run Ubuntu 24.04 in a VM, or [Install ROS on macOS](/general-resources/ros/install-ros/install-ros-macos) to try running it natively instead.
+Not on native Ubuntu (macOS, Arch, Fedora, ...)? See the unofficial [Portable ROS Installation](/setup/portable-install) instead, don't use it just because it sounds more convenient, though; if something breaks there, you're on your own more than usual. On macOS specifically, [macOS VM Setup](/general-resources/vm/macos-vm-setup) or [Install ROS on macOS](/general-resources/ros/install-ros/install-ros-macos) are other unofficial options if the portable install doesn't work for you.
 
 ## Set Up Your SSH Key
 
@@ -19,7 +19,7 @@ Github explains the SSH process [here](https://docs.github.com/en/authentication
 
 Run:
 ```
-wget -O bootstrap.sh https://raw.githubusercontent.com/umrover/mrover-ros2/main/bootstrap.sh && chmod +x ./bootstrap.sh && ./bootstrap.sh
+curl -fsSL https://setup.mrover.org/bootstrap.sh | bash
 ```
 
 This clones the repo to `~/mrover-ros2` and runs Ansible to install ROS, our toolchain, and your dev environment (zsh, oh-my-zsh, VSCode, etc). If you already have the repo cloned, skip `bootstrap.sh` and just run `./setup.sh` from inside it directly.
