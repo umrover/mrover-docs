@@ -31,7 +31,7 @@ For Windows, please install Ubuntu 24.
 Run:
 
 ```
-curl -fsSL https://setup.mrover.org/bootstrap-portable.sh | bash
+curl -fsSL https://raw.githubusercontent.com/umrover/mrover-ros2/skj/portable/bootstrap-portable.sh | bash
 ```
 
 This clones the repo to `~/mrover-ros2`, installs Homebrew on macOS if you don't have it, installs git/git-lfs/Ansible with your system's package manager, then runs Ansible and sets up your environment using Pixi.
