@@ -1,6 +1,7 @@
 ---
 title: "Teleop FAQ"
 ---
+
 Before you look any further, make sure you have run `./build.sh` from the mrover directory.
 
 ## Python venv
@@ -42,14 +43,15 @@ Some files that CMake expects are missing. You could try and remove the `#Percep
 
 Try updating or deinitializing and then reinitializing git submodules.
 
-``` bash
-git submodule update <submodule> 
+```bash
+git submodule update <submodule>
 # or
 git submodule deinit <submodule>
 git submodule init <submodule>
 ```
 
 Submodules include;
+
 - deps/dawn
 - deps/manif
 - esw/fw

@@ -33,4 +33,4 @@ This path is maintained by software leadership and is ***best-effort only***. Do
 
 ---
 
-Be aware that Windows is ***NOT*** supported. WSL testing on the portable installation is very limited. Our expectation for anyone with a windows laptop is to install Linux. 
+On macOS, if the portable install doesn't work for you, see [macOS VM Setup](/general-resources/vm/macos-vm-setup) or [Install ROS on macOS](/general-resources/ros/install-ros/install-ros-macos) for other options. Windows is ***NOT*** supported. Our expectation for anyone with a windows laptop is to install Linux. 

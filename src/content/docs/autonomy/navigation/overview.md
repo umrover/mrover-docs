@@ -5,7 +5,7 @@ title: "Navigation"
 ## State Machine
 
 ### State Machine Diagram
-<img width="943" height="400" alt="image" src="https://github.com/user-attachments/assets/a5995b95-7650-4484-af3b-199e4f868227" />
+<img width="943" height="400" alt="Screenshot from 2026-09-12 19-40-50" src="https://github.com/user-attachments/assets/2e17ced2-8f9e-4d35-817a-0a757769a72c" />
  
 Note: State machine diagrams can be generated using the state machine visualizer tool. When using the tool, we sometimes have two separate transitions that are representing the same state change, meaning you may see "duplicate" arrows. 
 
@@ -102,11 +102,11 @@ Transitions:
 * If the rover is stuck: Transition into Stuck Recovery state
 * Else stay in Long Range State
 
-### Costmap Search State
+### Search State
 
-Summary: The costmap search state is enacted similarly to the search state. The difference mainly being that the search spiral is modified where the rover will take a lower cost (a route that avoids obstacles). This lower cost route is found with a custom implementation of the A* algorithm. The algorithm uses an occupancy grid that shows the cost of each cell. After the algorithm adds the cost of distance from the search spiral and other factors that contribute to the rover getting stuck. 
+Summary: The search state is used when the rover arrives at a given waypoint where an object is expected to be located, but wasn't able to detect the object on the way there. To do this, the rover will follow a search spiral. If the cost map is utilized, the search spiral is modified where the rover will take a lower cost (a route that avoids obstacles). This lower cost route is found with a custom implementation of the A* algorithm. The algorithm uses an occupancy grid that shows the cost of each cell. After the algorithm adds the cost of distance from the search spiral and other factors that contribute to the rover getting stuck. 
 
-Actions: Like the Search state, the Costmap Search state publishes drive commands (Twist messages) that are calculated via the get_drive_command function. It uses the position of the next point in the search pattern as the position input and the costmap to develop a custom path to follow, and calls the get_drive_command function. If the function returns true we have reached the next point in the search pattern so we increment our path index. Once the path index is equal to the length of the path, we have traversed the entire search pattern and just give up.
+Actions: The Search state publishes drive commands (Twist messages) that are calculated via the get_drive_command function. It uses the position of the next point in the search pattern as the position input and the costmap to develop a custom path to follow, and calls the get_drive_command function. If the function returns true we have reached the next point in the search pattern so we increment our path index. Once the path index is equal to the length of the path, we have traversed the entire search pattern and just give up.
 
 Transitions: 
 
