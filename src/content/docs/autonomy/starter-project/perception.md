@@ -36,23 +36,7 @@ float32 closeness_metric
 
 You will implement the functions in `perception.cpp` to identify the values of the above four variables, use them to construct a `StarterProjectTag`, and publish the message to the `/tag` topic for Navigation to read ("subscribe") from.
 
-From the terminal, make sure you are in the mrover repository by running `mrover` and then `./build.sh` to build the message file.
-
-<details>
-  <summary>Optional for the curious: how do messages work behind the scenes?</summary>
-  
-  You might be wondering: "I only made a text file, how does this actually work in C++?" That's great intuition! We use the build system CMake to automatically generate the C++ code for this message
-
-  <!-- DANTODO: Make sure this is accurate to the final product Sid cooks up -->
-  In `AutonomyStarterProject.cmake` take a look at:
-
-  ```cmake
-  file(GLOB_RECURSE STARTER_PROJ_MESSAGE_PATHS RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} CONFIGURE_DEPENDS 
-          ${CMAKE_CURRENT_LIST_DIR}/msg/*.msg
-  )
-  ```
-  This configurates CMake to generate all of the necessary files to be able to use each custom message in the `msg` directory.
-</details>
+From the terminal, make sure you are in the correct repository by running `auton_starter` and then `build_starter` to build the message file.
 
 ## Code Overview
 To complete the Perception starter project, you will implement 7 functions of the `Perception` class:
@@ -71,7 +55,6 @@ Let's take a look at the constructor `Perception::Perception` in `perception.cpp
 
 As detailed in the Inputs section, each frame from the camera is published to the topic `/zed/left/image`. So the first thing this function does is read the camera frames from the topic. We do this using a subscriber. Take a look at the following code block:
 
-<!-- DANTODO: KEEP THIS UPDATED -->
 ```
 mImageSubscriber = create_subscription<sensor_msgs::msg::Image>("/zed/left/image", 1, [this](sensor_msgs::msg::Image::ConstSharedPtr const& frame) {
     imageCallback(frame);
@@ -148,17 +131,15 @@ However you choose to implement the closeness metric, make sure to scale the num
 ### selectTag()
 
 We want to select the closest tag from the vector `findTagsInImage()` populates, since it makes sense to drive towards closer objects compared to farther ones. In other words, we want to pick the tag with the highest closeness metric. 
+If there are no valid ArUco tags in frame, you should publish a "dummy" tag with an ID of -1.
 
 ### publishTag()
 
 Now that we have our desired tag, it is time to publish it to the proper topic. Implement `Perception::publishTag`. If you are unsure of the syntax, this [example](https://ros2course.readthedocs.io/en/latest/Writing%20publisher%20and%20subscriber%20nodes.%20C++.html) or a quick Google search will help you out. 
 
-If there are no valid ArUco tags in frame, you should publish a "dummy" tag with an ID of -1.
-
 ## Putting It All Together
 
-<!-- DANTODO: make sure the ros2 launch commands are accurate to final product-->
-To test your tag detection algorithm, run `ros2 launch mrover starter_project.launch.py` to open the simulator. Then run `ros2 topic echo /tag` to monitor the output of perception. Make sure your node (the code you wrote) is not crashing in the log output! `ros2 topic echo /tag` should at least be continuously publishing invalid tags with ID of -1.
+To test, run `ros2 launch mrover_autonomy_starter starter_project.launch.py` to open the simulator. In another terminal window, run `ros2 topic echo /tag` to monitor the output of perception. Don't forget to `auton_starter` to set up each terminal window. Make sure your node (the code you wrote) is not crashing in the log output! `ros2 topic echo /tag` should at least be continuously publishing invalid tags with ID of -1.
 
 You can drive the rover around by pressing `p` to enable physics, and then move with `i`,`j`,`l`, and `,`. In the RViz window, press "Add" in the bottom left, then click the "by topic" tab, scrolling down and selecting the "/zed", "/left", "/image", "Image" option, and click "OK". This should open a small window in the bottom left displaying what the ZED camera sees inside the simulator. If you navigate the rover such that you can see the ArUco tag in the camera feed, but `ros2 topic echo /tag` isn't publishing a valid (not -1) tag, you might have some errors in your code.
 
@@ -170,7 +151,7 @@ As a disclaimer, it can be difficult to use a debugger with MRover software, and
 
 Now run `ros2 launch mrover starter_project.launch.py` in a terminal to launch the simulator and other two nodes.
 
-In VS Code, hit Ctrl-Shift-P and run `Cmake: Debug`. Select "Unspecified" if it asks for a kit. Select the starter_project_perception target to run (these settings are also on the bottom bar).
+In VS Code, hit Ctrl-Shift-P and run `Cmake: Debug`. Select "Unspecified" if it asks for a kit. Select the starter_perception target to run (these settings are also on the bottom bar).
 
 Make sure to set breakpoints in the source code files! They can provide useful information that print statements can't.
 
