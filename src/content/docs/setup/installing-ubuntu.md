@@ -11,8 +11,9 @@ If you already have Ubuntu 24.04 installed, or you're setting up a Jetson (which
 
 The following steps may or not be necessary prerequisites. If you find other important steps, have better tutorial links, or don't think something is necessary for certain Windows devices, please add your knowledge.
 1. Check if you have BitLocker by right clicking on the Windows icon on your taskbar and clicking on Disk Management. In the Disk Manager, check if any of your partitions (usually the largest one) say "BitLocker encrypted" on them. If so, you have BitLocker and should try to [suspend it](https://4sysops.com/archives/disable-bitlocker-on-windows-11/#rtoc-3). If there is no option to suspend it, just make sure you can [find your backup keys](https://support.microsoft.com/en-us/windows/finding-your-bitlocker-recovery-key-in-windows-6b71ad27-0b89-ea08-f143-056f5ab347d6) either on your Microsoft account or on a flash drive and you will be fine.
-2. [Disable Fast Boot](https://www.lifewire.com/disable-fast-startup-in-windows-10-5094422) (You may need to [enable or disable hibernate](https://docs.microsoft.com/en-us/troubleshoot/windows-client/deployment/disable-and-re-enable-hibernation))
-3. [Disable Secure Boot](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/disabling-secure-boot?view=windows-11)
+2. Search up disk management in your windows search. Then select a partition and shrink it by the amount of storage you want to provide Ubuntu(minimum 50 GB). This will take a minute but afterwards you should see a section of your partition that is "unallocated."
+3. [Disable Fast Boot](https://www.lifewire.com/disable-fast-startup-in-windows-10-5094422) (You may need to [enable or disable hibernate](https://docs.microsoft.com/en-us/troubleshoot/windows-client/deployment/disable-and-re-enable-hibernation))
+4. [Disable Secure Boot](https://docs.microsoft.com/en-us/windows-hardware/manufacture/desktop/disabling-secure-boot?view=windows-11)
 
 For a tutorial on dual booting Ubuntu, read [this page](https://itsfoss.com/install-ubuntu-1404-dual-boot-mode-windows-8-81-uefi/); the steps are the same regardless of Ubuntu version, just grab the 24.04 image instead. If you need to make your own bootable flash drive, use [this image](https://releases.ubuntu.com/noble/) and [Rufus](https://rufus.ie/en/).
 
