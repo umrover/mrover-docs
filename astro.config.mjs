@@ -18,7 +18,9 @@ export default defineConfig({
     starlight({
       plugins: [starlightLinksValidator()],
       expressiveCode: {
-        frames: false,
+        frames: {
+          showCopyToClipboardButton: true,
+        },
       },
       title: "MRover Docs",
       favicon: "/favicon.ico",
@@ -87,6 +89,32 @@ export default defineConfig({
             {
               label: "Setting up the Jetson",
               slug: "general-resources/setting-up-the-jetson",
+            },
+          ],
+        },
+        {
+          label: "Setup",
+          items: [
+            { label: "Getting Started", slug: "setup/getting-started" },
+            { label: "Installing Ubuntu", slug: "setup/installing-ubuntu" },
+            { label: "Native ROS Installation", slug: "setup/native-install" },
+            {
+              label: "Portable ROS Installation",
+              slug: "setup/portable-install",
+            },
+            {
+              label: "VM Setup",
+              collapsed: true,
+              items: [
+                {
+                  label: "macOS VM Setup (Deprecated)",
+                  slug: "general-resources/vm/macos-vm-setup",
+                },
+                {
+                  label: "USB Passthrough for UTM",
+                  slug: "general-resources/vm/usb-passthrough-utm",
+                },
+              ],
             },
           ],
         },

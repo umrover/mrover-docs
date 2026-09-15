@@ -5,44 +5,67 @@ sidebar:
 ---
 
 :::caution
-This path is **unofficial** and maintained by software leadership. Only native Ubuntu 24.04 is officially supported.
-:::
-
-:::danger
-ESW is **NOT** supported by this installation.
-
-Perception is **SEMI** supported by this installation. Ask your lead.
+This path is **unofficial** and maintained by software leads. Only Ubuntu 24.04 is officially supported.
 :::
 
 ## Supported Platforms
 
 The portable environment is built on [pixi](https://pixi.sh) and currently supports:
 
-- macOS on Apple Silicon (arm64)
-- macOS on Intel (x86_64)
-- Linux x86_64, on a non-Ubuntu 24 distro
+| Subteam      | Non-Ubuntu24 Linux | Mac                 |
+| ------------ | ------------------ | ------------------- |
+| Navigation   | Supported          | Supported           |
+| Perception   | Mostly Supported*  | Mostly Supported**  |
+| Localization | Supported          | Supported           |
+| ESW          | Supported          | Mostly Supported*** |
+| Teleop       | Supported          | Supported           |
+| Drone        | Supported          | Supported           |
 
-Anything else, including Windows and Linux on arm64, is not supported by the portable path.
+*Zed SDK is only available for Ubuntu
 
-For Windows, please install Ubuntu 24.
+**CUDA is not available on Mac
+
+***The main `mrover-esw` is supported on mac, but `mrover-ros2` will not build the ESW module on mac
+
+:::danger[Disclaimer]
+Anything else, including Windows and Linux on arm64 (snapdragon), is **NOT** supported by the portable path.
+:::
+
+For Windows, please install Ubuntu 24 directly. WSL2 will **NOT** work.
+
+For members with Snapdragon laptops, we recommend getting a loaner from the University [here](https://its.umich.edu/computing/computers-software/sites-at-home).
+
+## Set Up Your SSH Key
+
+To clone our code repository from GitHub, you need to add SSH keys so that Github can authenticate you.
+
+Github explains the SSH process [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account).
+
+TL;DR:
+
+- complete the **"Generating a new SSH key"** section detailed [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account)
+- run `cat ~/.ssh/id_ed25519.pub`, copy output
+- visit [here](https://github.com/settings/keys)
+- click `New SSH key`
+- paste output in
 
 ## Install
 
 Run:
 
-```
+```bash
 curl -fsSL https://raw.githubusercontent.com/umrover/mrover-ros2/skj/portable/bootstrap-portable.sh | bash
 ```
 
-This clones the repo to `~/mrover-ros2`, installs Homebrew on macOS if you don't have it, installs git/git-lfs/Ansible with your system's package manager, then runs Ansible and sets up your environment using Pixi.
+This clones the repo to `~/ros2_ws/src/mrover-ros2`, installs relevant packages and libraries, then runs Ansible and sets up your environment using Pixi.
 
 If you already have the repo cloned, skip `bootstrap-portable.sh` and run `./setup-portable.sh` directly.
 
 You'll also need an SSH key set up with Github to clone. See [Github's guide](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/adding-a-new-ssh-key-to-your-github-account) if you haven't done that yet.
 
-Once it finishes, log out and back in, open a new terminal, and run:
+Once it finishes, log out and back in (or reboot), open a new terminal, and run:
 
-```
+```bash
 mrover
 ./build.sh
 ```
@@ -53,16 +76,16 @@ mrover
 
 Open a new terminal, run `mrover`, and run:
 
-```
+```bash
 ros2 launch mrover simulator.launch.py
 ```
 
-Confirm the simulator launches.
+If the simulator launches, you have successfully set up the codebase and ROS environment.
 
 ## Keeping Dependencies Up to Date
 
-Run the portable playbook:
+Run the dev-portable playbook:
 
-```
+```bash
 ./ansible.sh dev-portable.yml
 ```
