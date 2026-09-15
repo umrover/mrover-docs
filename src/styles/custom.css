@@ -1,18 +1,19 @@
-@import '@fontsource-variable/jetbrains-mono';
-@import '@fontsource-variable/space-grotesk';
+@import "@fontsource-variable/jetbrains-mono";
+@import "@fontsource-variable/space-grotesk";
 
 :root {
   --mrover-accent: #ff6b35;
   --mrover-accent-rgb: 255, 107, 53;
 
-  --sl-font-mono: 'JetBrains Mono Variable', 'JetBrains Mono', ui-monospace, monospace;
+  --sl-font-mono:
+    "JetBrains Mono Variable", "JetBrains Mono", ui-monospace, monospace;
 
   --sl-nav-height: 3.5rem;
   --sl-sidebar-width: 18rem;
   --sl-content-width: 50rem;
 }
 
-:root[data-theme='light'] {
+:root[data-theme="light"] {
   --sl-color-accent-low: #f0e0d0;
   --sl-color-accent: var(--mrover-accent);
   --sl-color-accent-high: var(--mrover-accent);
@@ -29,7 +30,7 @@
   --sl-color-hairline-light: #e0e0e0;
 }
 
-:root[data-theme='dark'] {
+:root[data-theme="dark"] {
   --sl-color-accent-low: #261400;
   --sl-color-accent: var(--mrover-accent);
   --sl-color-accent-high: var(--mrover-accent);
@@ -48,7 +49,7 @@
 
 /* Titles */
 .site-title {
-  font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk Variable", "Space Grotesk", sans-serif;
   font-weight: 700;
 }
 
@@ -57,7 +58,7 @@ h1,
 .hero h1,
 nav.sidebar .top-level > li > details > summary,
 nav.sidebar .top-level > li > a {
-  font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
+  font-family: "Space Grotesk Variable", "Space Grotesk", sans-serif;
 }
 
 /* Header bar styling */
@@ -66,7 +67,7 @@ header.header {
   backdrop-filter: blur(12px);
 }
 
-:root[data-theme='dark'] header.header {
+:root[data-theme="dark"] header.header {
   background: rgba(22, 20, 20, 0.85);
   box-shadow: 0 1px 20px -5px rgba(var(--mrover-accent-rgb), 0.08);
 }
@@ -93,17 +94,17 @@ nav.sidebar .top-level > li {
   margin-bottom: 0.5rem;
 }
 
-nav.sidebar a[aria-current='page'] {
+nav.sidebar a[aria-current="page"] {
   font-weight: 600;
   border-inline-start-color: var(--sl-color-accent);
 }
 
-:root[data-theme='dark'] nav.sidebar a[aria-current='page'] {
+:root[data-theme="dark"] nav.sidebar a[aria-current="page"] {
   color: #ffffff;
   background-color: var(--mrover-accent);
 }
 
-:root[data-theme='light'] nav.sidebar a[aria-current='page'] {
+:root[data-theme="light"] nav.sidebar a[aria-current="page"] {
   color: #ffffff;
   background-color: var(--mrover-accent);
 }
@@ -126,7 +127,7 @@ nav.sidebar a[aria-current='page'] {
   border-radius: 6px;
 }
 
-:root[data-theme='dark'] .sl-markdown-content pre {
+:root[data-theme="dark"] .sl-markdown-content pre {
   background: #1e1c1c;
 }
 
@@ -140,7 +141,7 @@ nav.sidebar a[aria-current='page'] {
   font-size: 0.875em;
 }
 
-:root[data-theme='light'] .sl-markdown-content :not(pre) > code {
+:root[data-theme="light"] .sl-markdown-content :not(pre) > code {
   background: rgba(var(--mrover-accent-rgb), 0.08);
   color: var(--sl-color-accent-high);
   border-color: rgba(var(--mrover-accent-rgb), 0.2);
@@ -151,8 +152,12 @@ nav.sidebar a[aria-current='page'] {
   padding-block: 1.5rem;
 }
 
-:root[data-theme='dark'] .hero {
-  background: radial-gradient(ellipse at 50% 0%, rgba(var(--mrover-accent-rgb), 0.06) 0%, transparent 70%);
+:root[data-theme="dark"] .hero {
+  background: radial-gradient(
+    ellipse at 50% 0%,
+    rgba(var(--mrover-accent-rgb), 0.06) 0%,
+    transparent 70%
+  );
 }
 
 .hero .action.primary {
@@ -181,7 +186,9 @@ nav.sidebar a[aria-current='page'] {
 /* Cards */
 .sl-markdown-content .card {
   border-color: var(--sl-color-hairline-light);
-  transition: border-color 0.2s, box-shadow 0.2s;
+  transition:
+    border-color 0.2s,
+    box-shadow 0.2s;
 }
 
 .sl-markdown-content .card:hover {
@@ -202,20 +209,20 @@ nav.sidebar a[aria-current='page'] {
 }
 
 /* Scrollbar */
-:root[data-theme='dark'] ::-webkit-scrollbar {
+:root[data-theme="dark"] ::-webkit-scrollbar {
   width: 8px;
 }
 
-:root[data-theme='dark'] ::-webkit-scrollbar-track {
+:root[data-theme="dark"] ::-webkit-scrollbar-track {
   background: #161414;
 }
 
-:root[data-theme='dark'] ::-webkit-scrollbar-thumb {
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb {
   background: #3f3f3f;
   border-radius: 4px;
 }
 
-:root[data-theme='dark'] ::-webkit-scrollbar-thumb:hover {
+:root[data-theme="dark"] ::-webkit-scrollbar-thumb:hover {
   background: rgba(var(--mrover-accent-rgb), 0.5);
 }
 
@@ -238,4 +245,9 @@ nav.sidebar a[aria-current='page'] {
 /* Search */
 site-search button {
   border-color: var(--sl-color-hairline-light);
+}
+
+/* Code blocks: hide only terminal-style title bar */
+.expressive-code .frame .header {
+  display: none;
 }

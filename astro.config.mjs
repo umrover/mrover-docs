@@ -18,7 +18,9 @@ export default defineConfig({
     starlight({
       plugins: [starlightLinksValidator()],
       expressiveCode: {
-        frames: false,
+        frames: {
+          showCopyToClipboardButton: true,
+        },
       },
       title: "MRover Docs",
       favicon: "/favicon.ico",
