@@ -12,16 +12,18 @@ This path is **unofficial** and maintained by software leadership. Only native U
 
 The portable environment is built on [pixi](https://pixi.sh) and currently supports:
 
-| Subteam      | Non-Ubuntu24 Linux | Mac             |
-| ------------ | ------------------ | --------------- |
-| Navigation   | Supported          | Supported       |
-| Perception   | Semi-supported*    | Semi-supported* |
-| Localization | Supported          | Supported       |
-| ESW          | Supported          | Not supported   |
-| Teleop       | Supported          | Supported       |
-| Drone        | Supported          | Supported       |
+| Subteam      | Non-Ubuntu24 Linux | Mac                |
+| ------------ | ------------------ | ------------------ |
+| Navigation   | Supported          | Supported          |
+| Perception   | Semi-supported*    | Semi-supported*    |
+| Localization | Supported          | Supported          |
+| ESW          | Supported          | Mostly-supported** |
+| Teleop       | Supported          | Supported          |
+| Drone        | Supported          | Supported          |
 
 *Perception members should consult the perception lead directly
+
+** ESW mainly uses the `mrover-esw` repo. The `mrover-ros2` repo only contain the hardware bridges. It is acceptable for an ESW member to be unable to build ESW on the`mrover-ros2` repo
 
 :::danger
 Anything else, including Windows and Linux on arm64 (snapdragon), is **NOT** supported by the portable path.
