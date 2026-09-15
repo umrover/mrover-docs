@@ -21,10 +21,6 @@ I-EKF resources:
  * github repo of ROB 530 resources (code examples): https://github.com/UMich-CURLY-teaching/UMich-ROB-530-public
  * https://kth.diva-portal.org/smash/get/diva2:1632658/FULLTEXT01.pdf
 
-## Goals and steps
-### Derive measurement and process dynamics models for our system, implement a proof of concept
-We are currently developing a right-invariant EKF algorithm in MATLAB in the `loc/iekf` branch. Our goal is to fuse information from a variety of sensors in the RI-EKF by incorporating their data in the filter's prediction and correction steps.
-
 Sensors used in the prediction step typically don't provide a direct measurement of the rover's pose. Instead, information about the rover's pose can be derived using what we know about physics and kinematics.
  * gyroscope
  * accelerometer
@@ -35,6 +31,7 @@ Sensors used in the correction step are usually direct measurements of the rover
  * magnetometer
  * accelerometer (can provide roll/pitch)
  * RTK heading/pitch
+## Goals and steps
 
 ### Test in simulation and on rover
-After implementing a proof of concept, we would like to test it using some drive data and in simulation before uploading it onto the real rover.
+We have already implemented the IEKF on the loc/iekf branch, but it is not fully tested as of now. I would like to test it on the cart and, assuming it performs adequately, merge it into main.
