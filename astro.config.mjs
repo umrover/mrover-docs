@@ -94,190 +94,110 @@ export default defineConfig({
         },
         // ESW_SIDEBAR_START
         {
-          label: "Setup",
-          items: [
-            { label: "Getting Started", slug: "setup/getting-started" },
-            { label: "Installing Ubuntu", slug: "setup/installing-ubuntu" },
-            { label: "Native ROS Installation", slug: "setup/native-install" },
-            {
-              label: "Portable ROS Installation",
-              slug: "setup/portable-install",
-            },
-            {
-              label: "VM Setup",
-              collapsed: true,
-              items: [
-                {
-                  label: "macOS VM Setup (Deprecated)",
-                  slug: "general-resources/vm/macos-vm-setup",
-                },
-                {
-                  label: "USB Passthrough for UTM",
-                  slug: "general-resources/vm/usb-passthrough-utm",
-                },
-              ],
-            },
-          ],
-        },
-        {
-          label: "ESW",
+          label: 'ESW',
           collapsed: true,
           items: [
-            { label: "Home", slug: "esw" },
+            { label: 'Home', slug: 'esw' },
             {
-              label: "Getting Started",
+              label: 'Getting Started',
               collapsed: true,
               items: [
-                { label: "Introduction", slug: "esw/getting-started/intro" },
-                { label: "STM32Cube", slug: "esw/getting-started/stm32cube" },
+                { label: 'Introduction', slug: 'esw/getting-started/intro' },
+                { label: 'STM32Cube', slug: 'esw/getting-started/stm32cube' },
                 {
-                  label: "Starter Projects",
+                  label: 'Starter Projects',
                   collapsed: true,
                   items: [
-                    { label: "LED", slug: "esw/getting-started/starter/led" },
+                    { label: 'LED', slug: 'esw/getting-started/starter/led' },
                     {
-                      label: "Servo",
+                      label: 'Servo',
                       collapsed: true,
                       items: [
-                        {
-                          label: "Part 1: PWM",
-                          slug: "esw/getting-started/starter/servo/part1-pwm",
-                        },
-                        {
-                          label: "Part 2: CAN",
-                          slug: "esw/getting-started/starter/servo/part2-can",
-                        },
-                      ],
+                        { label: 'Part 1: PWM', slug: 'esw/getting-started/starter/servo/part1-pwm' },
+                        { label: 'Part 2: CAN', slug: 'esw/getting-started/starter/servo/part2-can' }
+                      ]
                     },
-                    {
-                      label: "Temp-Humidity",
-                      slug: "esw/getting-started/starter/temp-humidity",
-                    },
-                  ],
-                },
-              ],
+                    { label: 'Temp-Humidity', slug: 'esw/getting-started/starter/temp-humidity' }
+                  ]
+                }
+              ]
             },
             {
-              label: "Projects",
+              label: 'Projects',
               collapsed: true,
               items: [
-                { label: "Overview", slug: "esw/projects/overview26" },
+                { label: 'Overview', slug: 'esw/projects/overview26' },
                 {
-                  label: "Boards",
+                  label: 'Boards',
                   collapsed: true,
                   items: [
-                    { label: "Overview", slug: "esw/projects/boards" },
-                    { label: "ABS", slug: "esw/projects/boards/abs" },
-                    { label: "BMC", slug: "esw/projects/boards/bmc" },
-                    { label: "LIM", slug: "esw/projects/boards/lim" },
-                    { label: "PDB", slug: "esw/projects/boards/pdlb" },
-                    { label: "Science", slug: "esw/projects/boards/science" },
-                  ],
-                },
-              ],
+                    { label: 'Overview', slug: 'esw/projects/boards' },
+                    { label: 'ABS', slug: 'esw/projects/boards/abs' },
+                    { label: 'BMC', slug: 'esw/projects/boards/bmc' },
+                    { label: 'LIM', slug: 'esw/projects/boards/lim' },
+                    { label: 'PDB', slug: 'esw/projects/boards/pdlb' },
+                    { label: 'Science', slug: 'esw/projects/boards/science' }
+                  ]
+                }
+              ]
             },
             {
-              label: "Reference",
+              label: 'Reference',
               collapsed: true,
               items: [
                 {
-                  label: "Build System",
+                  label: 'Build System',
                   collapsed: true,
                   items: [
-                    { label: "Overview", slug: "esw/reference/build" },
-                    {
-                      label: "Project Anatomy",
-                      slug: "esw/reference/build/project-layout",
-                    },
-                    {
-                      label: "Toolchain and Presets",
-                      slug: "esw/reference/build/toolchain",
-                    },
-                    {
-                      label: "Generated Libraries",
-                      slug: "esw/reference/build/codegen",
-                    },
-                    {
-                      label: "Build Script Internals",
-                      slug: "esw/reference/build/build-script",
-                    },
-                    {
-                      label: "Continuous Integration",
-                      slug: "esw/reference/build/ci",
-                    },
-                  ],
+                    { label: 'Overview', slug: 'esw/reference/build' },
+                    { label: 'Project Anatomy', slug: 'esw/reference/build/project-layout' },
+                    { label: 'Toolchain and Presets', slug: 'esw/reference/build/toolchain' },
+                    { label: 'Generated Libraries', slug: 'esw/reference/build/codegen' },
+                    { label: 'Build Script Internals', slug: 'esw/reference/build/build-script' },
+                    { label: 'Continuous Integration', slug: 'esw/reference/build/ci' }
+                  ]
                 },
                 {
-                  label: "Configuration",
+                  label: 'Configuration',
                   collapsed: true,
                   items: [
-                    { label: "Overview", slug: "esw/reference/config" },
-                    {
-                      label: "Register Definitions",
-                      slug: "esw/reference/config/schema",
-                    },
-                    {
-                      label: "Device Values",
-                      slug: "esw/reference/config/devices",
-                    },
-                    {
-                      label: "CAN Configuration Interface",
-                      slug: "esw/reference/config/can-interface",
-                    },
-                  ],
+                    { label: 'Overview', slug: 'esw/reference/config' },
+                    { label: 'Register Definitions', slug: 'esw/reference/config/schema' },
+                    { label: 'Device Values', slug: 'esw/reference/config/devices' },
+                    { label: 'CAN Configuration Interface', slug: 'esw/reference/config/can-interface' }
+                  ]
                 },
                 {
-                  label: "Python Tools",
+                  label: 'Python Tools',
                   collapsed: true,
                   items: [
-                    { label: "Overview", slug: "esw/reference/python" },
-                    { label: "esw.can", slug: "esw/reference/python/can" },
-                    {
-                      label: "esw.config",
-                      slug: "esw/reference/python/config",
-                    },
-                    {
-                      label: "esw.cubemx",
-                      slug: "esw/reference/python/cubemx",
-                    },
-                    {
-                      label: "esw.stlink",
-                      slug: "esw/reference/python/stlink",
-                    },
-                    {
-                      label: "esw.visualization",
-                      slug: "esw/reference/python/visualization",
-                    },
-                    {
-                      label: "Script Reference",
-                      slug: "esw/reference/python/scripts",
-                    },
-                  ],
+                    { label: 'Overview', slug: 'esw/reference/python' },
+                    { label: 'esw.can', slug: 'esw/reference/python/can' },
+                    { label: 'esw.config', slug: 'esw/reference/python/config' },
+                    { label: 'esw.cubemx', slug: 'esw/reference/python/cubemx' },
+                    { label: 'esw.stlink', slug: 'esw/reference/python/stlink' },
+                    { label: 'esw.visualization', slug: 'esw/reference/python/visualization' },
+                    { label: 'Script Reference', slug: 'esw/reference/python/scripts' }
+                  ]
                 },
-                {
-                  label: "Maintaining Documentation",
-                  slug: "esw/reference/maintaining-docs",
-                },
-              ],
+                { label: 'Maintaining Documentation', slug: 'esw/reference/maintaining-docs' }
+              ]
             },
             {
-              label: "Useful Information",
+              label: 'Useful Information',
               collapsed: true,
               items: [
-                { label: "Build Tools", slug: "esw/info/build" },
-                { label: "Timers", slug: "esw/info/timers" },
-                {
-                  label: "Communication Protocols",
-                  slug: "esw/info/communication-protocols",
-                },
-                { label: "Brushed Motors", slug: "esw/info/brushed" },
-                { label: "Brushless Motors", slug: "esw/info/brushless" },
-                { label: "Cameras", slug: "esw/info/cameras" },
-                { label: "Nucleo Information", slug: "esw/info/nucleos" },
-                { label: "STM32 Boot", slug: "esw/info/stm32-boot" },
-              ],
-            },
-          ],
+                { label: 'Build Tools', slug: 'esw/info/build' },
+                { label: 'Timers', slug: 'esw/info/timers' },
+                { label: 'Communication Protocols', slug: 'esw/info/communication-protocols' },
+                { label: 'Brushed Motors', slug: 'esw/info/brushed' },
+                { label: 'Brushless Motors', slug: 'esw/info/brushless' },
+                { label: 'Cameras', slug: 'esw/info/cameras' },
+                { label: 'Nucleo Information', slug: 'esw/info/nucleos' },
+                { label: 'STM32 Boot', slug: 'esw/info/stm32-boot' }
+              ]
+            }
+          ]
         },
         // ESW_SIDEBAR_END
         {
