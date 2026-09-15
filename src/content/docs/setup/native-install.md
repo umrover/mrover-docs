@@ -51,7 +51,7 @@ mrover
 
 Open a new terminal, run `mrover`, and try:
 
-```
+```bash
 ros2 launch mrover simulator.launch.py
 ```
 
@@ -63,7 +63,7 @@ If the simulator's mouse sensitivity seems too high, edit `/etc/gdm3/custom.conf
 
 Our dependencies change over time. If a build starts failing complaining about a missing dependency, or you just want to make sure you're current, run:
 
-```
+```bash
 ./ansible.sh dev.yml
 ```
 
