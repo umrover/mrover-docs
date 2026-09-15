@@ -248,6 +248,10 @@ site-search button {
 }
 
 /* Code blocks: hide only terminal-style title bar */
+.expressive-code .frame {
+  --button-spacing: 0.4rem;
+}
+
 .expressive-code .frame .header {
   display: none;
 }
