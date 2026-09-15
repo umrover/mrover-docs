@@ -27,7 +27,7 @@ A working mrover install, per the
 Then build the ROS 2 workspace by running
 ```bash
 mrover
-build_mrover
+./build.sh
 ```
 
 ### Setup
