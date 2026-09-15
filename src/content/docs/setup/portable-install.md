@@ -5,27 +5,29 @@ sidebar:
 ---
 
 :::caution
-This path is **unofficial** and maintained by software leadership. Only native Ubuntu 24.04 is officially supported.
+This path is **unofficial** and maintained by software leads. Only Ubuntu 24.04 is officially supported.
 :::
 
 ## Supported Platforms
 
 The portable environment is built on [pixi](https://pixi.sh) and currently supports:
 
-| Subteam      | Non-Ubuntu24 Linux | Mac                |
-| ------------ | ------------------ | ------------------ |
-| Navigation   | Supported          | Supported          |
-| Perception   | Semi-supported*    | Semi-supported*    |
-| Localization | Supported          | Supported          |
-| ESW          | Supported          | Mostly-supported** |
-| Teleop       | Supported          | Supported          |
-| Drone        | Supported          | Supported          |
+| Subteam      | Non-Ubuntu24 Linux | Mac                 |
+| ------------ | ------------------ | ------------------- |
+| Navigation   | Supported          | Supported           |
+| Perception   | Mostly Supported*  | Mostly Supported**  |
+| Localization | Supported          | Supported           |
+| ESW          | Supported          | Mostly Supported*** |
+| Teleop       | Supported          | Supported           |
+| Drone        | Supported          | Supported           |
 
-*Perception members should consult the perception lead directly
+*Zed SDK is only available for Ubuntu
 
-** ESW mainly uses the `mrover-esw` repo. The `mrover-ros2` repo only contain the hardware bridges. It is acceptable for an ESW member to be unable to build ESW on the`mrover-ros2` repo
+**CUDA is not available on Mac
 
-:::danger
+***The main `mrover-esw` is supported on mac, but `mrover-ros2` will not build the ESW module on mac
+
+:::danger[Disclaimer]
 Anything else, including Windows and Linux on arm64 (snapdragon), is **NOT** supported by the portable path.
 :::
 
