@@ -92,6 +92,32 @@ export default defineConfig({
             },
           ],
         },
+        {
+          label: "Setup",
+          items: [
+            { label: "Getting Started", slug: "setup/getting-started" },
+            { label: "Installing Ubuntu", slug: "setup/installing-ubuntu" },
+            { label: "Native ROS Installation", slug: "setup/native-install" },
+            {
+              label: "Portable ROS Installation",
+              slug: "setup/portable-install",
+            },
+            {
+              label: "VM Setup",
+              collapsed: true,
+              items: [
+                {
+                  label: "macOS VM Setup (Deprecated)",
+                  slug: "general-resources/vm/macos-vm-setup",
+                },
+                {
+                  label: "USB Passthrough for UTM",
+                  slug: "general-resources/vm/usb-passthrough-utm",
+                },
+              ],
+            },
+          ],
+        },
         // ESW_SIDEBAR_START
         {
           label: 'ESW',
