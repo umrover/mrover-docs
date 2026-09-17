@@ -1,6 +1,7 @@
 ---
 title: "Autonomy Quickstart"
 ---
+<!-- 
 This assumes that you have already installed (and verified) ROS for our system, if not follow [Getting Started](/setup/getting-started) 
 
 This tutorial will take you through starting up the autonomy system and running the navigation code to hopefully be able to see the rover run in simulation.
@@ -30,3 +31,4 @@ Now, from another terminal window/tab, run:
 `ros2 run mrover debug_course_publisher.py`
 
 This will publish a test course to the navigation system and you should start to see the rover moving towards the waypoint and completing the autonomy mission as well as updates on the state machine visualizer regarding what state the rover is in.
+-->
