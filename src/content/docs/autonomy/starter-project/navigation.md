@@ -4,11 +4,11 @@ sidebar:
   order: 4
 ---
 
-For the navigation part of the starter project, you will write a ROS2 node that uses the outputs of the localization and perception nodes to navigate the rover. In particular, you will first command the rover to drive towards a predefined point (8m, 2m). Once the rover has arrived at this point, it should be able to detect and see an AR tag. The rover will then turn until it is aligned with the AR tag and then drive forward towards it until a predefined distance threshold.
+For the navigation part of the starter project, you will write a ROS2 node that uses the outputs of the localization and perception nodes to navigate the rover. In particular, you will first command the rover to drive towards a predefined point (7m, 5m). Once the rover has arrived at this point, it should be able to detect and see an AR tag. The rover will then turn until it is aligned with the AR tag and then drive forward towards it until a predefined distance threshold.
 
 Outlining the steps mentioned above, the navigation node can be broken up into two parts:
 
-1.  Waypoint Navigation: Given the rover's pose (position and heading) from the localization node, the rover will turn and drive towards and stop at the point (8, 2).
+1.  Waypoint Navigation: Given the rover's pose (position and heading) from the localization node, the rover will turn and drive towards and stop at the point (7, 5).
 2.  AR Tag Navigation: Using the perception node, the rover will turn towards the detected AR Tag. It will then drive towards the AR Tag and stop in front of it within a given distance threshold.
 
 The navigation node in this part will command the rover to drive by publishing a drive command. Thinking in terms of the inputs and outputs for this node often makes this navigation node easier to understand:
@@ -83,28 +83,43 @@ First of all, what is a state? Please read [this page](/autonomy/navigation/over
 
 In `state.py`
 
-We have provided a Done State that represents the rover in its "Done State". We don't want our program to end when the rover completes, so we have a state that essentially loops and does nothing. We have also provided a Fail State that represents a failure to finish the task.
+We have provided a Done State that represents the rover in its "Done State". We don't want our program to end when the rover completes, so we have a state that essentially loops and does nothing. We have also provided a Fail State that represents a failure to finish the task because of some type of error.
 
 #### Drive State (TODOs)
 
 In `drive_state.py`
 
-The goal of this state is to drive towards the set point (8, 2). We've created the class for you but you will need to implement the `on_loop()` function. We've provided a general outline in the comments of how this function might be structured and have also providing a function `get_drive_command()` imported from `drive.py` that you can use to do some of the math in this step for you. The function should return the state it needs to transition to next.
+The goal of this state is to drive towards the set point (7, 5). We've created the class for you, but you will need to implement the `on_loop()` function. We've provided a general outline in the comments of how this function might be structured and have also provided a function `get_drive_command()` imported from `drive.py` that you can use to do some of the math in this step for you. The function should return the state it needs to transition to next.
+Hint: Use the functions from 'context.rover' we've already written
 
-Hint: Use the functions from context.rover we've already written
+Start by getting the rover's current pose. If we don't have a valid pose from the system yet, stay in this DriveState and try again next loop. Once you have a pose, use `get_drive_command()` to evaluate our route toward the target. You need to extract two things from this function: the drive command itself, and our completion status. 
+HINT: Use thresholds 0.7 and 0.2 for completion_thresh and turn_in_place_thresh respectively.
+
+If we are finished getting to the target, transition to the TagSeekState. Either way, send the drive command to the rover, and tell the state machine to stay in the DriveState (keep driving) by returning self.
 
 #### Tag Seek State (TODOs)
 
 In `tag_seek.py`
 
-The goal of this state is to drive towards the AR tag after arriving at the set point (8, 2). We've created the class for you but, just like the Drive State, you will need to implement the `on_loop()` function. This will be a bit trickier as you don't actually have a pose to drive to; instead, you just have the same general measurements regarding angular and distance offsets that you calculated earlier.
+The goal of this state is to drive towards the AR tag after arriving at the set point (7, 5). We've created the class for you but, just like the Drive State, you will need to implement the `on_loop()` function. This will be a bit trickier as you don't actually have a pose to drive to; instead, you just have the same general measurements regarding angular and distance offsets that you calculated earlier.
 
-You can get information about how close the rover is to the tag by using the function `get_fid_data` in context.env. You want the rover to be within a certain distance (`DISTANCE_TOLERANCE`) from the tag, and face the tag within a certain angular distance (`ANGULAR_TOLERANCE`), to be able to transition to the Done state. We have set these tolerances to be `DISTANCE_TOLERANCE = 0.99`, `ANGULAR_TOLERANCE = 0.3`. Hint: `get_fid_data()` returns `StarterProjectTag`, this includes information about how close the rover is to the tag and the measurements of where the center of the tag is in our view (x and y). In a way you can think of this as the location of the tag being relative to the rovers frame.
+The simulator publishes 640-pixel-wide images on `/zed/left/image`, and perception publishes the tag's center as an absolute pixel x-coordinate. CENTERING_TOLERANCE (5% of the image width) defines how close to dead-center the tag needs to be, and CLOSENESS_THRESHOLD defines how close the rover needs to get, before you can transition to the Done state.
 
-If the rover is not within the angular and distance tolerances, create a twist command and change the linear.x value and/or the angular.z value so that the rover becomes within the tolerances. Then send this twist command to the rover and stay in the TagSeekState.
+Start by fetching the tag's location and properties using `get_fid_data()` from `context.env`. 
+HINT: You can get information about the tag using the 'get_fid_data' function in `context.env`. 
+
+If a valid tag isn't found (None or -1), command the rover to spin in place to search for it.
+HINT: Track the number of consecutive failed detections, and if it exceeds `TAG_FAILURE_TOLERANCE`, halt the rover and transition to the FailState.
+
+Once you have a tag, calculate its horizontal error as a fraction of the total camera width.
+HINT: Use the tag's x-coordinate and the CAMERA_* constants defined above. Expected output: 0.0 is dead center, < 0.0 is left, and > 0.0 is right.
+
+From there, create two boolean variables that evaluate the rover's position: whether the tag is centered within tolerance and whether the rover is close enough to the target. If the tag is both centered and close enough, halt the rover and transition to the DoneState. Otherwise, construct a Twist command defining the rover's drive-to-tag behavior. 
+
+Hint: Think about the physical movement required: how should the distance and centering booleans influence forward speed versus rotational speed? If the rover needs to turn, how do you determine the direction? Use `TURN_ANGULAR_SPEED` and `DRIVE_SPEED`. Send the Twist command to the rover, and remain in the current state (TagSeekState).
 
 #### Navigation class (TODOs)
 
 In `navigation_starter_project.py`
 
-The navigation class is where the whole state machine comes together. We've already done the hard work of creating the whole state machine now we just need to put it all together. We've already added the DoneState to the state machine, and use a similar pattern for adding the TagSeek and DriveState states to the state machine. Then to finish everything, you will need to write the line of code which initializes a node.
+The navigation class is where the whole state machine comes together. We've already done the hard work of creating the whole state machine now we just need to put it all together. We've already added the DoneState to the state machine, and use a similar pattern for adding the TagSeek and DriveState states to the state machine. Then, to finish everything, you will need to write the line of code that initializes a node.
