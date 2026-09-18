@@ -5,7 +5,16 @@ sidebar:
 ---
 # Perception
 
-For the perception starter project, you will implement a ROS2 node that uses camera data to detect ArUco tags using [OpenCV](https://github.com/opencv/opencv), a popular computer vision library. Navigation will read this data in order to align the rover with it. If you are unfamiliar with ArUco tags, it might be helpful to quickly read the "ArUco Markers" section of the [perception overview](/autonomy/perception/overview) as a primer. Don't worry about the "Update Loop" in the Details section.
+For the perception starter project, you will implement a ROS2 node that uses camera data to detect ArUco tags using [OpenCV](https://github.com/opencv/opencv), a popular computer vision library. Navigation will read this data in order to drive towards and align the rover with it. 
+
+Examples of ArUco tags are pictured below. ArUco tags have an ID that corresponds to the pattern it contains.
+![image](https://user-images.githubusercontent.com/20666629/172561442-05b84fd3-aab9-4d5b-88d1-87579985dcff.png)
+
+### Nodes, Topics, Publishers, and Subscribers
+Before we start, let's clarify some unique ROS features and vocabulary. What are nodes and topics? What does "publish" or "subscribe" mean? First, let's talk about nodes. You may have written programming projects in the past that start in a `main()` function, and then run sequentially before exiting. In contrast, you can think of ROS2 projects as being a collection of independent processes constantly running at the same time. Each of the processes is called a "node", and they usually do not exit unless the user stops it.
+
+<!-- insert pictures here -->
+It usually isn't very useful to have a bunch of nodes that are unable to communicate with each other. This is where publishers, subscribers, and topics come in. In this starter project, the Perception node will transmit its results to the Navigation node through this framework. 
 
 ### Inputs
 - Image data: `Image` messages published to the `/zed/left/image` topic
