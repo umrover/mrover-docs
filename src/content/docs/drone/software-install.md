@@ -116,7 +116,7 @@ chmod +x QGroundControl.AppImage
 Start by running the DDS *agent*. In a new terminal, run:
 ```
 cd ~/ros2_ws/src/mrover_drone/deps/PX4-Autopilot
-source /opt/ros/humble/setup.zsh
+source /opt/ros/jazzy/setup.zsh
 MicroXRCEAgent udp4 -p 8888
 ```
 
