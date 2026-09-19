@@ -3,47 +3,48 @@ title: "Perception"
 sidebar:
   order: 3
 ---
-# Perception
+# Overview
 
 For the perception starter project, you will implement a ROS2 node that uses camera data to detect ArUco tags using [OpenCV](https://github.com/opencv/opencv), a popular computer vision library. Navigation will read this data in order to drive towards and align the rover with it. 
 
-Examples of ArUco tags are pictured below. ArUco tags have an ID that corresponds to the pattern it contains.
+Example ArUco tags are pictured below. ArUco tags have an ID that corresponds to the pattern it contains.
 ![image](https://user-images.githubusercontent.com/20666629/172561442-05b84fd3-aab9-4d5b-88d1-87579985dcff.png)
 
 ### Nodes, Topics, Publishers, and Subscribers
 Before we start, let's clarify some unique ROS features and vocabulary. What are nodes and topics? What does "publish" or "subscribe" mean? First, let's talk about nodes. You may have written programming projects in the past that start in a `main()` function, and then run sequentially before exiting. In contrast, you can think of ROS2 projects as being a collection of independent processes constantly running at the same time. Each of the processes is called a "node", and they usually do not exit unless the user stops it.
 
 <!-- insert pictures here -->
-It usually isn't very useful to have a bunch of nodes that are unable to communicate with each other. This is where publishers, subscribers, and topics come in. In this starter project, the Perception node will transmit its results to the Navigation node through this framework. 
+It usually isn't very useful to have a bunch of nodes that are unable to communicate with each other. This is where publishers, subscribers, and topics come in. Nodes can instantiate **publishers**, which send, or "publish", data to a named **topic**. Other nodes then might instantiate **subscribers**, which retrieve, or "subscribe", data from a named topic. The data being sent back and forth are called **messages**. Publishers and subscribers do not know about *who* is sending or retrieving the information, just the name of the topic it is reading from. Multiple publishers can publish to the same topic, and multiple subscribers can subscribe to the same topic. Additionally, nodes may have any amount of publishers/subscribers.
 
-### Inputs
-- Image data: `Image` messages published to the `/zed/left/image` topic
+<!-- Useful picture of pub/sub here-->
 
-### Outputs
-- A custom message published to `/tag` topic containing data about the closest detected ArUco tag:
-    - The tag's ID
-    - The x-coordinate of the center of the tag in the image
-    - The y-coordinate of the center of the tag in the image
-    - A closeness metric representing how far away the tag is
+A helpful analogy might be an anonymous online forum. Unknown users (ROS nodes) may publish messages to a thread (topic) while other users can go to that thread and see (subscribe) that post. In this starter project, the Perception node subscribes to the `/zed/left/image` topic, which sends image frames from the [ZED stereo camera](https://www.stereolabs.com/products/zed-2) approximately 60 times per second. The Perception node also publishes to the `/tag` topic, which the Navigation node will subscribe to.
 
-Note: the [ROS2 humble wiki](https://docs.ros.org/en/humble/index.html), software leads, and fellow members are a great resource if you are struggling with anything. Don't be afraid to ask questions; it's how we learn!
+### Custom Messages
 
-## Implementation
-
-### Creating a Custom Tag Message
-
-ROS projects can be thought of as a collection of nodes that talk to each other via named [topics](http://wiki.ros.org/Topics). However, without any extra information, the data flowing between the nodes are just bytes. 
-
-[Messages](http://wiki.ros.org/msg) help define how this data is structured. ROS has many predefined message types, but you can also create your own custom message templates. We want to make a custom type that gives Navigation useful information about the ArUco tag. We have implemented this in `msg/StarterProjectTag.msg` for you.
+Different nodes often want to transmit different types and amounts of data. For example, a camera feed would be a continuous stream of massive RGB pixel matrices while a button sensor might publish a simple boolean state (pressed or not pressed). ROS enables this customization through [Messages](https://wiki.ros.org/msg) by allowing you to define your own message templates. Below, you can see the custom message type we have defined for you in `msg/StarterProjectTag.msg`. The name of the `.msg` file defines what the message type is called inside your C++ code.  
 
 ```
-int32 tag_id
+int32 tag_id            
 float32 x_tag_center_pixel
 float32 y_tag_center_pixel
 float32 closeness_metric
 ```
 
-You will implement the functions in `perception.cpp` to identify the values of the above four variables, use them to construct a `StarterProjectTag`, and publish the message to the `/tag` topic for Navigation to read ("subscribe") from.
+## Perception Starter Project
+
+### Inputs
+- Image data in the form of `Image` messages published to the `/zed/left/image` topic
+
+### Outputs
+- One message published to `/tag` topic containing data about the closest detected ArUco tag:
+    - The tag's ID
+    - The x-coordinate of the center of the tag in the image
+    - The y-coordinate of the center of the tag in the image
+    - A closeness metric representing how far away the tag is
+
+
+For this project, you will implement the functions in `perception.cpp` to identify the values of the above four variables, use them to construct a `StarterProjectTag`, and publish the message to the `/tag` topic for Navigation to read ("subscribe") from.
 
 From the terminal, make sure you are in the correct repository by running `auton_starter` and then `build_starter` to build the message file.
 
@@ -58,6 +59,8 @@ To complete the Perception starter project, you will implement 7 functions of th
 - getCenterFromTagCorners()
 
 Each of these functions have corresponding headers in `perception.hpp` that might be helpful. You shouldn't have to create any other functions.
+
+<!-- draw the function call diagram here and say explicitly what they need to do -->
 
 ### Setup with Perception()
 Let's take a look at the constructor `Perception::Perception` in `perception.cpp`. This function does a lot of important setup. Before we can figure out any information like where the center of the detected tag is, we first need to get the actual camera frame. 
@@ -165,6 +168,8 @@ In VS Code, hit Ctrl-Shift-P and run `Cmake: Debug`. Select "Unspecified" if it 
 Make sure to set breakpoints in the source code files! They can provide useful information that print statements can't.
 
 ### Extra
+
+Note: the [ROS2 jazzy wiki](https://docs.ros.org/en/jazzy/index.html), software leads, and fellow members are a great resource if you are struggling with anything. Don't be afraid to ask questions; it's how we learn!
 
 #### What is Camera Space?
 
