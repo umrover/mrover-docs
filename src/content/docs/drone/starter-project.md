@@ -16,7 +16,40 @@ These are the fundamentals of ROS2. The docs linked have many additional tutoria
 
 ## Clone and create starter project branch
 
-Once you have completed the ROS2 tutorials, move onto the starter project. Here we will create a ROS2 node that uses the PX4 libraries to move the drone around. The key idea is we define a PX4 'Mode' that simply specifies a control mechanism for the drone. Examples of PX4 modes are 'takeoff' (which makes the drone take off) or 'hold' (which keeps the drone in its current position). In our case, our mode will fly the drone around in a pattern. Read more about PX4 and modes [here](https://docs.px4.io/main/en/ros2/px4_ros2_control_interface.html).
+Once you have completed the ROS2 tutorials, move onto the starter project. Here we will create a ROS2 node that will control PX4 through MAVROS, moving the drone! 
+
+We will do this using `starter_project`, a ROS2 node that you will create. You will write most of your code in `starter-project/src/starter_project_mavros_node.cpp`, but integral to this structure is also `starter-project/launch/starter_project.launch.py`, which launches the controller node, and `drone_gs/launch/mavros.launch.py`, which launches MAVROS.
+
+## Project Structure
+
+The data flow is:
+
+```text
+PX4 <-> MAVLink <-> MAVROS <-> ROS 2 starter_project_mavros_node
+```
+
+The node will receive the drone's state and pose (position data) from MAVROS, and use them to publish setpoints from a list for the drone to go to. While keeping a drone in the air is complex, PX4 makes sure that the drone can fly and controls the motors, making your job a lot easier.
+
+## Building and Running
+
+Building this project can seem confusing at first, but as you keep working on it it should get a lot easier! Here is a list of commands in order to run to launch a drone simulator (Gazebo and QGroundControl), MAVROS, and your ROS2 Node.
+
+### Build
+
+First, you have to compile your node. This turns your code into commands that the computer can use.
+
+```zsh
+cd ~/ros2_ws
+unset AMENT_CURRENT_PREFIX AMENT_PREFIX_PATH COLCON_PREFIX_PATH
+source /opt/ros/jazzy/setup.zsh
+colcon build --symlink-install --packages-select starter_project drone_gs
+source ~/ros2_ws/install/setup.zsh
+```
+
+
+
+
+The key idea is we define a PX4 'Mode' that simply specifies a control mechanism for the drone. Examples of PX4 modes are 'takeoff' (which makes the drone take off) or 'hold' (which keeps the drone in its current position). In our case, our mode will fly the drone around in a pattern. Read more about PX4 and modes [here](https://docs.px4.io/main/en/ros2/px4_ros2_control_interface.html).
 
 After cloning the drone repo, switch to the starter project branch:
 ```
