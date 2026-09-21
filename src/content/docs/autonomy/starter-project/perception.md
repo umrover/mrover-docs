@@ -20,7 +20,7 @@ Before we start, let's clarify some unique ROS features and vocabulary. What are
 It usually isn't very useful to have a bunch of nodes that are unable to communicate with each other. This is where publishers, subscribers, and topics come in. Nodes can instantiate **publishers**, which send, or "publish", data to a named **topic**. Other nodes then might instantiate **subscribers**, which retrieve, or "subscribe", data from a named topic. The data being sent back and forth are called **messages**. Publishers and subscribers do not know about *who* is sending or retrieving the information, just the name of the topic it is reading from. Multiple publishers can publish to the same topic, and multiple subscribers can subscribe to the same topic. Additionally, nodes may have any amount of publishers/subscribers.
 
 <!-- Useful picture of pub/sub here-->
-![Publishers and Subscribers](https://github-production-user-asset-6210df.s3.amazonaws.com/113308723/656059215-545f19cb-f656-40da-aead-77ef643dceaa.jpg?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260921%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260921T205745Z&X-Amz-Expires=300&X-Amz-Signature=eca66b24e1e126bae3d477456214f05f95dc01bfb091e1e28a84c196295d6f1a&X-Amz-SignedHeaders=host&response-content-type=image%2Fjpeg)
+![Publishers and Subscribers](https://raw.githubusercontent.com/danielryckman/images/refs/heads/main/sddefault(1).jpg)
 
 A helpful analogy might be an anonymous online forum. Unknown users (ROS nodes) may publish messages to a thread (topic) while other users can go to that thread and see (subscribe) that post. In this starter project, the Perception node subscribes to the `/zed/left/image` topic, which sends image frames from the [ZED stereo camera](https://www.stereolabs.com/products/zed-2) approximately 60 times per second. The Perception node also publishes to the `/tag` topic, which the Navigation node will subscribe to.
 
@@ -72,7 +72,7 @@ Based on the names of the functions, the parameters/return variables for each fu
 
 Talk with the people around you and the autonomy leads if you have any questions! One possible working example is shown below. The direction of the arrows indicates the movement of data, not which function is calling which.
 
-![Example function call graph for perception starter project](https://github-production-user-asset-6210df.s3.amazonaws.com/113308723/656052102-aba7fd6a-0a78-4d58-969e-abab3e138e58.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Credential=AKIAVCODYLSA53PQK4ZA%2F20260921%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Date=20260921T204323Z&X-Amz-Expires=300&X-Amz-Signature=6d933b1fe055699ec4e5517a1ea6377f7599f41b51c7ea698266e0c6c874b5c6&X-Amz-SignedHeaders=host&response-content-type=image%2Fpng)
+![Example function call graph for perception starter project](https://raw.githubusercontent.com/danielryckman/images/refs/heads/main/Starter%20Project%20Graph(1).png)
 
 
 ### The Perception() constructor
