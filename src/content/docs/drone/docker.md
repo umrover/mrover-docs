@@ -8,9 +8,9 @@ Before beginning these steps, install QGroundControl locally on your system: htt
 ## Windows (WSL)
 1. In PowerShell, install WSL:
 ```
-wsl.exe --install Ubuntu-22.04
+wsl.exe --install Ubuntu-24.04
 ```
-2. Open WSL (Ubuntu 22.04 shortcut) and install git:
+2. Open WSL (Ubuntu 24.04 shortcut) and install git:
 ```
 sudo apt install -y git
 ```
