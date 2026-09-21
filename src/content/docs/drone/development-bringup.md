@@ -8,7 +8,7 @@ This is a tutorial and explanation on how to bringup the development environment
 Set up the environment:
 ```
 cd ~/ros2_ws/src/mrover_drone/
-source /opt/ros/humble/setup.zsh
+source /opt/ros/jazzy/setup.zsh
 source install/setup.zsh
 ```
 Run the drone_sim launch file:
@@ -21,7 +21,7 @@ This reflects how the groundstation code will interact with PX4. Fcu_url is the 
 Because we are running the software simulator locally, its the loopback address (127.0.0.1) at the default port of 14557.
 ```
 cd ~/ros2_ws/src/mrover_drone/
-source /opt/ros/humble/setup.zsh
+source /opt/ros/jazzy/setup.zsh
 ros2 launch mavros px4.launch fcu_url:="udp://:14540@127.0.0.1:14557"
 ```
 If you are running with the actual drone, run `ifconfig` to find the radio link's remote address. Then run:
