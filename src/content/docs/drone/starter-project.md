@@ -78,7 +78,7 @@ unset AMENT_CURRENT_PREFIX AMENT_PREFIX_PATH COLCON_PREFIX_PATH
 source /opt/ros/jazzy/setup.zsh
 colcon build --symlink-install --packages-select starter_project drone_gs
 source ~/ros2_ws/install/setup.zsh
-ros2 run starter_project starter_project_mavros_node --ros-args -p auto_offboard:= true -p auto_arm:=true
+ros2 run starter_project starter_project_mavros_node --ros-args -p auto_offboard:=true -p auto_arm:=true
 ```
 Now you should be able to see your drone flying on to the points you set in QGroundControl! Gazebo can also show you a visual of this. In the future, we can also experiment with running this code on our real drone!
 
