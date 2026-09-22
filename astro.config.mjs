@@ -464,7 +464,7 @@ export default defineConfig({
             { label: "Resources", slug: "drone/resources" },
             { label: "Software Install", slug: "drone/software-install" },
             {
-              label: "Software Starter Project 2025-26",
+              label: "Software Starter Project 2026-27",
               slug: "drone/starter-project",
             },
             { label: "System Architecture", slug: "drone/system-architecture" },
