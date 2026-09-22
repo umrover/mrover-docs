@@ -42,7 +42,7 @@ Building this project can seem confusing at first, but as you keep working on it
 
 ### Build
 
-First, you have to create a simulation drone using PX4 and Gazebo.
+First, you have to create a simulation drone using PX4 and Gazebo.**Open a new terminal** and paste in the following commands.
 
 ```zsh
 cd ~/ros2_ws/src/mrover_drone/deps/PX4-Autopilot
