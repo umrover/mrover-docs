@@ -31,7 +31,10 @@ PX4 <-> MAVLink <-> MAVROS <-> ROS 2 starter_project_mavros_node
 The node will receive the drone's state and pose (position data) from MAVROS, and use them to publish setpoints from a list for the drone to go to. While keeping a drone in the air is complex, PX4 makes sure that the drone can fly and controls the motors, making your job a lot easier.
 
 ### Tasks
-
+1. Skim through the code in starter-project/src/starter_project_mavros_node.cpp. Feel free to ask questions if anything looks confusing!
+2. Complete the position subscription and poseCallback() function
+3. Complete the updateTargetIfReached function. This function helps the drone cycle through the setpoints
+4. Feel free to put in your own list of setpoints! 
 
 ## Building and Running
 
