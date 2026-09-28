@@ -2,42 +2,29 @@
 import Default from '@astrojs/starlight/components/SiteTitle.astro';
 import { Icon } from '@astrojs/starlight/components';
 
-// keep in sync with the top-level sidebar groups in astro.config.mjs
-// icons Starlight doesn't ship, as inline svg markup
-const custom: Record<string, string> = {
-	bolt: '<path fill="currentColor" d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
-	flask:
-		'<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 3h6M10 3v6.2a6.1 6.1 0 1 0 4 0V3"/>',
-};
+// keep in sync with the sidebar groups in astro.config.mjs
+// bolt and flask aren't Starlight icons, so they're inline svg
 const sections = [
 	{ name: 'Software', icon: 'laptop', blurb: 'Autonomy, Teleop, ESW, Drone' },
 	{ name: 'Mechanical', icon: 'setting', blurb: 'Mobility, Chassis, Robotic Arm' },
-	{ name: 'Electrical', icon: 'bolt', blurb: 'Power, Embedded Hardware, Communications' },
-	{ name: 'Science', icon: 'flask', blurb: 'Science Payload, Astrobiology' },
+	{ name: 'Electrical', svg: '<path fill="currentColor" d="M13 2 4 14h7l-1 8 9-12h-7z"/>', blurb: 'Power, Embedded Hardware, Communications' },
+	{ name: 'Science', svg: '<path fill="none" stroke="currentColor" stroke-width="2" d="M9 3h6M10 3v6.2a6.1 6.1 0 1 0 4 0V3"/>', blurb: 'Science Payload, Astrobiology' },
 ] as const;
 const current = sections.find((s) => Astro.url.pathname.startsWith(`/${s.name.toLowerCase()}`));
 ---
 
-<div class="title-row">
+<div class="row">
 	<Default />
-	<span class="divider" aria-hidden="true">/</span>
-	<details class="switcher">
-		<summary aria-label="Switch section">
-			{current && (custom[current.icon] ? <svg viewBox="0 0 24 24" aria-hidden="true" set:html={custom[current.icon]} /> : <Icon name={current.icon as any} />)}
-			<span>{current?.name ?? 'Choose Section'}</span>
-			<Icon name="down-caret" class="caret" />
+	<details>
+		<summary>
+			{current && ('svg' in current ? <svg viewBox="0 0 24 24" set:html={current.svg} /> : <Icon name={current.icon} />)}
+			{current?.name ?? 'Choose Section'} <Icon name="down-caret" class="caret" />
 		</summary>
 		<div class="menu">
 			{sections.map((s) => (
 				<a href={`/${s.name.toLowerCase()}/`} aria-current={s === current ? 'page' : undefined}>
-					<span class="icon">
-						{custom[s.icon] ? <svg viewBox="0 0 24 24" aria-hidden="true" set:html={custom[s.icon]} /> : <Icon name={s.icon as any} />}
-					</span>
-					<span class="text">
-						<strong>{s.name}</strong>
-						<small>{s.blurb}</small>
-					</span>
-					{s === current && <Icon name="approve-check" class="check" />}
+					{'svg' in s ? <svg viewBox="0 0 24 24" set:html={s.svg} /> : <Icon name={s.icon} />}
+					<span><b>{s.name}</b><small>{s.blurb}</small></span>
 				</a>
 			))}
 		</div>
@@ -45,139 +32,32 @@ const current = sections.find((s) => Astro.url.pathname.startsWith(`/${s.name.to
 </div>
 
 <script>
-	// close the menu on outside click or Escape
-	document.addEventListener('click', (e) => {
-		document.querySelectorAll<HTMLDetailsElement>('.switcher[open]').forEach((d) => {
-			if (!d.contains(e.target as Node)) d.open = false;
-		});
-	});
-	document.addEventListener('keydown', (e) => {
-		if (e.key === 'Escape') document.querySelectorAll<HTMLDetailsElement>('.switcher[open]').forEach((d) => (d.open = false));
-	});
+	document.addEventListener('click', (e) => document.querySelectorAll('.row details').forEach((d) => d.contains(e.target as Node) || d.removeAttribute('open')));
 </script>
 
 <style>
-	/* the header clips the title wrapper; let the menu escape it */
-	:global(.title-wrapper) {
-		overflow: visible !important;
-	}
-	.title-row {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		min-width: 0;
-	}
-	.divider {
-		color: var(--sl-color-gray-4);
-		font-size: 1.4rem;
-		font-weight: 300;
-	}
-	.switcher {
-		position: relative;
-	}
+	/* the header clips the title; let the menu hang below it */
+	:global(.title-wrapper) { overflow: visible !important; }
+	.row { display: flex; align-items: center; gap: 1rem; }
+	details { position: relative; }
+	/* search-box shape, site-title font */
 	summary {
-		list-style: none;
-		display: flex;
-		align-items: center;
-		gap: 0.45rem;
-		padding: 0.35rem 0.7rem;
-		border: 1px solid rgba(var(--mrover-accent-rgb), 0.35);
-		border-radius: 999px;
-		background: rgba(var(--mrover-accent-rgb), 0.08);
-		color: var(--sl-color-white);
-		font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
-		font-weight: 600;
-		font-size: var(--sl-text-sm);
-		cursor: pointer;
-		white-space: nowrap;
-		transition: background-color 0.15s, border-color 0.15s;
+		display: flex; align-items: center; gap: 0.4rem; height: 2.5rem; padding-inline: 0.75rem;
+		border: 2px solid var(--sl-color-gray-5); border-radius: 0.5rem; cursor: pointer;
+		background: var(--sl-color-gray-6); color: var(--sl-color-gray-2);
+		font-family: "Space Grotesk Variable", sans-serif; font-weight: 700; white-space: nowrap;
 	}
-	summary::-webkit-details-marker {
-		display: none;
-	}
-	summary:hover,
-	.switcher[open] summary {
-		background: rgba(var(--mrover-accent-rgb), 0.16);
-		border-color: var(--mrover-accent);
-	}
-	summary :global(svg:not(.caret)) {
-		width: 1rem;
-		height: 1rem;
-		color: var(--mrover-accent);
-	}
-	summary :global(.caret) {
-		width: 0.8rem;
-		height: 0.8rem;
-		opacity: 0.7;
-		transition: transform 0.2s;
-	}
-	.switcher[open] summary :global(.caret) {
-		transform: rotate(180deg);
-	}
+	summary:hover, details[open] summary { border-color: var(--sl-color-gray-2); color: var(--sl-color-white); }
+	summary::-webkit-details-marker { display: none; }
 	.menu {
-		position: absolute;
-		top: calc(100% + 0.5rem);
-		left: 0;
-		z-index: 1000;
-		width: min(20rem, calc(100vw - 2rem));
-		padding: 0.4rem;
-		background: var(--sl-color-bg-nav);
-		border: 1px solid var(--sl-color-hairline);
-		border-radius: 0.75rem;
-		box-shadow: var(--sl-shadow-lg);
+		position: absolute; top: calc(100% + 0.5rem); z-index: 10; width: 20rem; padding: 0.4rem;
+		background: var(--sl-color-bg-nav); border: 1px solid var(--sl-color-hairline);
+		border-radius: 0.75rem; box-shadow: var(--sl-shadow-lg);
 	}
-	.menu a {
-		display: flex;
-		align-items: center;
-		gap: 0.75rem;
-		padding: 0.55rem 0.6rem;
-		border-radius: 0.5rem;
-		color: var(--sl-color-white);
-		text-decoration: none;
-	}
-	.menu a:hover {
-		background: var(--sl-color-gray-6);
-	}
-	.menu a[aria-current='page'] {
-		background: rgba(var(--mrover-accent-rgb), 0.1);
-	}
-	.icon {
-		display: grid;
-		place-items: center;
-		flex-shrink: 0;
-		width: 2.1rem;
-		height: 2.1rem;
-		border-radius: 0.5rem;
-		background: rgba(var(--mrover-accent-rgb), 0.12);
-		color: var(--mrover-accent);
-	}
-	.icon :global(svg) {
-		width: 1.1rem;
-		height: 1.1rem;
-	}
-	.text {
-		display: flex;
-		flex-direction: column;
-		min-width: 0;
-		flex: 1;
-	}
-	.text strong {
-		font-family: 'Space Grotesk Variable', 'Space Grotesk', sans-serif;
-		font-size: var(--sl-text-sm);
-	}
-	.text small {
-		color: var(--sl-color-gray-3);
-		font-size: var(--sl-text-xs);
-	}
-	.menu :global(.check) {
-		color: var(--mrover-accent);
-		flex-shrink: 0;
-	}
-	/* on phones keep just the pill so search and menu buttons still fit */
-	@media (max-width: 50rem) {
-		.title-row > :global(.site-title),
-		.divider {
-			display: none;
-		}
-	}
+	a { display: flex; align-items: center; gap: 0.75rem; padding: 0.5rem; border-radius: 0.5rem; color: inherit; text-decoration: none; }
+	a:hover, a[aria-current] { background: var(--sl-color-gray-6); }
+	a svg, summary svg:not(.caret) { width: 1.25rem; height: 1.25rem; flex-shrink: 0; color: var(--sl-color-accent); }
+	small { display: block; color: var(--sl-color-gray-3); }
+	/* phones: just the pill, so search and the menu button still fit */
+	@media (max-width: 50rem) { .row > :global(.site-title) { display: none; } }
 </style>
