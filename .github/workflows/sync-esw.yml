@@ -49,7 +49,7 @@ jobs:
           token: ${{ steps.token.outputs.token }}
           branch: esw-docs-sync
           add-paths: |
-            astro.config.mjs
+            src/sidebars/software.mjs
             src/content/docs/software/esw
           commit-message: "docs: sync esw docs from umrover/mrover-esw@${{ github.event.client_payload.sha || 'main' }}"
           title: "docs: sync esw docs"

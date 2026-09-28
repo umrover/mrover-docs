@@ -3,11 +3,17 @@ import Default from '@astrojs/starlight/components/SiteTitle.astro';
 import { Icon } from '@astrojs/starlight/components';
 
 // keep in sync with the top-level sidebar groups in astro.config.mjs
+// icons Starlight doesn't ship, as inline svg markup
+const custom: Record<string, string> = {
+	bolt: '<path fill="currentColor" d="M13 2 4 14h7l-1 8 9-12h-7z"/>',
+	flask:
+		'<path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 3h6M10 3v6.2a6.1 6.1 0 1 0 4 0V3"/>',
+};
 const sections = [
-	{ name: 'Software', icon: 'laptop', blurb: 'Autonomy, teleop, ESW, drone' },
-	{ name: 'Mechanical', icon: 'setting', blurb: 'Rover design, CAD, manufacturing' },
-	{ name: 'Electrical', icon: 'bolt', blurb: 'Power, wiring, PCB design' },
-	{ name: 'Business', icon: 'analytics', blurb: 'Sponsorship, finance, outreach' },
+	{ name: 'Software', icon: 'laptop', blurb: 'Autonomy, Teleop, ESW, Drone' },
+	{ name: 'Mechanical', icon: 'setting', blurb: 'Mobility, Chassis, Robotic Arm' },
+	{ name: 'Electrical', icon: 'bolt', blurb: 'Power, Embedded Hardware, Communications' },
+	{ name: 'Science', icon: 'flask', blurb: 'Science Payload, Astrobiology' },
 ] as const;
 const current = sections.find((s) => Astro.url.pathname.startsWith(`/${s.name.toLowerCase()}`));
 ---
@@ -17,20 +23,15 @@ const current = sections.find((s) => Astro.url.pathname.startsWith(`/${s.name.to
 	<span class="divider" aria-hidden="true">/</span>
 	<details class="switcher">
 		<summary aria-label="Switch section">
-			{current && current.icon !== 'bolt' && <Icon name={current.icon} />}
-			{current?.icon === 'bolt' && <svg class="bolt" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>}
-			<span>{current?.name ?? 'Choose section'}</span>
+			{current && (custom[current.icon] ? <svg viewBox="0 0 24 24" aria-hidden="true" set:html={custom[current.icon]} /> : <Icon name={current.icon as any} />)}
+			<span>{current?.name ?? 'Choose Section'}</span>
 			<Icon name="down-caret" class="caret" />
 		</summary>
 		<div class="menu">
 			{sections.map((s) => (
 				<a href={`/${s.name.toLowerCase()}/`} aria-current={s === current ? 'page' : undefined}>
 					<span class="icon">
-						{s.icon === 'bolt' ? (
-							<svg class="bolt" viewBox="0 0 24 24" aria-hidden="true"><path d="M13 2 4 14h7l-1 8 9-12h-7z" /></svg>
-						) : (
-							<Icon name={s.icon} />
-						)}
+						{custom[s.icon] ? <svg viewBox="0 0 24 24" aria-hidden="true" set:html={custom[s.icon]} /> : <Icon name={s.icon as any} />}
 					</span>
 					<span class="text">
 						<strong>{s.name}</strong>
@@ -99,8 +100,7 @@ const current = sections.find((s) => Astro.url.pathname.startsWith(`/${s.name.to
 		background: rgba(var(--mrover-accent-rgb), 0.16);
 		border-color: var(--mrover-accent);
 	}
-	summary :global(svg:not(.caret)),
-	summary .bolt {
+	summary :global(svg:not(.caret)) {
 		width: 1rem;
 		height: 1rem;
 		color: var(--mrover-accent);
@@ -113,9 +113,6 @@ const current = sections.find((s) => Astro.url.pathname.startsWith(`/${s.name.to
 	}
 	.switcher[open] summary :global(.caret) {
 		transform: rotate(180deg);
-	}
-	.bolt {
-		fill: currentColor;
 	}
 	.menu {
 		position: absolute;

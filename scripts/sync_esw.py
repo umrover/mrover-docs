@@ -20,7 +20,7 @@ from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
 DEST = REPO / "src" / "content" / "docs" / "software" / "esw"
-CONFIG = REPO / "astro.config.mjs"
+CONFIG = REPO / "src" / "sidebars" / "software.mjs"
 START = "// ESW_SIDEBAR_START"
 END = "// ESW_SIDEBAR_END"
 
@@ -193,7 +193,7 @@ def _splice_sidebar(config: str, block: dict) -> str:
     starts = [i for i, line in enumerate(lines) if line.strip() == START]
     ends = [i for i, line in enumerate(lines) if line.strip() == END]
     if not starts or not ends or ends[0] < starts[0]:
-        sys.exit(f"astro.config.mjs: missing or misordered {START} / {END} markers")
+        sys.exit(f"{CONFIG.name}: missing or misordered {START} / {END} markers")
     a, b = starts[0], ends[0]
     indent = len(lines[a]) - len(lines[a].lstrip())
     return "\n".join(lines[: a + 1] + [_render_item(block, indent) + ","] + lines[b:])
