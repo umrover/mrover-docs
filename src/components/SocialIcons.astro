@@ -3,19 +3,7 @@ import config from 'virtual:starlight/user-config';
 import { Icon } from '@astrojs/starlight/components';
 
 const links = config.social || [];
-const sections = ['Software', 'Mechanical', 'Electrical', 'Business'];
-const current = sections.find((s) => Astro.url.pathname.startsWith(`/${s.toLowerCase()}`)) ?? 'Sections';
 ---
-
-<div class="dropdown-container">
-	<button class="dropdown-btn section-btn" aria-haspopup="true" aria-expanded="false">
-		{current}
-		<Icon name="down-caret" class="caret" />
-	</button>
-	<div class="dropdown-menu">
-		{sections.map((s) => <a href={`/${s.toLowerCase()}/`}>{s}</a>)}
-	</div>
-</div>
 
 {
 	links.length > 0 && (
@@ -76,11 +64,6 @@ const current = sections.find((s) => Astro.url.pathname.startsWith(`/${s.toLower
 		}
 		.dropdown-btn {
 			gap: 0.2em;
-		}
-		.section-btn {
-			font-weight: 700;
-			font-size: var(--sl-text-sm);
-			margin-right: 0.5em;
 		}
 		.dropdown-btn :global(svg.caret) {
 			width: 12px;
