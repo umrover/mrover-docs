@@ -11,7 +11,7 @@ npm run dev
 
 ## Adding a Page
 
-1. Create a `.md` file under `src/content/docs/` in the appropriate section folder.
+1. Create a `.md` file under `src/content/docs/<section>/` (`software`, `mechanical`, `electrical`, `business`).
 
 2. Add a `title` in the frontmatter:
 
@@ -21,10 +21,10 @@ title: "Your Page Title"
 ---
 ```
 
-3. Add a sidebar entry in `astro.config.mjs` under the relevant section:
+3. Add a sidebar entry in `astro.config.mjs` inside that section's top-level group:
 
 ```js
-{ label: 'Your Page Title', slug: 'section/your-filename' },
+{ label: 'Your Page Title', slug: 'software/autonomy/your-filename' },
 ```
 
 The `slug` matches the file path under `src/content/docs/` without the `.md` extension.

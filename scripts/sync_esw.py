@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-re-create `src/content/docs/esw/` and the associated sidebar from umrover/mrover-esw
+re-create `src/content/docs/software/esw/` and the associated sidebar from umrover/mrover-esw
 
 the esw docs are authored there, and this script converts them to the astro starlight markdown flavor
 
@@ -19,7 +19,7 @@ import tomllib
 from pathlib import Path
 
 REPO = Path(__file__).resolve().parent.parent
-DEST = REPO / "src" / "content" / "docs" / "esw"
+DEST = REPO / "src" / "content" / "docs" / "software" / "esw"
 CONFIG = REPO / "astro.config.mjs"
 START = "// ESW_SIDEBAR_START"
 END = "// ESW_SIDEBAR_END"
@@ -46,12 +46,12 @@ def _slug_of(rel: str) -> str:
     """
     remap paths
 
-    `info/timers.md` -> `esw/info/timers`
-    `index.md` -> `esw`
+    `info/timers.md` -> `software/esw/info/timers`
+    `index.md` -> `software/esw`
     """
     trimmed = re.sub(r"(^|/)index\.md$", r"\1", rel)
     trimmed = re.sub(r"\.md$", "", trimmed)
-    return f"esw/{trimmed}".rstrip("/")
+    return f"software/esw/{trimmed}".rstrip("/")
 
 
 def _frontmatter(md: str):
