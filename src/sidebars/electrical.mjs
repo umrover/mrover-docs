@@ -19,6 +19,6 @@
 //        },
 export default [
   { label: "Home", slug: "electrical" },
-  { label: "EHW", slug: "electrical/ehw" }
+  { label: "EHW", slug: "electrical/ehw" },
   { label: "Comms", slug: "electrical/ehw" }
 ];
