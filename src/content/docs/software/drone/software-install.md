@@ -59,10 +59,8 @@ sudo apt upgrade && sudo apt update
 
 Follow [these instructions](https://docs.px4.io/main/en/dev_setup/dev_env_mac.html) before proceeding to building external dependencies.
 
-## Build External Dependencies
-Based on [PX4 Build Guide](https://docs.px4.io/main/en/ros2/user_guide#install-px4)
-
 ### Manual Build
+(Based on [PX4 Build Guide](https://docs.px4.io/main/en/ros2/user_guide#install-px4). 
 Manual build process copied from the above link
 
 #### Build PX4
