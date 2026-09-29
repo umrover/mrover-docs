@@ -1,0 +1,49 @@
+---
+title: MRover Software
+description: Primary source of documentation and tutorials for MRover Software
+template: doc
+hero:
+  tagline: Welcome to the MRover wiki! This is the primary source of documentation and tutorials for MRover Software.
+---
+
+import { LinkCard, CardGrid } from "@astrojs/starlight/components";
+
+## Get Started
+
+<CardGrid>
+  <LinkCard
+    title="Introduction to the Team"
+    href="/software/introduction"
+    description="Why MRover Software?"
+  />
+  <LinkCard
+    title="Setup"
+    href="/software/setup/getting-started"
+    description="Install the codebase and ROS"
+  />
+</CardGrid>
+
+## Subteams
+
+<CardGrid>
+  <LinkCard
+    title="Autonomy"
+    href="/software/autonomy/overview/"
+    description="Navigation, perception, and localization"
+  />
+  <LinkCard
+    title="ESW"
+    href="/software/esw/getting-started/intro"
+    description="Embedded systems, motor control, and hardware interfaces"
+  />
+  <LinkCard
+    title="Teleop"
+    href="/software/teleop/overview/"
+    description="Operator interface, Vue components, and real-time control"
+  />
+  <LinkCard
+    title="Drone"
+    href="/software/drone/overview/"
+    description="Autonomous drone systems, PX4, and ROS2 integration"
+  />
+</CardGrid>
