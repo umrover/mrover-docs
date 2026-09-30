@@ -404,26 +404,25 @@ export default defineConfig({
               label: "Perception",
               collapsed: true,
               items: [
-                { label: "Perception", slug: "autonomy/perception/overview" },
                 {
-                  label: "Key Detection",
-                  slug: "autonomy/perception/key-detection",
+                  label: "Gesture Recognition",
+                  slug: "autonomy/perception/gesture-recognition",
                 },
                 {
-                  label: "Light Detector",
-                  slug: "autonomy/perception/light-detector",
+                  label: "Global Costmap",
+                  slug: "autonomy/perception/global-costmap",
                 },
                 {
-                  label: "Long Range Tag Detection",
-                  slug: "autonomy/perception/long-range-tag-detection",
+                  label: "Keyboard Typing",
+                  slug: "autonomy/perception/keyboard-typing",
                 },
                 {
-                  label: "Object Detection",
-                  slug: "autonomy/perception/object-detection",
+                  label: "Rock Pick Pose Estimation",
+                  slug: "autonomy/perception/pick-pose-estimation",
                 },
                 {
-                  label: "Object Detector Model",
-                  slug: "autonomy/perception/object-detector-model",
+                  label: "Voice Command Recognition",
+                  slug: "autonomy/perception/voice-command-recognition",
                 },
               ],
             },

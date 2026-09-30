@@ -1,10 +1,6 @@
 ---
 title: "Perception"
 ---
-
-<!--
-### SCRAPPED REWRITE
-
 # ArUco Markers
 
 ### Problem
@@ -123,6 +119,3 @@ Other configurable options: `run_rviz` (Useful for looking at TF tree), `run_dyn
 - **Pixel Space (or Camera Space)**: x and y coordinates of where a pixel is in an image
 - **Cost Map**: A map of terrain that specifies the difficulty of traversing a certain region (high or low cost)
 ***
-
-
--->
