@@ -5,20 +5,35 @@
 //   group: { label: "My Group", items: [ ...pages or more groups... ] }
 //          add collapsed: true to start the group closed
 //
-// Example: adding a page inside a group
-//   1. create src/content/docs/electrical/my-folder/my-page.md starting with
+// Example: adding a new board page
+//   1. create src/content/docs/electrical/ehw/boards/my-board.md starting with
 //        ---
-//        title: My Page
+//        title: My Board
 //        ---
-//   2. add it below:
-//        {
-//          label: "My Group",
-//          items: [
-//            { label: "My Page", slug: "electrical/my-folder/my-page" },
-//          ],
-//        },
+//   2. add it to the Boards group below:
+//        { label: "My Board", slug: "electrical/ehw/boards/my-board" },
 export default [
   { label: "Home", slug: "electrical" },
-  { label: "EHW", slug: "electrical/ehw" },
-  { label: "Comms", slug: "electrical/comms" }
+  { label: "Starter Project", slug: "electrical/starter-project" },
+  {
+    label: "Embedded Hardware",
+    collapsed: true,
+    items: [
+      { label: "Overview", slug: "electrical/ehw" },
+      {
+        label: "Boards",
+        collapsed: true,
+        items: [
+          { label: "ABS", slug: "electrical/ehw/boards/abs" },
+          { label: "BLMC", slug: "electrical/ehw/boards/blmc" },
+          { label: "BMC", slug: "electrical/ehw/boards/bmc" },
+          { label: "Fuse", slug: "electrical/ehw/boards/fuse" },
+          { label: "LIM", slug: "electrical/ehw/boards/lim" },
+          { label: "PDB", slug: "electrical/ehw/boards/pdb" },
+          { label: "Science", slug: "electrical/ehw/boards/science" },
+        ],
+      },
+    ],
+  },
+  { label: "Comms", slug: "electrical/comms" },
 ];
