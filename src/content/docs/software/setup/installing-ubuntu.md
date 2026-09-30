@@ -4,7 +4,7 @@ sidebar:
   label: "Installing Ubuntu"
 ---
 
-We officially support **Ubuntu 24.04 LTS (noble) running natively**, and only that. Dual-booting needs about 50 GB of free space (100 GB on Perception, for the NVIDIA packages).
+We officially support **Ubuntu 24.04 LTS (noble) running natively**, and only that. Dual-booting needs about 100 GB of free space.
 
 If you already have Ubuntu 24.04 installed, or you're setting up a Jetson (ships with its own NVIDIA-provided Ubuntu image), skip straight to [Native ROS Installation](/software/setup/native-install).
 
