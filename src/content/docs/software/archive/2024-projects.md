@@ -3,8 +3,8 @@ title: "2024 Projects"
 ---
 ## Perception
 
-* [Long range ArUco tag detection](/software/autonomy/perception/long-range-tag-detection)
-* [Object detection](/software/autonomy/perception/object-detection)
+* [Long range ArUco tag detection](/software/archive/projects/long-range-tag-detection)
+* [Object detection](/software/archive/projects/object-detection)
 * [Surface normals costmap](/software/archive/projects/surface-normals-costmap)
 * Spatial mapping for teleop
 * [Lander auto-align](/software/archive/projects/lander-auto-align)
