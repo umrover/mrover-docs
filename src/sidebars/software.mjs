@@ -359,24 +359,24 @@ export default [
         items: [
           { label: "Perception", slug: "software/autonomy/perception/overview" },
           {
-            label: "Key Detection",
-            slug: "software/autonomy/perception/key-detection",
+            label: "Gesture Detection",
+            slug: "software/autonomy/perception/gesture-recognition",
           },
           {
-            label: "Light Detector",
-            slug: "software/autonomy/perception/light-detector",
+            label: "Global Costmap",
+            slug: "software/autonomy/perception/global-costmap",
           },
           {
-            label: "Long Range Tag Detection",
-            slug: "software/autonomy/perception/long-range-tag-detection",
+            label: "Keyboard Typing",
+            slug: "software/autonomy/perception/keyboard-typing",
           },
           {
-            label: "Object Detection",
-            slug: "software/autonomy/perception/object-detection",
+            label: "Rock Pick Pose Estimation",
+            slug: "software/autonomy/perception/pick-pose-estimation",
           },
           {
-            label: "Object Detector Model",
-            slug: "software/autonomy/perception/object-detector-model",
+            label: "Voice Command Recognition",
+            slug: "software/autonomy/perception/voice-command-recognition",
           },
         ],
       },
@@ -505,6 +505,26 @@ export default [
           {
             label: "URC vs. CIRC Switch",
             slug: "software/archive/projects/urc-vs-circ-switch",
+          },
+          {
+            label: "Key Detection",
+            slug: "software/archive/projects/key-detection",
+          },
+          {
+            label: "Light Detector",
+            slug: "software/archive/projects/light-detector",
+          },
+          {
+            label: "Long Range Tag Detection",
+            slug: "software/archive/projects/long-range-tag-detection",
+          },
+          {
+            label: "Object Detection",
+            slug: "software/archive/projects/object-detection",
+          },
+          {
+            label: "Object Detector Model",
+            slug: "software/archive/projects/object-detector-model",
           },
         ],
       },

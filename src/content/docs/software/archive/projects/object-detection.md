@@ -32,7 +32,7 @@ Rough Steps:
 2. Create a subscriber to the ZED point cloud topic
 3. Write a function that takes the point cloud, compresses it into a 2D cv::Mat, and passes it into the model to detect the objects (see tag_detector.processing.cpp for an example of this)
 4. Find the point that corresponds to the center of the object bounding box in the Point Cloud and assign that as the Object's distance from the rover
-5. Determine the relative bearing of the Object from the rover's current position. This can be done similar to the tag bearing calculation in the [long range detection project](/software/autonomy/perception/long-range-tag-detection).
+5. Determine the relative bearing of the Object from the rover's current position. This can be done similar to the tag bearing calculation in the [long range detection project](/software/archive/projects/long-range-tag-detection).
 5. Create a publisher for the Object topic
 6. Write a function that publishes the detected Objects from the Point Cloud message to the Object topic as well as the tf tree
 7. Determine a more robust way of detecting the Object's distance from ZED. Picking the center point of the bounding box could often be NaN or located somewhere in open space

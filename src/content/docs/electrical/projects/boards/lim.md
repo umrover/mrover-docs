@@ -1,4 +1,4 @@
 ---
-title: LIM
+title: Lim
 description: Documentation for MRover Electrical Hardware
 ---
