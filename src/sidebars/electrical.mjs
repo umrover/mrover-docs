@@ -15,6 +15,7 @@
 export default [
   { label: "Home", slug: "electrical" },
   { label: "Starter Project", slug: "electrical/starter-project" },
+  { label: "Tech Talks", slug: "electrical/tech-talks" },
   {
     label: "Embedded Hardware",
     collapsed: true,
