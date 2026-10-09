@@ -142,22 +142,3 @@ void HeadingFilter::sync_rtk_heading_callback(const mrover::msg::Heading::ConstS
 - **Angle wrap & KF**: Compute wrapped yaw error, then `predict(process_noise)` and `correct(error, rtk_heading_noise)`. Parameters live in `heading_filter` section of `config/localization.yaml`.
 
 Result: A stable yaw correction that’s only applied when RTK heading is rock‑solid.
-
-## 2025-26 Projects (relating to Dual Antenna RTK)
-
-### Reduce-EMI and Triple Band Antenna Testing 
-
-Context: We had an issue where connecting the ZED usb-c cable to the ZED camera (on rover) would switch the gps fix status `gps_fix_status` from 2 (RTK Fix), to 0 (No RTK Fix). This means that the rover is not publishing centermeter-level accurate rover positional data. We assume this has something to do with the ZED producing EMI once it is connected to the PDB system of the rover. The ZED camera we use contains high-speed microprocessors and other circuitry that operate at high frequencies, and hence become a generator of RF noise that impact the GPS fix. 
-
-Methods (Ideas that require research + implementation):
-* Copper foiling the ZED Camera housing and USB-C cable and ground it to the chassis of the rover.
-* Elevate the dual antenna system, so as to maximise separation between the u-blox antennas and the e-box (preliminary designs being created).
-* Adding ferrite beads to the antenna's cable opening in the e-box.
-* Switching out dual-band antennas to our new triple-band antennas (Antenna can recieve radio signals within three distinct range of frequencies). This means greater satellite strength -> increased EMI resilience -> faster RTK convergence time.
-* U-Center MON-SPAN (Spectrum Analyser)
-* Plotting GPS satellite strength and multi-path interference to verify internal or external EMI.
-
-Desired outcome:
-* Auton missions should operate with a consistent and reliable RTK fix (state 2).
-* Connecting the ZED config to the rover should not increase GPS covariance and hence cause the GPS reciever to cause lock.
-* Satellite strength should be ranging from 40-50 dBs rather than 30-40 dBs. 
