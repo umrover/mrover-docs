@@ -2,11 +2,11 @@
 title: "In Search of Globally Accurate Orientation"
 ---
 # What's the deal?
-Our IMU, like anyone, has its strengths & weaknesses. It's very good at being locally accurate - i.e. over short periods of time - the readings that the IMU spits out are splendid. However, over longer time periods, our readings have a tendency to drift. This has the unfortunate consequence of causing the rover's performance to slowly worsen, the longer that the rover goes without having its IMU re-calibrated. This wiki page details our attempts to correct this.
+Our IMU has strengths & weaknesses. It's very good at being locally accurate (aka over short periods of time). However, over longer time periods, our readings have a tendency to drift. This has the unfortunate consequence of causing the rover's performance to slowly worsen the longer that the rover goes without having its IMU re-calibrated. This wiki page details our attempts to correct this.
 
 To accomplish this, we want to fuse the IMU's sensors' data ourselves, off the IMU. By doing this, we can manually filter the IMU's sensor data using several algorithms that are commonly used in industry, run a test on the rover, & see if any of these algorithms will provide better performance than the IMU's onboard processing.
 
-# The nitty gritty deets... 🕵️
+# Potential algorithm options
 I've been told that the most commonly used algorithms in industry are [Madgwick](https://x-io.co.uk/open-source-imu-and-ahrs-algorithms), [Mahony](https://hal.archives-ouvertes.fr/hal-00488376/document), & the [Extended Kalman Filter](https://en.wikipedia.org/wiki/Extended_Kalman_filter). Conveniently, the Python package [AHRS](https://ahrs.readthedocs.io/en/latest/index.html) has all three algorithms implemented, & should allow us to get all three algorithms up & running relatively quickly so we can test them on the rover.
 
 ## Maybe Madgwick?

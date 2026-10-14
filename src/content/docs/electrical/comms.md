@@ -3,7 +3,13 @@ title: MRover Electrical Comms
 description: Documentation for MRover Electrical Comms
 ---
 
-Welcome to the MRover Electrical docs! This section is just getting started.
+### Projects
+
+- New Radios
+  - Testing Rig
+  - Testing Protocol
+- Repeater 
+
 
 ## Contributing
 

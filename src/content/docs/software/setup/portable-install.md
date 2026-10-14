@@ -54,7 +54,7 @@ TL;DR:
 Run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/umrover/mrover-ros2/skj/portable/bootstrap-portable.sh | bash
+curl -fsSL https://raw.githubusercontent.com/umrover/mrover-ros2/main/bootstrap-portable.sh | bash
 ```
 
 This clones the repo to `~/ros2_ws/src/mrover-ros2`, installs relevant packages and libraries, then runs Ansible and sets up your environment using Pixi.
@@ -84,8 +84,8 @@ If the simulator launches, you have successfully set up the codebase and ROS env
 
 ## Keeping Dependencies Up to Date
 
-Run the dev-portable playbook:
+Run the dev playbook:
 
 ```bash
-./ansible.sh dev-portable.yml
+./ansible.sh dev.yml
 ```
