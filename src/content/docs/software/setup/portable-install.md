@@ -84,8 +84,8 @@ If the simulator launches, you have successfully set up the codebase and ROS env
 
 ## Keeping Dependencies Up to Date
 
-Run the dev-portable playbook:
+Run the dev playbook:
 
 ```bash
-./ansible.sh dev-portable.yml
+./ansible.sh dev.yml
 ```
