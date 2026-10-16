@@ -7,13 +7,19 @@ title: "Teleop Projects"
 ### Camera Client Changes
 
 - **Ability to change camera settings (exposure, contrast, white-point, and FOV):** Add a button that opens a pop-up. This pop-up will contain prompts for changing the exposure, contrast, white-point, and FOV of individual cameras. A ROS service will be sent to the rover to change these through v4l2.
+
+![Settings Pop-Up](images/camera_settings_example.png)
+
 - **See the astronaut's video feed:** What it says on the tin. The astronaut's camera stream will be displayed with the rest of the cameras in the auton config.
 - **Ability to move camera feeds between windows:** Currently, video feeds can only be moved *within* a window - they're fixed to a window as defined in yaml files. We are going to create a button that lets them be moved to an existing or new window.
 - **Ability to screenshot all cameras at once:** Currently, only one camera can be screenshot at a time, despite us often needing multiple shots at the same location. A button to screenshot them all at once should be implemented.
 - **Ability to tag camera images with site and coordinates:** During the science mission, science will visit two (or more) locations and record observations from them, including images from cams. Marking these images with a site and coords makes retrieving them easier. Coords can be entered either manually or derived from the rover's position, and the initial definition of a site can be defined in much same way. Future references to existing sites can be automatically assumed to be whatever is closest to the rover.
+![Site Tagging Bar](images/site_tagging_example.png)
 - **Notification for frozen cameras:** Camera streams from the rover to the basestation laptop are timestamped. These timestamps can be displayed in the camera client so the operator can quickly tell if a feed is still live.
 
 ### Auton GUI Changes
+
+![Proposed Auton GUI](images/proposed_auton_gui.png)
 
 #### Astronaut Feed
 
