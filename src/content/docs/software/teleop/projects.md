@@ -21,12 +21,14 @@ title: "Teleop Projects"
 
 ![Proposed Auton GUI](images/proposed_auton_gui.png)
 
-#### Astronaut Feed
-
 - **Support two way audio-stream with the astronaut:** The auton GUI will have a (muteable) widget that plays the astronaut audio. Additionally, the operator can toggle the mic on the basestation laptop to speak with the astronaut.
 - **See health of connection to the astronaut:** Similarly to our remote ROS (through websocket) interfaces, the astronaut widget will display the amount and speed of data being transmitted/received.
 - **Drone Waypoints:** The drone operator will be able to select a spot in the environment (through the drone's cams) to put a waypoint. This waypoint will be transferred to the basestation where it should be visible on the map and in a list menu. 
 - **Behavioral Tree Visualization:** The nav state will appear similar as it did last year. That is, until the operator interacts with it. Then, it will show the entire nav behavioral tree and the current stage of execution it is in.
+
+### Science GUI
+
+- **Data Transfer:** Transfering science data out of the basestation laptop has to be done manually as of right now. A button to send files over ethernet using rsync will be implemented. Note that this exact method of transfer may be subject to change.
 
 ### General
 
