@@ -24,7 +24,7 @@ Run the following commands to ensure the dependencies are at the correct version
 ```
 cd ~/ros2_ws/src/mrover_drone/deps
 cd PX4-Autopilot
-git checkout v1.15.4
+git checkout v1.17.0
 cd ../px4_msgs
 git checkout release/1.15
 cd ../px4-ros2-interface-lib
