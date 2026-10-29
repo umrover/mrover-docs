@@ -26,4 +26,4 @@ General Overview of Algorithm:
 
 ## Rough Architecture for Auton Payload:
 
-
+<img width="1003" height="450" alt="Screenshot from 2026-10-29 17-42-31" src="https://github.com/user-attachments/assets/20eb77d9-0540-4451-87f5-52014cff935a" />
