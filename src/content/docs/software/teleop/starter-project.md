@@ -25,7 +25,7 @@ Open up a terminal, and type ```mrover```. Then:
 Switch/go to the branch that has the starter project code:  
 
 ```bash
-git switch teleop-starter-2026
+git switch teleop-starter-project
 ```
 
 Copy it into a new branch:
@@ -227,7 +227,7 @@ Don't forget the corresponding import above.
 
 ```python
 # TODO import StarterHandler
-from teleoperation.basestation_gui.backend.ws.starter_ws import StarterHandler
+from backend.ws.starter_ws import StarterHandler
 ```
 
 Because you changed server-side code, you have to reset the basestation to see changes. Go back into the terminal running the basestation and press **ctrl-c**. This kills the backend. The frontend will stick around until the page unloads. Restart the basestation by running the launch command again (the command will probably come back if you just press **up** in your terminal).

@@ -374,10 +374,6 @@ export default [
             label: "Rock Pick Pose Estimation",
             slug: "software/autonomy/perception/pick-pose-estimation",
           },
-          {
-            label: "Voice Command Recognition",
-            slug: "software/autonomy/perception/voice-command-recognition",
-          },
         ],
       },
       {
