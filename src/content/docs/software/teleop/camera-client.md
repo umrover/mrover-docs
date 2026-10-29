@@ -69,7 +69,21 @@ So, a general Qt element has a
 
 ### Signals
 
-Signals provide a way for Qt objects to communicate with each other.
+**[Signals](https://doc.qt.io/qt-6/signalsandslots.html)** provide a way for Qt objects to communicate with each other. They are somewhat similar to a ROS service in that way \- one object emits/publishes a signal, and another recieves/subscribes to it. To connect a signal, write:
+
+```cpp
+connect(emitter, &EmitterType::signalName, reciever, &RecieverType::slotName);
+```
+
+:::note
+ A `slot` is a function. The only difference is that it can recieve a signal, and is defined in the `slots` section of a class. Ex:
+```cpp
+ private slots:
+         void onArmClicked();
+         void onScienceClicked();
+         void onAutonClicked();
+ ````
+:::
 
 ## GStreamer
 
