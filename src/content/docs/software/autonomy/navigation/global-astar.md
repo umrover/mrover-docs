@@ -18,7 +18,9 @@ Use a static costmap generated from DEM (Digital Elevation Model) data of the mi
 
 ## Architecture
 
+<img width="361" height="451" alt="image" src="https://github.com/user-attachments/assets/145ea6e7-27d0-4f7c-88f1-29eee69c2ee7" />
 
+<img width="415" height="423" alt="image" src="https://github.com/user-attachments/assets/eede3555-cf0d-45d6-8f7f-9e137a05d37f" />
 
 Initially, we will store ~0.25 miles squared of costmap data. The mission site is around a square mile, so this may need to grow or be swapped out as the rover travels.
 
