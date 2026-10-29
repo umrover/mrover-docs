@@ -24,11 +24,13 @@ Run the following commands to ensure the dependencies are at the correct version
 ```
 cd ~/ros2_ws/src/mrover_drone/deps
 cd PX4-Autopilot
-git checkout v1.15.4
+git checkout release/1.17
 cd ../px4_msgs
-git checkout release/1.15
+git checkout release/1.17
 cd ../px4-ros2-interface-lib
-git checkout 1.4.0
+git checkout release/1.17
+cd ../Micro-XRCE-DDS-Agent
+git checkout v3.0.2
 ```
 
 If submodules / dependencies change:
@@ -99,7 +101,7 @@ cd ~/ros2_ws/src/mrover_drone/deps/Micro-XRCE-DDS-Agent
 mkdir build
 cd build
 cmake ..
-make
+make -j$(nproc)
 sudo make install
 sudo ldconfig /usr/local/lib
 ```

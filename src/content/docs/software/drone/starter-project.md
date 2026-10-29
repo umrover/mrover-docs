@@ -69,8 +69,8 @@ make px4_sitl gz_x500
 ```
 cd ~/ros2_ws
 source /opt/ros/jazzy/setup.zsh
-source ~/ros2_ws/install/setup.zsh
 colcon build --symlink-install --packages-select drone_sim  --symlink-install
+source ~/ros2_ws/install/setup.zsh
 ros2 launch drone_sim px4_sitl_gz_ros2.launch.py
 ```
 
@@ -84,8 +84,8 @@ Your screen should now look like this. If not, ensure you have the proper softwa
 cd ~/ros2_ws
 unset AMENT_CURRENT_PREFIX AMENT_PREFIX_PATH COLCON_PREFIX_PATH
 source /opt/ros/jazzy/setup.zsh
-source ~/ros2_ws/install/setup.zsh
 colcon build --symlink-install --packages-select drone_gs
+source ~/ros2_ws/install/setup.zsh
 ros2 launch drone_gs mavros.launch.py \ fcu_url:='udp://:14540@127.0.0.1:14580'
 ```
 
