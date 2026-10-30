@@ -85,6 +85,10 @@ connect(emitter, &EmitterType::signalName, reciever, &RecieverType::slotName);
  ````
 :::
 
+### ROS Integration
+
+Like the basestation, the camera client has a ROS node `/camera-client` that communicates with those on the rover. Its primary use is NOT to get video feeds, however. Instead, it is used for discovering cameras, pausing cameras, and checking *metadata* of recieved images. Video streams are sent over [RTP](https://en.wikipedia.org/wiki/Real-time_Transport_Protocol) and processed by a [gst pipeline](#GStreamer).
+
 ## GStreamer
 
-**[GStreamer](https://gstreamer.freedesktop.org/documentation/?gi-language=c)** is a pipelining tool that processes video data incoming from the rover. ESW creates a **source** on the rover, which is sent through a gst pipeline to a **sink** on the basestation.
+**[GStreamer](https://gstreamer.freedesktop.org/documentation/?gi-language=c)** is a pipelining tool that processes video data incoming from the rover. ESW creates a **source** on the rover, which is sent through a gst pipeline to a **sink** on the basestation. When a new frame is processed by the sink, it is painted to the GUI in a `GSTVideoWidget`.
