@@ -10,4 +10,4 @@ sidebar:
 * [Global A*](/software/autonomy/navigation/global-astar)
 * [Behavioral Trees](/software/autonomy/navigation/behavioral-trees) 
     * [Astronaut Assistance](/software/autonomy/navigation/astro-assistance)
-    * [Route Finding](/software/autonomy/route-finding)
+    * [Route Finding](/software/autonomy/navigation/route-finding)

@@ -341,7 +341,7 @@ export default [
           },
           {
             label: "Behavorial Trees",
-            slug: "software/autonomy/navigation/behavorial-trees",
+            slug: "software/autonomy/navigation/behavioral-trees",
           },
           {
             label: "Astronaut Assistance",

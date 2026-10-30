@@ -25,6 +25,8 @@ We will use the library `py_trees_ros` for the implementation. [(learn more here
 - Both trees use the shared **Context** to keep track of outside data. Context still owns Course (waypoints), Environment (targets, costmap), Rover, and the Drive Controller, exactly as it does today.
 - The existing ROS services (toggle costmap, move/dilate costmap, toggle auton, toggle pure pursuit, etc.) stay the same.
 
-## [Astronaut Assistance](/software/autonomy/navigation/astro-assistance)
+## Behavioral Tree Diagrams
 
-## [Route Finding](/software/autonomy/navigation/route-finding)
+ * [Astronaut Assistance](/software/autonomy/navigation/astro-assistance)
+
+ * [Route Finding](/software/autonomy/navigation/route-finding)
