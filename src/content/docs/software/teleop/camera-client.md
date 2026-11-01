@@ -4,7 +4,17 @@ title: "Camera Client"
 
 ## Overview
 
-The camera client is a hub for viewing the rover's various camera feeds. It's opened by all launch files that include "```camera_client```". Controls for cameras appear on the left (including adding new cameras and changing configuration), while the actual displays are on the right. The camera client does not work with the simulator.
+The camera client is a hub for viewing the rover's various camera feeds.  Controls for cameras appear on the left (including adding new cameras and changing configuration), while the actual displays are on the right. The camera client does not work with the simulator.
+
+## Opening
+
+The camera client is opened by all launch files that include "```camera_client```".
+
+- `arm_camera_client.launch.py`
+- `auton_camera_client.launch.py`
+- `science_camera_client.launch.py`
+
+It will open with two windows. The first will always start with existing cameras, while the second only sometimes starts with them.
 
 ## Qt
 
