@@ -41,7 +41,7 @@ class CameraConfigWidget : public QWidget {
 ...
 ```
 
-The object itself is defined as a class that inherits `QWidget`. Objects that are added to it, such as buttons and even another widget, are assigned to pointers of the cooresponding type. 
+The object itself is defined as a class that inherits `QWidget`. Objects that are added to it, such as buttons and even another widget, are assigned to pointers of the corresponding type. 
 
 Now, pointers aren't actually objects. They point to objects. These objects have to actually be created.
 
@@ -67,7 +67,7 @@ So, a general Qt element has a
 
 **Header File**
 
-- `#include "pch.hpp"` \- This includes miscellanous dependencies needed for the camera client to run
+- `#include "pch.hpp"` \- This includes miscellaneous dependencies needed for the camera client to run
 - Class definition
 - Pointers
 - Signal definitions
@@ -82,7 +82,7 @@ So, a general Qt element has a
 
 ### Signals and Slots
 
-**[Signals](https://doc.qt.io/qt-6/signalsandslots.html)** provide a way for Qt objects to communicate with each other. They are somewhat similar to a ROS service in that way \- one object emits/publishes a signal, and another recieves/subscribes to it.
+**[Signals](https://doc.qt.io/qt-6/signalsandslots.html)** provide a way for Qt objects to communicate with each other. They are somewhat similar to a ROS service in that way \- one object emits/publishes a signal, and another receives/subscribes to it.
 
 Signals are defined in the definition of a class:
 
@@ -103,19 +103,19 @@ slots:
 Stock classes will their own signals and slots, which you can read about on the Qt docs.
 
 :::note
- A *slot* is a function. The only difference is that it can recieve a signal, and is defined in the *slots* section of a class.
+ A *slot* is a function. The only difference is that it can receive a signal, and is defined in the *slots* section of a class.
 :::
 
 To connect a signal, write:
 
 ```cpp
-connect(emitter, &EmitterType::signalName, reciever, &RecieverType::slotName);
+connect(emitter, &EmitterType::signalName, receiver, &ReceiverType::slotName);
 ```
 
 
 ### ROS Integration
 
-Like the basestation, the camera client has a ROS node `/camera-client` that communicates with those on the rover. Its primary use is NOT to get video feeds, however. Instead, it is used for discovering cameras, pausing cameras, and checking *metadata* of recieved images. Video streams are sent over [RTP](https://en.wikipedia.org/wiki/Real-time_Transport_Protocol) and processed by a gst pipeline (see below section).
+Like the basestation, the camera client has a ROS node `/camera-client` that communicates with those on the rover. Its primary use is NOT to get video feeds, however. Instead, it is used for discovering cameras, pausing cameras, and checking *metadata* of received images. Video streams are sent over [RTP](https://en.wikipedia.org/wiki/Real-time_Transport_Protocol) and processed by a gst pipeline (see below section).
 
 ### Documentation
 
