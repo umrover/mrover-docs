@@ -24,7 +24,7 @@ The camera client uses **[Qt](https://doc.qt.io/)** to create the interface. **Q
 
 Our components are classes defined by header files (`.hpp` in `/include`), and implemented in source files (`.cpp` in `/src`).
 
-`QWidget` is inherited by nearly all graphical elements. `Qwidget` is a basic block that you can add other elements to. Each element you add to it should be stored in a pointer. For example, in our config selector (`teleoperation/camera_client/include/CameraConfigWidget.hpp`):
+`QWidget` is inherited by nearly all graphical elements. `QWidget` is a basic block that you can add other elements to. Each element you add to it should be stored in a pointer. For example, in our config selector (`teleoperation/camera_client/include/CameraConfigWidget.hpp`):
 
 ```cpp
 class CameraConfigWidget : public QWidget {
@@ -67,7 +67,7 @@ So, a general Qt element has a
 
 **Header File**
 
-- `#include "pch.hpp"`
+- `#include "pch.hpp"` \- This includes miscellanous dependencies needed for the camera client to run
 - Class definition
 - Pointers
 - Signal definitions
@@ -77,8 +77,10 @@ So, a general Qt element has a
 
 - Constructor
 - Implementations
+  - Functions
+  - Slots
 
-### Signals
+### Signals and Slots
 
 **[Signals](https://doc.qt.io/qt-6/signalsandslots.html)** provide a way for Qt objects to communicate with each other. They are somewhat similar to a ROS service in that way \- one object emits/publishes a signal, and another recieves/subscribes to it.
 
@@ -114,6 +116,12 @@ connect(emitter, &EmitterType::signalName, reciever, &RecieverType::slotName);
 ### ROS Integration
 
 Like the basestation, the camera client has a ROS node `/camera-client` that communicates with those on the rover. Its primary use is NOT to get video feeds, however. Instead, it is used for discovering cameras, pausing cameras, and checking *metadata* of recieved images. Video streams are sent over [RTP](https://en.wikipedia.org/wiki/Real-time_Transport_Protocol) and processed by a [gst pipeline](#GStreamer).
+
+### Documentation
+
+[Main Docs](https://doc.qt.io/)
+
+[Class Reference](https://doc.qt.io/qt-6/qtwidgets-module.html)
 
 ## GStreamer
 
