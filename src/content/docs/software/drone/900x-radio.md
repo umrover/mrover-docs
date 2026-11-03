@@ -21,7 +21,9 @@ There are two options to configure the radio. I will use AT&M commands over a te
 See the **Sofware Manual** link for more documentation.
 
 1. Connect FDTI-USB cable to modem & laptop
-<img width="305" alt="Image Showing FTDI Cable Connection" src="https://github.com/user-attachments/assets/2fbee0f9-293b-4ebf-ad26-987e65d15538">
+    - you will need two 900x's, one on the drone, one to connect to the laptop
+
+    <img width="305" alt="Image Showing FTDI Cable Connection" src="https://github.com/user-attachments/assets/2fbee0f9-293b-4ebf-ad26-987e65d15538">
 
 2. Connect to the Radio
 
@@ -69,6 +71,8 @@ See the **Sofware Manual** link for more documentation.
 4. Ensure Parameters Have Been Implemented
 
     i. Repeat the above steps for the other modem(s)-- they must all have the same network ID to function correctly
+    
+    - in our case we just need to do this to the drone modem and the drone laptop modem
 
 5. Test Connection
 
@@ -76,14 +80,10 @@ See the **Sofware Manual** link for more documentation.
 
     ii. Plug the air-side transmitter into the TELEM1 port of the Pixhawk using the provided cable. It should be attached to the bottom row of the transmitter pins as shown below.
 
-<img width="305" alt="Image Showing FTDI Cable Connection" src="https://github.com/user-attachments/assets/3e187f0f-62e6-4059-89cc-6ce70440ae14">
+    <img width="305" alt="Image Showing FTDI Cable Connection" src="https://github.com/user-attachments/assets/3e187f0f-62e6-4059-89cc-6ce70440ae14">
 
     iii. Plug the ground-side transmitter into the basestation computer as before.
 
     iv. Once both are power on, you should see a solid green light, and a blinking red light on both modems.
 
     v. Launch QGroundControl and verify the connection
-
-
-
-
