@@ -115,7 +115,7 @@ connect(emitter, &EmitterType::signalName, reciever, &RecieverType::slotName);
 
 ### ROS Integration
 
-Like the basestation, the camera client has a ROS node `/camera-client` that communicates with those on the rover. Its primary use is NOT to get video feeds, however. Instead, it is used for discovering cameras, pausing cameras, and checking *metadata* of recieved images. Video streams are sent over [RTP](https://en.wikipedia.org/wiki/Real-time_Transport_Protocol) and processed by a [gst pipeline](#GStreamer).
+Like the basestation, the camera client has a ROS node `/camera-client` that communicates with those on the rover. Its primary use is NOT to get video feeds, however. Instead, it is used for discovering cameras, pausing cameras, and checking *metadata* of recieved images. Video streams are sent over [RTP](https://en.wikipedia.org/wiki/Real-time_Transport_Protocol) and processed by a gst pipeline (see below section).
 
 ### Documentation
 
