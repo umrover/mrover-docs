@@ -336,20 +336,20 @@ export default [
             slug: "software/autonomy/navigation/arm-ik-overview",
           },
           {
-            label: "Path Planning",
-            slug: "software/autonomy/navigation/path-planning",
+            label: "Global A*",
+            slug: "software/autonomy/navigation/global-astar",
           },
           {
-            label: "Hybrid A*",
-            slug: "software/autonomy/navigation/hybrid-astar",
+            label: "Behavorial Trees",
+            slug: "software/autonomy/navigation/behavioral-trees",
           },
           {
-            label: "Search Trajectory",
-            slug: "software/autonomy/navigation/search-trajectory",
+            label: "Astronaut Assistance",
+            slug: "software/autonomy/navigation/astro-assistance",
           },
           {
-            label: "Modulation",
-            slug: "software/autonomy/navigation/modulation",
+            label: "Route Finding",
+            slug: "software/autonomy/navigation/route-finding",
           },
         ],
       },
