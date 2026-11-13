@@ -10,4 +10,3 @@ sidebar:
 * [Global Costmap](/software/autonomy/perception/global-costmap)
 * [Keyboard Typing](/software/autonomy/perception/keyboard-typing)
 * [Rock Pick Pose Estimation](/software/autonomy/perception/pick-pose-estimation)
-* [Voice Command Recognition](/software/autonomy/perception/voice-command-recognition)

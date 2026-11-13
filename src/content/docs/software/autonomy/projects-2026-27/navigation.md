@@ -7,8 +7,7 @@ sidebar:
 # 2026-27 Projects
 
 * [Arm IK](/software/autonomy/navigation/arm-ik-overview)
-* [Path Planning](/software/autonomy/navigation/path-planning)
-    * [Hybrid A*](/software/autonomy/navigation/hybrid-astar)
-    * [Search Trajectory Research](/software/autonomy/navigation/search-trajectory)
-    * [Modulation](/software/autonomy/navigation/modulation)
-    * Global A*
+* [Global A*](/software/autonomy/navigation/global-astar)
+* [Behavioral Trees](/software/autonomy/navigation/behavioral-trees) 
+    * [Astronaut Assistance](/software/autonomy/navigation/astro-assistance)
+    * [Route Finding](/software/autonomy/navigation/route-finding)

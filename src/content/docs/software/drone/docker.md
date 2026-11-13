@@ -25,9 +25,9 @@ git clone git@github.com:umrover/mrover-drone.git
 ```
 cd mrover-drone/deps
 cd px4_msgs
-git checkout release/1.15
+git checkout release/1.17
 cd ../px4-ros2-interface-lib
-git checkout 1.4.0
+git checkout release/1.17
 ```
 7. Build the docker container:
 ```
@@ -51,3 +51,9 @@ docker compose -f docker/compose.yml exec -it mrover-drone /bin/zsh
 
 ## MacOS
 Doesn't really work. Gazebo did not run with OpenGL. For X11 apps use XQuartz and enable network connections from remote clients. 
+
+#### Possible Workaround (UTM VM)
+1. Install [UTM](https://getutm.app/)
+2. Create an Ubuntu 24.04 (ARM64) virtual machine
+3. [Graphics acceleration](https://docs.getutm.app/guest-support/linux/#graphics-acceleration)
+    - In VM display settings, select a GPU accelerated display card (e.g. `virto-gpu-gl-pci`)
