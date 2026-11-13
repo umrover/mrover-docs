@@ -32,6 +32,7 @@ export default [
           { label: "LIM", slug: "electrical/ehw/boards/lim" },
           { label: "PDB", slug: "electrical/ehw/boards/pdb" },
           { label: "Science", slug: "electrical/ehw/boards/science" },
+          { label: "Servo", slug: "electrical/ehw/boards/servo" },
         ],
       },
     ],
