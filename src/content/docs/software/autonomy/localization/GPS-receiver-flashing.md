@@ -41,6 +41,8 @@ Now we shall set which RTCM messages we will broadcast, so go to CFG_MSGOUT_RTCM
 * CFG_MSGOUT_RTCM_3x_TYPE1094_USB = 1
 * CFG_MSGOUT_RTCM_3x_TYPE1124_USB = 1 // this one is not in the source linked, but it's for the BeiDou constellation of satellites and should be good bc theres a lot of BeiDou satellites
 * CFG_MSGOUT_RTCM_3x_TYPE1230_USB = 1
+We also need to make it so it sends the surveying-in messages to the basestation so we can know how far along we are
+* CFG-MSGOUT-UBX_NAV_SVIN_USB = 1
 Other settings of note
 * CFG-MSGOUT-NMEA_ID_GGA_USB - this, when set to 0, will disable NMEA outputs so you just get RTCM corrections. Idk if this is helpful but it might decrease bandwidth used? so set it to 0 at your own risk because i don't think the NMEA messages are important but i'm not sure
 * CFG-RATE-MEAS - This controls the rate of publishing messages. 1000 (1000ms=1hz) should be good for basestation, BUT something closer to 50 (50ms=20hz) is preferred for the rover gps antenna
